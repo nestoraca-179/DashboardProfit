@@ -1,0 +1,130 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* GENERALES */
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+/*input, select, textarea {
+    max-width: 280px;
+}*/
+table {
+    margin: 0 !important;
+}
+table td, table th {
+    background: none !important;
+}
+.body-content {
+    height: 100%;
+    background: #f4f4f8;
+    padding: 0 15px;
+}
+.body-content > div {
+    background: #f4f4f8;
+    padding: 0;
+}
+.menu {
+    max-height: 100%;
+    background: #222e3c;
+    position: relative;
+}
+.menu ul.list-menu {
+    padding: 0;
+    list-style-type: none;
+}
+.item-menu {
+    margin: 10px;
+    padding: 15px 0 15px 20px;
+    color: #FFF;
+    text-decoration: none;
+    font-weight: 200;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.item-menu:hover {
+    background: #37485b;
+}
+a.item-menu {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+a.item-menu i {
+    margin-right: 5px;
+}
+.banner {
+    max-height: 100%;
+    overflow-y: auto;
+}
+.banner > form {
+    height: 100%;
+}
+section.container-fluid {
+    height: 100vh;
+}
+.highcharts-credits {
+    display: none;
+}
+
+/* PARAM DATES */
+.param-dates > * {
+    font-size: 12px;
+}
+
+/* CARD STATS */
+.card-stat {
+    height: 120px;
+    position: relative;
+}
+.card-stat h6 {
+    color: #acacac;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+.card-stat p {
+    font-size: 30px;
+    font-weight: bold;
+}
+.card-stat i {
+    font-size: 45px;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+
+/* TABLE STATS */
+.title-table, text.highcharts-title {
+    font-size: 16px !important;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+.table-stats th {
+    padding: 15px;
+    font-size: 12px;
+    font-weight: 500;
+}
+.table-stats td {
+    padding: 15px;
+    font-size: 10px;
+    font-weight: 300;
+}
+
+/* RESPONSIVE */
+@media screen and (max-width: 564px) {
+    .cont-dates {
+        width: 100%;
+    }
+    .param-dates {
+        flex-wrap: wrap;
+    }
+    .param-dates button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+@media screen and (min-width: 768px) {
+    .body-content {
+        padding: 0;
+    }
+}
