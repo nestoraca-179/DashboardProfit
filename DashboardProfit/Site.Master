@@ -23,14 +23,18 @@
 <body>
     <section class="container-fluid row m-0 p-0">
         <div class="col-md-3 col-xl-2 p-0 menu">
-            <div class="panel-user"></div>
+            <div class="panel-user d-flex justify-content-around align-items-center">
+                <i class="fas fa-user text-light"></i>
+                <asp:Label ID="LBL_User" runat="server" CssClass="text-light" Font-Size="16px" />
+                <i class="fas fa-times text-light" style="font-size: 25px; cursor: pointer;" onclick="toggleMenu()"></i>
+            </div>
             <hr class="mx-0 mx-md-3" style="border: solid 1px #FFF;" />
             <ul class="list-menu">
-                <li class="item-menu">Opcion 1</li>
-                <li class="item-menu">Opcion 2</li>
-                <li class="item-menu">Opcion 3</li>
-                <li class="item-menu">Opcion 4</li>
-                <li class="item-menu">Opcion 5</li>
+                <li class="item-menu">Custom 1</li>
+                <li class="item-menu">Custom 2</li>
+                <li class="item-menu">Custom 3</li>
+                <li class="item-menu">Custom 4</li>
+                <li class="item-menu">Custom 5</li>
             </ul>
             <a class="item-menu" href="/Login.aspx?logout=1"><i class="fa-solid fa-power-off"></i> Cerrar Sesion</a>
         </div>
@@ -52,6 +56,9 @@
                     </Scripts>
                 </asp:ScriptManager>
                 <div class="container-fluid body-content">
+                    <div class="d-flex d-md-none justify-content-center py-2 py-md-0 responsive-menu">
+                        <i class="fas fa-bars" onclick="toggleMenu()"></i>
+                    </div>
                     <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
                 </div>
             </form>
@@ -60,5 +67,25 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/Scripts/bootstrap.js") %>
     </asp:PlaceHolder>
+    <script>
+        var display = false;
+
+        function toggleMenu() {
+            if (!display) {
+                $(".menu").css("top", "0");
+                display = true;
+            } else {
+                $(".menu").css("top", "-100%");
+                display = false;
+            }
+        }
+
+        window.addEventListener("resize", function () {
+            if (this.screen.availWidth >= 768) {
+                $(".menu").css("top", "0");
+            }
+        });
+
+    </script>
 </body>
 </html>

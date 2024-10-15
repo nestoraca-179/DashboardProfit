@@ -100,7 +100,7 @@
             <asp:HiddenField ID="HDD_Connect" runat="server" ClientIDMode="Static"></asp:HiddenField>
             <div class="col-md-12 text-center pt-2 pb-5">
                 <asp:Button ID="BTN_Send" runat="server" CssClass="btn btn-primary w-50 px-5 py-3 disabled" OnClick="BTN_Send_Click" style="text-transform: none;" 
-                    ClientIDMode="Static" OnClientClick="javascript:$('#BTN_Send').addClass('disabled', 'true')" Text="Seleccionar sucursal" AutoPostBack="false">
+                    ClientIDMode="Static" OnClientClick="javascript:$('#BTN_Send').addClass('disabled', 'true'); submitted = true;" Text="Seleccionar sucursal" AutoPostBack="false">
                 </asp:Button>
             </div>
         </form>

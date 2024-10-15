@@ -4,7 +4,12 @@
 <div class="container-fluid" ng-app="Dashboard" ng-controller="controller">
     <div class="d-flex flex-wrap justify-content-between row-gap-3 px-0 py-3 px-md-3">
         <h4 class="m-0">DASHBOARD</h4>
-        <div class="cont-dates">
+        <div class="cont-data d-flex">
+            <div class="cont-rates d-flex align-items-center px-2">
+                <small>Tasa BCV:</small>
+                <small ng-if="!rate_usd_bcv" class="spinner-border ms-auto" role="status" aria-hidden="true" style="width: 20px; height: 20px; margin-left: 10px !important;"></small>
+                <small ng-if="rate_usd_bcv" class="mx-2">{{ rate_usd_bcv }}</small>
+            </div>
             <div class="d-flex gap-2 param-dates">
                 <input type="date" id="dateFrom" class="form-control" />
                 <input type="date" id="dateTo" class="form-control" />
@@ -33,14 +38,14 @@
         </div>
         <div class="col-xl-3 px-0 py-2 px-md-3">
             <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
-                <div ng-if="stats_v.totalAmount == null" class="d-flex align-items-center">
+                <div ng-if="stats_v.totalAmountI == null" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
                     <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                 </div>
-                <div ng-if="stats_v.totalAmount != null" id="totalAmountV" style="display: none;">
-                    <h6>Monto Total Ventas</h6>
-                    <p class="m-0">{{ stats_v.totalAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}</p>
-                    <i class="fa-solid fa-dollar-sign"></i>
+                <div ng-if="stats_v.totalAmountI != null" id="totalAmountV" style="display: none;">
+                    <h6>Monto Total Facturas de Venta</h6>
+                    <p class="m-0">{{ formatNumber(stats_v.totalAmountI) }}</p>
+                    <i class="fa-solid fa-dollar-sign text-success"></i>
                 </div>
             </div>
         </div>
@@ -53,6 +58,7 @@
                 <div ng-if="stats_v.totalOrders != null" id="totalOrdersV" style="display: none;">
                     <h6>Pedidos de Venta</h6>
                     <p class="m-0">{{ stats_v.totalOrders }}</p>
+                    <p class="sub-amount">{{ formatNumber(stats_v.totalAmountO) }}</p>
                     <i class="fa-solid fa-file-invoice-dollar"></i>
                 </div>
             </div>
@@ -66,7 +72,8 @@
                 <div ng-if="stats_v.totalCollects != null" id="totalCollectsV" style="display: none;">
                     <h6>Cobros</h6>
                     <p class="m-0">{{ stats_v.totalCollects }}</p>
-                    <i class="fa-solid fa-dollar-sign"></i>
+                    <p class="sub-amount">{{ formatNumber(stats_v.totalAmountC) }}</p>
+                    <i class="fa-solid fa-dollar-sign text-success"></i>
                 </div>
             </div>
         </div>
@@ -82,7 +89,7 @@
                 <h6 ng-if="invoices_v && invoices_v.length == 0" class="m-0 text-center fw-light">Sin Datos</h6>
                 <div ng-if="invoices_v && invoices_v.length > 0" class="overflow-auto">
                     <h4 class="title-table">Facturas de Venta</h4>
-                    <table class="table table-borderless table-stats">
+                    <table class="table table-borderless table-hover table-stats">
                         <thead class="border-bottom">
                             <tr>
                                 <th>#</th>
@@ -93,7 +100,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="invoice in invoices_v">
+                            <tr ng-repeat="invoice in invoices_v" ng-click="openDoc('FACT', invoice)">
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ invoice.doc_num }}</td>
                                 <td>{{ formatDate(invoice.fec_emis) }}</td>
@@ -114,7 +121,7 @@
                 <h6 ng-if="orders_v && orders_v.length == 0" class="m-0 text-center fw-light">Sin Datos</h6>
                 <div ng-if="orders_v && orders_v.length > 0" class="overflow-auto">
                     <h4 class="title-table">Pedidos de Venta</h4>
-                    <table class="table table-borderless table-stats">
+                    <table class="table table-borderless table-hover table-stats">
                         <thead class="border-bottom">
                             <tr>
                                 <th>#</th>
@@ -125,7 +132,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="order in orders_v">
+                            <tr ng-repeat="order in orders_v" ng-click="openDoc('PEDV', order)">
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ order.doc_num }}</td>
                                 <td>{{ formatDate(order.fec_emis) }}</td>
@@ -179,14 +186,14 @@
         </div>
         <div class="col-xl-3 px-0 pt-2 pb-2 px-md-3">
             <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
-                <div ng-if="stats_c.totalAmount == null" class="d-flex align-items-center">
+                <div ng-if="stats_c.totalAmountI == null" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
                     <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                 </div>
-                <div ng-if="stats_c.totalAmount != null" id="totalAmountC" style="display: none;">
+                <div ng-if="stats_c.totalAmountI != null" id="totalAmountC" style="display: none;">
                     <h6>Monto Total Compras</h6>
-                    <p class="m-0">{{ stats_c.totalAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}</p>
-                    <i class="fa-solid fa-dollar-sign"></i>
+                    <p class="m-0">{{ formatNumber(stats_c.totalAmountI) }}</p>
+                    <i class="fa-solid fa-dollar-sign text-success"></i>
                 </div>
             </div>
         </div>
@@ -199,20 +206,22 @@
                 <div ng-if="stats_c.totalOrders != null" id="totalOrdersC" style="display: none;">
                     <h6>Ordenes de Compra</h6>
                     <p class="m-0">{{ stats_c.totalOrders }}</p>
+                    <p class="sub-amount">{{ formatNumber(stats_c.totalAmountO) }}</p>
                     <i class="fa-solid fa-file-invoice-dollar"></i>
                 </div>
             </div>
         </div>
         <div class="col-xl-3 px-0 pt-2 pb-2 px-md-3">
             <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
-                <div ng-if="stats_c.totalOrders == null" class="d-flex align-items-center">
+                <div ng-if="stats_c.totalPayments == null" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
                     <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                 </div>
-                <div ng-if="stats_c.totalOrders != null" id="totalPaymentsC" style="display: none;">
+                <div ng-if="stats_c.totalPayments != null" id="totalPaymentsC" style="display: none;">
                     <h6>Pagos</h6>
                     <p class="m-0">{{ stats_c.totalPayments }}</p>
-                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                    <p class="sub-amount">{{ formatNumber(stats_c.totalAmountC) }}</p>
+                    <i class="fa-solid fa-dollar-sign text-success"></i>
                 </div>
             </div>
         </div>
@@ -228,7 +237,7 @@
                 <h6 ng-if="invoices_c && invoices_c.length == 0" class="m-0 text-center fw-light">Sin Datos</h6>
                 <div ng-if="invoices_c && invoices_c.length > 0" class="overflow-auto">
                     <h4 class="title-table">Facturas de Compra</h4>
-                    <table class="table table-borderless table-stats">
+                    <table class="table table-borderless table-hover table-stats">
                         <thead class="border-bottom">
                             <tr>
                                 <th>#</th>
@@ -260,7 +269,7 @@
                 <h6 ng-if="orders_c && orders_c.length == 0" class="m-0 text-center fw-light">Sin Datos</h6>
                 <div ng-if="orders_c && orders_c.length > 0" class="overflow-auto">
                     <h4 class="title-table">Ordenes de Compra</h4>
-                    <table class="table table-borderless table-stats">
+                    <table class="table table-borderless table-hover table-stats">
                         <thead class="border-bottom">
                             <tr>
                                 <th>#</th>
@@ -308,7 +317,7 @@
     </div>
     <hr class="mx-0 mt-2 mb-0 mx-md-3" />
     <!-- ESTADISTICAS CAJA -->
-    <h5 class="mx-0 mt-3 mx-md-3">Caja y Banco</h5>
+    <h5 class="mx-0 mt-3 mx-md-3">Tesoreria</h5>
     <div class="row m-0 pb-2">
         <div class="col-xl-3 px-0 pt-2 pb-2 px-md-3">
             <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
@@ -318,7 +327,20 @@
                 </div>
                 <div ng-if="stats_b.totalBoxesBSD != null" id="totalBoxesBSD" style="display: none;">
                     <h6>Total Cajas (BSD)</h6>
-                    <p class="m-0">{{ stats_b.totalBoxesBSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}</p>
+                    <p class="m-0">{{ formatNumber(stats_b.totalBoxesBSD) }}</p>
+                    <i style="font-size: 20px;">BSD</i>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 px-0 pt-2 pb-2 px-md-3">
+            <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
+                <div ng-if="stats_b.totalAccountsBSD == null" class="d-flex align-items-center">
+                    <strong>Cargando...</strong>
+                    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                </div>
+                <div ng-if="stats_b.totalAccountsBSD != null" id="totalAccountsBSD" style="display: none;">
+                    <h6>Total Cuentas (BSD)</h6>
+                    <p class="m-0">{{ formatNumber(stats_b.totalAccountsBSD) }}</p>
                     <i style="font-size: 20px;">BSD</i>
                 </div>
             </div>
@@ -331,21 +353,8 @@
                 </div>
                 <div ng-if="stats_b.totalBoxesUSD != null" id="totalBoxesUSD" style="display: none;">
                     <h6>Total Cajas (USD)</h6>
-                    <p class="m-0">{{ stats_b.totalBoxesUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}</p>
+                    <p class="m-0">{{ formatNumber(stats_b.totalBoxesUSD) }}</p>
                     <i style="font-size: 20px;">$USD</i>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 px-0 pt-2 pb-2 px-md-3">
-            <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
-                <div ng-if="stats_b.totalAccountsBSD == null" class="d-flex align-items-center">
-                    <strong>Cargando...</strong>
-                    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
-                </div>
-                <div ng-if="stats_b.totalAccountsBSD != null" id="totalAccountsBSD" style="display: none;">
-                    <h6>Total Cuentas (BSD)</h6>
-                    <p class="m-0">{{ stats_b.totalAccountsBSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}</p>
-                    <i style="font-size: 20px;">BSD</i>
                 </div>
             </div>
         </div>
@@ -357,9 +366,129 @@
                 </div>
                 <div ng-if="stats_b.totalAccountsUSD != null" id="totalAccountsUSD" style="display: none;">
                     <h6>Total Cuentas (USD)</h6>
-                    <p class="m-0">{{ stats_b.totalAccountsUSD.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}</p>
+                    <p class="m-0">{{ formatNumber(stats_b.totalAccountsUSD) }}</p>
                     <i style="font-size: 20px;">$USD</i>
                 </div>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL DOCUMENTO -->
+    <div class="modal fade modal-doc" id="modalDoc" tabindex="-1">
+        <div class="modal-dialog" style="max-width: 900px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ tit_doc }} {{ num_doc }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div ng-if="doc == null" class="d-flex justify-content-center align-items-center my-2">
+                        <strong>Cargando...</strong>
+                        <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                    </div>
+                    <div ng-if="doc != null" class="info-doc">
+                        <div class="row">
+                            <div class="col-6">
+                                <b>Cliente:</b>
+                                <p>{{ doc.co_cli }} - {{ doc.saCliente.cli_des }}</p>
+                            </div>
+                            <div class="col-6">
+                                <b>Moneda:</b>
+                                <p>{{ doc.co_mone }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <b>Cond. Pago:</b>
+                                <p>{{ doc.co_cond }} - {{ doc.saCondicionPago.cond_des }}</p>
+                            </div>
+                            <div class="col-6">
+                                <b>Tasa:</b>
+                                <p>{{ formatNumber(doc.tasa) }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <b>Vendedor:</b>
+                                <p>{{ doc.co_ven }} - {{ doc.saVendedor.ven_des }}</p>
+                            </div>
+                            <div class="col-6 d-flex align-items-center">
+                                <hr class="m-0 w-100" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <b>Nro. Control:</b>
+                                <p ng-if="doc.n_control">{{ doc.n_control }}</p>
+                                <p ng-if="!doc.n_control">N/A</p>
+                            </div>
+                            <div class="col-6">
+                                <b>Total Bruto:</b>
+                                <p>{{ formatNumber(doc.total_bruto) }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <b>Fecha Emision:</b>
+                                <p>{{ formatDate(doc.fec_emis) }}</p>
+                            </div>
+                            <div class="col-6">
+                                <b>Monto IVA:</b>
+                                <p>{{ formatNumber(doc.monto_imp) }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <b>Fecha Vencimiento:</b>
+                                <p>{{ formatDate(doc.fec_venc) }}</p>
+                            </div>
+                            <div class="col-6">
+                                <b>Total Neto:</b>
+                                <p>{{ formatNumber(doc.total_neto) }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <b>Fecha Registro:</b>
+                                <p>{{ formatDate(doc.fec_reg) }}</p>
+                            </div>
+                            <div class="col-6">
+                                <b>Saldo:</b>
+                                <p>{{ formatNumber(doc.saldo) }}</p>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table table-striped border" style="font-size: 13px;">
+                                    <thead>
+                                        <tr>
+                                            <th>N°</th>
+                                            <th>Articulo</th>
+                                            <th>Cantidad</th>
+                                            <th>Precio Venta</th>
+                                            <th>IVA</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="reng in doc.rengs">
+                                            <td>{{ $index + 1 }}</td>
+                                            <td>{{ reng.co_art }} - {{ reng.des_art }}</td>
+                                            <td>{{ reng.total_art}}</td>
+                                            <td>{{ formatNumber(reng.prec_vta) }}</td>
+                                            <td>{{ formatNumber(reng.monto_imp) }}</td>
+                                            <td>{{ formatNumber(reng.reng_neto) }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%--<div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>--%>
             </div>
         </div>
     </div>
@@ -375,6 +504,11 @@
     // $("#dateTo").val(today);
 
     app.controller("controller", function ($scope, $http) {
+
+        $http.get("https://pydolarve.org/api/v1/dollar?page=bcv").then(function (response) {
+            console.log(response.data);
+            $scope.rate_usd_bcv = response.data.monitors.usd.price;
+        });
 
         $scope.init = function () {
             $scope.stats_v = {};
@@ -402,9 +536,12 @@
 
             $http.get(`/api/GetStatsSales/${from}/${to}`).then(function (response) {
                 $scope.stats_v.totalInvoices = response.data.total_i;
-                $scope.stats_v.totalAmount = response.data.amount_i;
+                $scope.stats_v.totalAmountI = response.data.amount_i;
                 $scope.stats_v.totalOrders = response.data.total_o;
+                $scope.stats_v.totalAmountO = response.data.amount_o;
                 $scope.stats_v.totalCollects = response.data.total_c;
+                $scope.stats_v.totalAmountC = response.data.amount_c;
+
                 setTimeout(function () {
                     $("#totalInvoicesV").removeAttr("style");
                     $("#totalAmountV").removeAttr("style");
@@ -437,9 +574,12 @@
 
             $http.get(`/api/GetStatsPurchases/${from}/${to}`).then(function (response) {
                 $scope.stats_c.totalInvoices = response.data.total_i;
-                $scope.stats_c.totalAmount = response.data.amount_i;
+                $scope.stats_c.totalAmountI = response.data.amount_i;
                 $scope.stats_c.totalOrders = response.data.total_o;
+                $scope.stats_c.totalAmountO = response.data.amount_o;
                 $scope.stats_c.totalPayments = response.data.total_c;
+                $scope.stats_c.totalAmountC = response.data.amount_c;
+                
                 setTimeout(function () {
                     $("#totalInvoicesC").removeAttr("style");
                     $("#totalAmountC").removeAttr("style");
@@ -471,11 +611,11 @@
             // CAJA Y BANCO
 
             $http.get(`/api/GetStatsBalances/${from}/${to}`).then(function (response) {
-                console.log(response.data);
                 $scope.stats_b.totalBoxesBSD = response.data.total_b_bsd;
                 $scope.stats_b.totalBoxesUSD = response.data.total_b_usd;
                 $scope.stats_b.totalAccountsBSD = response.data.total_a_bsd;
                 $scope.stats_b.totalAccountsUSD = response.data.total_a_usd;
+                
                 setTimeout(function () {
                     $("#totalBoxesBSD").removeAttr("style");
                     $("#totalBoxesUSD").removeAttr("style");
@@ -495,6 +635,41 @@
         }
 
         $scope.formatDate = (date) => date != null ? new Date(date).toLocaleString("es-ES", options).replace(",", "").split(" ")[0] : "";
+
+        $scope.formatNumber = (number) => number.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+        $scope.openDoc = function (type, doc) {
+
+            $scope.doc = null;
+
+            switch (type) {
+                case "FACT":
+                    $scope.tit_doc = "Factura";
+                    $scope.num_doc = doc.doc_num.trim();
+                    break;
+                case "PEDV":
+                    $scope.tit_doc = "Pedido";
+                    $scope.num_doc = doc.doc_num.trim();
+                    break;
+            }
+
+            $http.get(`/api/GetInfoDocSale/${type}/${$scope.num_doc}`).then(function (response) {
+                console.log(response.data);
+                $scope.doc = response.data;
+
+                switch (type) {
+                    case "FACT":
+                        $scope.doc.rengs = response.data.saFacturaVentaReng;
+                        break;
+                    case "PEDV":
+                        $scope.doc.rengs = response.data.saPedidoVentaReng;
+                        break;
+                }
+            });
+
+            var modal = new bootstrap.Modal(document.getElementById('modalDoc'), options);
+            modal.show();
+        }
     });
 
 </script>

@@ -16,7 +16,7 @@ namespace DashboardProfit.Controllers
 		public object GetStatsSales(DateTime from, DateTime to)
 		{
 			int total_i = 0, total_o = 0, total_c = 0;
-			decimal amount_i = 0;
+			decimal amount_i = 0, amount_o = 0, amount_c = 0;
 
 			List<RepFacturaVentaxFecha_Result> data_i = new FacturaVentaController().getLastTopInvoices(from, to, 0);
 			foreach (RepFacturaVentaxFecha_Result item in data_i)
@@ -26,10 +26,30 @@ namespace DashboardProfit.Controllers
 					amount_i += item.total_neto.Value;
 			}
 
-			total_o = new PedidoVentaController().getLastTopOrders(from, to, 0).Count;
-			total_c = new CobroController().getLastTopCollects(from, to, 0).Count;
+			List<RepPedidoVentaxNum_Result> orders = new PedidoVentaController().getLastTopOrders(from, to, 0);
+			List<RepCobrosxFecha_Result> collects = new CobroController().getLastTopCollects(from, to, 0);
 
-			return new { total_i, amount_i, total_o, total_c };
+			total_o = orders.Count;
+			amount_o = orders.Select(o => o.total_neto.Value).Sum();
+			total_c = collects.Count;
+			amount_c = collects.Select(c => c.mont_doc).Sum();
+
+			return new { total_i, amount_i, total_o, amount_o, total_c, amount_c };
+		}
+
+		[HttpGet]
+		[Route("api/GetInfoDocSale/{type}/{doc}")]
+		public object GetInfoDoc(string type, string doc)
+		{
+			switch (type)
+			{
+				case "FACT":
+					return new FacturaVentaController().getByID(doc);
+				case "PEDV":
+					return new PedidoVentaController().getByID(doc);
+				default:
+					return null;
+			}
 		}
 
 		[HttpGet]
@@ -67,7 +87,7 @@ namespace DashboardProfit.Controllers
 		public object GetStatsPurchases(DateTime from, DateTime to)
 		{
 			int total_i = 0, total_o = 0, total_c = 0;
-			decimal amount_i = 0;
+			decimal amount_i = 0, amount_o = 0, amount_c = 0;
 
 			List<RepCompraxFecha_Result> data = new FacturaCompraController().getLastTopInvoices(from, to, 0);
 			foreach (RepCompraxFecha_Result item in data)
@@ -77,10 +97,15 @@ namespace DashboardProfit.Controllers
 					amount_i += item.total_neto.Value;
 			}
 
-			total_o = new OrdenCompraController().getLastTopOrders(from, to, 0).Count;
-			total_c = new PagoController().getLastTopPayments(from, to, 0).Count;
+			List<RepOrdenCompraxNum_Result> orders = new OrdenCompraController().getLastTopOrders(from, to, 0);
+			List<RepPagosxProveedor_Result> collects = new PagoController().getLastTopPayments(from, to, 0);
 
-			return new { total_i, amount_i, total_o, total_c };
+			total_o = orders.Count;
+			amount_o = orders.Select(o => o.total_neto.Value).Sum();
+			total_c = collects.Count;
+			amount_c = collects.Select(c => c.total_neto.Value).Sum();
+
+			return new { total_i, amount_i, total_o, amount_o, total_c, amount_c };
 		}
 
 		[HttpGet]
