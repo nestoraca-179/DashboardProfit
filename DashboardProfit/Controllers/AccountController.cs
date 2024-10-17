@@ -1,4 +1,4 @@
-﻿using DashboardProfit.Models;
+﻿using DashboardProfit.Data;
 using System;
 using System.Data.Entity;
 using System.Linq;

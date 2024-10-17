@@ -122,6 +122,12 @@ section.container-fluid {
     bottom: 15px;
     right: 15px;
 }
+.card-stat i.stat-sale {
+    color: #55b973;
+}
+.card-stat i.stat-buy {
+    color: #dfa068;
+}
 
 /* TABLE STATS */
 .title-table, text.highcharts-title {

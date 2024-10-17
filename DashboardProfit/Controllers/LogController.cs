@@ -1,4 +1,4 @@
-﻿using DashboardProfit.Models;
+﻿using DashboardProfit.Data;
 using System;
 
 namespace DashboardProfit.Controllers

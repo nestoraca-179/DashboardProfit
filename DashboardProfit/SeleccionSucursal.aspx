@@ -90,7 +90,7 @@
                 <h1 class="text-center">Seleccionar Sucursal</h1>
             </div>
             <div class="container-cards px-3">
-                <% foreach (DashboardProfit.Models.saSucursal suc in sucs) { %>
+                <% foreach (DashboardProfit.Data.saSucursal suc in sucs) { %>
                     <div class="card-prod shadow-lg" id="<%= suc.co_sucur.Trim() %>">
 			            <i class="fas fa-building"></i>
 			            <h5 class="text-white font-weight-bold"><%= suc.sucur_des.Trim() %></h5>

@@ -1,12 +1,9 @@
 ﻿using DashboardProfit.Controllers;
 using DashboardProfit.Models;
+using DashboardProfit.Data;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace DashboardProfit
 {
@@ -34,11 +31,11 @@ namespace DashboardProfit
 						Session["NAME_CONN"] = conn.des_con;
 						Session["ID_CONN"] = conn.ID;
 
-						bool useBranchs = new SucursalController().useBranchs();
+						bool useBranchs = new SucursalRepository().useBranchs();
 						if (!useBranchs)
 							Response.Redirect("/Dashboard.aspx");
 
-						sucs = new SucursalController().getAllBranchs();
+						sucs = new SucursalRepository().getAllBranchs();
 					}
 					else
 						Response.Redirect("/Login.aspx?logout=1");
@@ -52,7 +49,7 @@ namespace DashboardProfit
 
 		protected void BTN_Send_Click(object sender, EventArgs e)
 		{
-			Session["BRANCH"] = new SucursalController().getBranchByID(HDD_Connect.Value);
+			Session["BRANCH"] = new SucursalRepository().getBranchByID(HDD_Connect.Value);
 			Response.Redirect("/Dashboard.aspx");
 		}
 	}

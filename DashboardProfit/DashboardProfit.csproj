@@ -187,31 +187,31 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
-    <Content Include="Models\DashboardProfitModel.Context.tt">
+    <Content Include="Data\DashboardProfitModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DashboardProfitModel.edmx</DependentUpon>
       <LastGenOutput>DashboardProfitModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DashboardProfitModel.tt">
+    <Content Include="Data\DashboardProfitModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DashboardProfitModel.edmx</DependentUpon>
       <LastGenOutput>DashboardProfitModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\ProfitAdmModel.Context.tt">
+    <Content Include="Data\ProfitAdmModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ProfitAdmModel.Context.cs</LastGenOutput>
       <DependentUpon>ProfitAdmModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\ProfitAdmModel.tt">
+    <Content Include="Data\ProfitAdmModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ProfitAdmModel.edmx</DependentUpon>
       <LastGenOutput>ProfitAdmModel.cs</LastGenOutput>
     </Content>
-    <EntityDeploy Include="Models\ProfitAdmModel.edmx">
+    <EntityDeploy Include="Data\ProfitAdmModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ProfitAdmModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\ProfitAdmModel.edmx.diagram">
+    <Content Include="Data\ProfitAdmModel.edmx.diagram">
       <DependentUpon>ProfitAdmModel.edmx</DependentUpon>
     </Content>
     <Content Include="Scripts\angular-animate.js" />
@@ -259,11 +259,11 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
-    <EntityDeploy Include="Models\DashboardProfitModel.edmx">
+    <EntityDeploy Include="Data\DashboardProfitModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DashboardProfitModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\DashboardProfitModel.edmx.diagram">
+    <Content Include="Data\DashboardProfitModel.edmx.diagram">
       <DependentUpon>DashboardProfitModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
@@ -1063,23 +1063,33 @@
       <DependentUpon>CambiarClave.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ArticuloController.cs" />
-    <Compile Include="Controllers\CajaController.cs" />
-    <Compile Include="Controllers\ClienteController.cs" />
-    <Compile Include="Controllers\CobroController.cs" />
-    <Compile Include="Controllers\CuentaBancariaController.cs" />
+    <Compile Include="Data\RepDevolucionClientexNum_Result.cs">
+      <DependentUpon>ProfitAdmModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\RepDevolucionProveedorxNum_Result.cs">
+      <DependentUpon>ProfitAdmModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\ArticuloRepository.cs" />
+    <Compile Include="Repository\CajaRepository.cs" />
+    <Compile Include="Repository\ClienteRepository.cs" />
+    <Compile Include="Repository\CobroRepository.cs" />
+    <Compile Include="Repository\CuentaBancariaRepository.cs" />
     <Compile Include="Controllers\DashboardApiController.cs" />
+    <Compile Include="Repository\DevolucionCompraRepository.cs" />
+    <Compile Include="Repository\DevolucionVentaRepository.cs" />
+    <Compile Include="Repository\DocumentoCompraRepository.cs" />
+    <Compile Include="Repository\DocumentoVentaRepository.cs" />
     <Compile Include="Controllers\EntityController.cs" />
-    <Compile Include="Controllers\FacturaCompraController.cs" />
-    <Compile Include="Controllers\FacturaVentaController.cs" />
+    <Compile Include="Repository\FacturaCompraRepository.cs" />
+    <Compile Include="Repository\FacturaVentaRepository.cs" />
     <Compile Include="Controllers\IncidentController.cs" />
     <Compile Include="Controllers\LogController.cs" />
-    <Compile Include="Controllers\OrdenCompraController.cs" />
-    <Compile Include="Controllers\PagoController.cs" />
-    <Compile Include="Controllers\PedidoVentaController.cs" />
-    <Compile Include="Controllers\ProveedorController.cs" />
+    <Compile Include="Repository\OrdenCompraRepository.cs" />
+    <Compile Include="Repository\PagoRepository.cs" />
+    <Compile Include="Repository\PedidoVentaRepository.cs" />
+    <Compile Include="Repository\ProveedorRepository.cs" />
     <Compile Include="Controllers\SecurityController.cs" />
-    <Compile Include="Controllers\SucursalController.cs" />
+    <Compile Include="Repository\SucursalRepository.cs" />
     <Compile Include="Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1105,810 +1115,816 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\Connection.cs" />
-    <Compile Include="Models\DashboardProfitModel.Context.cs">
+    <Compile Include="Data\DashboardProfitModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DashboardProfitModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DashboardProfitModel.cs">
+    <Compile Include="Data\DashboardProfitModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DashboardProfitModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DashboardProfitModel.Designer.cs">
+    <Compile Include="Data\DashboardProfitModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DashboardProfitModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Empresa.cs">
+    <Compile Include="Data\Empresa.cs">
       <DependentUpon>DashboardProfitModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Incidente.cs">
+    <Compile Include="Data\Incidente.cs">
       <DependentUpon>DashboardProfitModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Log.cs">
+    <Compile Include="Data\Log.cs">
       <DependentUpon>DashboardProfitModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\par_emp.cs">
+    <Compile Include="Data\par_emp.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProfitAdmManager.cs" />
-    <Compile Include="Models\ProfitAdmModel.Context.cs">
+    <Compile Include="Data\ProfitAdmModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProfitAdmModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ProfitAdmModel.cs">
+    <Compile Include="Data\ProfitAdmModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ProfitAdmModel.Designer.cs">
+    <Compile Include="Data\ProfitAdmModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProfitAdmModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\pvArticuloExt.cs">
+    <Compile Include="Data\pvArticuloExt.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\pvCaja.cs">
+    <Compile Include="Data\pvCaja.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\pvCobroExt.cs">
+    <Compile Include="Data\pvCobroExt.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\pvCobroTPRengExt.cs">
+    <Compile Include="Data\pvCobroTPRengExt.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\pvConfigPuntoV.cs">
+    <Compile Include="Data\pvConfigPuntoV.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\pvConfigPuntoVPrecio.cs">
+    <Compile Include="Data\pvConfigPuntoVPrecio.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\pvDenominacionesMoneda.cs">
+    <Compile Include="Data\pvDenominacionesMoneda.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\pvDevolucionClienteExt.cs">
+    <Compile Include="Data\pvDevolucionClienteExt.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\pvEtiquetaBalanza.cs">
+    <Compile Include="Data\pvEtiquetaBalanza.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\pvFacturaVentaExt.cs">
+    <Compile Include="Data\pvFacturaVentaExt.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\pvMovimientoBancoExt.cs">
+    <Compile Include="Data\pvMovimientoBancoExt.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\pvMovimientoCajaDevolucionExt.cs">
+    <Compile Include="Data\pvMovimientoCajaDevolucionExt.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\pvMovimientoCajaExt.cs">
+    <Compile Include="Data\pvMovimientoCajaExt.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\pvParEmp.cs">
+    <Compile Include="Data\pvParEmp.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\pvRenglonTicket.cs">
+    <Compile Include="Data\pvRenglonTicket.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\pvTarjetaCreditoExt.cs">
+    <Compile Include="Data\pvTarjetaCreditoExt.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\pvTipoTarjeta.cs">
+    <Compile Include="Data\pvTipoTarjeta.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\pvTurno.cs">
+    <Compile Include="Data\pvTurno.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\pvTurnoExe.cs">
+    <Compile Include="Data\pvTurnoExe.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\pvValeAlimentacion.cs">
+    <Compile Include="Data\pvValeAlimentacion.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\pvValeAlimentacionReng.cs">
+    <Compile Include="Data\pvValeAlimentacionReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RepArticulosMasCompras_Result.cs">
+    <Compile Include="Data\RepArticulosMasCompras_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RepArticulosMasVentas_Result.cs">
+    <Compile Include="Data\RepArticulosMasVentas_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RepClienteMasVenta_Result.cs">
+    <Compile Include="Data\RepClienteMasVenta_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RepCobrosxFecha_Result.cs">
+    <Compile Include="Data\RepCobrosxFecha_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RepCompraxFecha_Result.cs">
+    <Compile Include="Data\RepCompraxFecha_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RepFacturaVentaxFecha_Result.cs">
+    <Compile Include="Data\RepDocumentoCXCxNumero_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RepFacturaVentaxNum_Result.cs">
+    <Compile Include="Data\RepDocumentoCXPxNumero_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RepOrdenCompraxNum_Result.cs">
+    <Compile Include="Data\RepFacturaVentaxFecha_Result.cs">
+      <DependentUpon>ProfitAdmModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\RepFacturaVentaxNum_Result.cs">
+      <DependentUpon>ProfitAdmModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\RepOrdenCompraxNum_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Repository.cs" />
-    <Compile Include="Models\RepPagosxFecha_Result.cs">
+    <Compile Include="Data\RepPagosxFecha_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RepPagosxNumero_Result.cs">
+    <Compile Include="Data\RepPagosxNumero_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RepPagosxProveedor_Result.cs">
+    <Compile Include="Data\RepPagosxProveedor_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RepPedidoVentaxNum_Result.cs">
+    <Compile Include="Data\RepPedidoVentaxNum_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RepProveedorMasCompra_Result.cs">
+    <Compile Include="Data\RepProveedorMasCompra_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RepSaldoCaja_Result.cs">
+    <Compile Include="Data\RepSaldoCaja_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RepSaldoCuentaBancariaMultimoneda_Result.cs">
+    <Compile Include="Data\RepSaldoCuentaBancariaMultimoneda_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saAdiCampo.cs">
+    <Compile Include="Data\saAdiCampo.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saAdiGrupo.cs">
+    <Compile Include="Data\saAdiGrupo.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saAjPrecioCostoAuto.cs">
+    <Compile Include="Data\saAjPrecioCostoAuto.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saAjPrecioCostoM.cs">
+    <Compile Include="Data\saAjPrecioCostoM.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saAjPrecioCostoReng.cs">
+    <Compile Include="Data\saAjPrecioCostoReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saAjuste.cs">
+    <Compile Include="Data\saAjuste.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saAjusteReng.cs">
+    <Compile Include="Data\saAjusteReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saAlmacen.cs">
+    <Compile Include="Data\saAlmacen.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saAreaImpresion.cs">
+    <Compile Include="Data\saAreaImpresion.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saArtCaracteristica.cs">
+    <Compile Include="Data\saArtCaracteristica.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saArtCaracteristicaMov.cs">
+    <Compile Include="Data\saArtCaracteristicaMov.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saArtCompuesto.cs">
+    <Compile Include="Data\saArtCompuesto.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saArtCompuestoGen.cs">
+    <Compile Include="Data\saArtCompuestoGen.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saArtCompuestoGenReng.cs">
+    <Compile Include="Data\saArtCompuestoGenReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saArtCompuestoReng.cs">
+    <Compile Include="Data\saArtCompuestoReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saArtCrearAut.cs">
+    <Compile Include="Data\saArtCrearAut.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saArticulo.cs">
+    <Compile Include="Data\saArticulo.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saArtIdentificadorReng.cs">
+    <Compile Include="Data\saArtIdentificadorReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saArtImagen.cs">
+    <Compile Include="Data\saArtImagen.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saArtImportacion.cs">
+    <Compile Include="Data\saArtImportacion.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saArtMargen.cs">
+    <Compile Include="Data\saArtMargen.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saArtPrecio.cs">
+    <Compile Include="Data\saArtPrecio.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saArtProveedorReng.cs">
+    <Compile Include="Data\saArtProveedorReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saArtRelacionadoReng.cs">
+    <Compile Include="Data\saArtRelacionadoReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saArtUbicacion.cs">
+    <Compile Include="Data\saArtUbicacion.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saArtUnidad.cs">
+    <Compile Include="Data\saArtUnidad.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saBanco.cs">
+    <Compile Include="Data\saBanco.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saBeneficiario.cs">
+    <Compile Include="Data\saBeneficiario.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saCaja.cs">
+    <Compile Include="Data\saCaja.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saCatArticulo.cs">
+    <Compile Include="Data\saCatArticulo.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saCheque.cs">
+    <Compile Include="Data\saCheque.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saChequeDevueltoCompra.cs">
+    <Compile Include="Data\saChequeDevueltoCompra.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saChequeDevueltoVenta.cs">
+    <Compile Include="Data\saChequeDevueltoVenta.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saChequera.cs">
+    <Compile Include="Data\saChequera.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saCliente.cs">
+    <Compile Include="Data\saCliente.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saClienteExt.cs">
+    <Compile Include="Data\saClienteExt.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saCobro.cs">
+    <Compile Include="Data\saCobro.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saCobroDocReng.cs">
+    <Compile Include="Data\saCobroDocReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saCobroRentenReng.cs">
+    <Compile Include="Data\saCobroRentenReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saCobroRetenIvaReng.cs">
+    <Compile Include="Data\saCobroRetenIvaReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saCobroTPReng.cs">
+    <Compile Include="Data\saCobroTPReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saColor.cs">
+    <Compile Include="Data\saColor.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saComisionGeneracion.cs">
+    <Compile Include="Data\saComisionGeneracion.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saComisionPrecioArticulo.cs">
+    <Compile Include="Data\saComisionPrecioArticulo.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saComisionPrecioCategoria.cs">
+    <Compile Include="Data\saComisionPrecioCategoria.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saComisionPrecioLinea.cs">
+    <Compile Include="Data\saComisionPrecioLinea.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saComisionRentabArticulo.cs">
+    <Compile Include="Data\saComisionRentabArticulo.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saComisionRentabCategoria.cs">
+    <Compile Include="Data\saComisionRentabCategoria.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saComisionRentabLinea.cs">
+    <Compile Include="Data\saComisionRentabLinea.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saComisionResultado.cs">
+    <Compile Include="Data\saComisionResultado.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saComisionTipo.cs">
+    <Compile Include="Data\saComisionTipo.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConcBanco.cs">
+    <Compile Include="Data\saConcBanco.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConciliacionAutoReng.cs">
+    <Compile Include="Data\saConciliacionAutoReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConciliacionDetalle.cs">
+    <Compile Include="Data\saConciliacionDetalle.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saCondicionPago.cs">
+    <Compile Include="Data\saCondicionPago.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigAjuste.cs">
+    <Compile Include="Data\saConfigAjuste.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigArticulo.cs">
+    <Compile Include="Data\saConfigArticulo.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigCliente.cs">
+    <Compile Include="Data\saConfigCliente.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigCobro.cs">
+    <Compile Include="Data\saConfigCobro.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigCotizacionCliente.cs">
+    <Compile Include="Data\saConfigCotizacionCliente.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigCotizacionProveedor.cs">
+    <Compile Include="Data\saConfigCotizacionProveedor.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigDevolucionCliente.cs">
+    <Compile Include="Data\saConfigDevolucionCliente.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigDevolucionProveedor.cs">
+    <Compile Include="Data\saConfigDevolucionProveedor.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigDistCosto.cs">
+    <Compile Include="Data\saConfigDistCosto.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigFacturaCompra.cs">
+    <Compile Include="Data\saConfigFacturaCompra.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigFacturaVenta.cs">
+    <Compile Include="Data\saConfigFacturaVenta.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigMovBanco.cs">
+    <Compile Include="Data\saConfigMovBanco.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigMovCaja.cs">
+    <Compile Include="Data\saConfigMovCaja.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigNotaDespachoVenta.cs">
+    <Compile Include="Data\saConfigNotaDespachoVenta.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigNotaEntregaVenta.cs">
+    <Compile Include="Data\saConfigNotaEntregaVenta.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigNotaRecepcionCompra.cs">
+    <Compile Include="Data\saConfigNotaRecepcionCompra.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigOrdenCompra.cs">
+    <Compile Include="Data\saConfigOrdenCompra.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigOrdenPago.cs">
+    <Compile Include="Data\saConfigOrdenPago.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigPago.cs">
+    <Compile Include="Data\saConfigPago.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigPedidoVenta.cs">
+    <Compile Include="Data\saConfigPedidoVenta.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigPlantillaCompra.cs">
+    <Compile Include="Data\saConfigPlantillaCompra.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigPlantillaVenta.cs">
+    <Compile Include="Data\saConfigPlantillaVenta.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigProveedor.cs">
+    <Compile Include="Data\saConfigProveedor.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConfigTraslado.cs">
+    <Compile Include="Data\saConfigTraslado.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConISLR.cs">
+    <Compile Include="Data\saConISLR.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConsecutivo.cs">
+    <Compile Include="Data\saConsecutivo.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saConsecutivoTipo.cs">
+    <Compile Include="Data\saConsecutivoTipo.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saCostoHistoricoEntrada.cs">
+    <Compile Include="Data\saCostoHistoricoEntrada.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saCostoHistoricoSalida.cs">
+    <Compile Include="Data\saCostoHistoricoSalida.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saCotizacionCliente.cs">
+    <Compile Include="Data\saCotizacionCliente.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saCotizacionClienteReng.cs">
+    <Compile Include="Data\saCotizacionClienteReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saCotizacionProveedor.cs">
+    <Compile Include="Data\saCotizacionProveedor.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saCotizacionProveedorReng.cs">
+    <Compile Include="Data\saCotizacionProveedorReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saCuentaBancaria.cs">
+    <Compile Include="Data\saCuentaBancaria.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saCuentaIngEgr.cs">
+    <Compile Include="Data\saCuentaIngEgr.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDatosDeImportacion.cs">
+    <Compile Include="Data\saDatosDeImportacion.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDepositoBanco.cs">
+    <Compile Include="Data\saDepositoBanco.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDepositoBancoReng.cs">
+    <Compile Include="Data\saDepositoBancoReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDescArticulo.cs">
+    <Compile Include="Data\saDescArticulo.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDescCategoria.cs">
+    <Compile Include="Data\saDescCategoria.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDescLinea.cs">
+    <Compile Include="Data\saDescLinea.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDescProntoPago.cs">
+    <Compile Include="Data\saDescProntoPago.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDevolucionCliente.cs">
+    <Compile Include="Data\saDevolucionCliente.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDevolucionClienteReng.cs">
+    <Compile Include="Data\saDevolucionClienteReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDevolucionProveedor.cs">
+    <Compile Include="Data\saDevolucionProveedor.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDevolucionProveedorReng.cs">
+    <Compile Include="Data\saDevolucionProveedorReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDevolucionProveedorRengExt.cs">
+    <Compile Include="Data\saDevolucionProveedorRengExt.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDistribCosto.cs">
+    <Compile Include="Data\saDistribCosto.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDistribCostoDestinoReng.cs">
+    <Compile Include="Data\saDistribCostoDestinoReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDistribCostoOrigenReng.cs">
+    <Compile Include="Data\saDistribCostoOrigenReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDistribCostoRelaReng.cs">
+    <Compile Include="Data\saDistribCostoRelaReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDocumentoCompra.cs">
+    <Compile Include="Data\saDocumentoCompra.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDocumentoCompraInfoIGTF.cs">
+    <Compile Include="Data\saDocumentoCompraInfoIGTF.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDocumentoCompraReng.cs">
+    <Compile Include="Data\saDocumentoCompraReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDocumentoElectronico.cs">
+    <Compile Include="Data\saDocumentoElectronico.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDocumentoImagen.cs">
+    <Compile Include="Data\saDocumentoImagen.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDocumentoVenta.cs">
+    <Compile Include="Data\saDocumentoVenta.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDocumentoVentaInfoIGTF.cs">
+    <Compile Include="Data\saDocumentoVentaInfoIGTF.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saDocumentoVentaReng.cs">
+    <Compile Include="Data\saDocumentoVentaReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saFactCompRengCaracteristicasAdic.cs">
+    <Compile Include="Data\saFactCompRengCaracteristicasAdic.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saFactCompRengPesoVolumen.cs">
+    <Compile Include="Data\saFactCompRengPesoVolumen.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saFacturaCompra.cs">
+    <Compile Include="Data\saFacturaCompra.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saFacturaCompraImportacion.cs">
+    <Compile Include="Data\saFacturaCompraImportacion.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saFacturaCompraReng.cs">
+    <Compile Include="Data\saFacturaCompraReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saFacturaCompraRengExt.cs">
+    <Compile Include="Data\saFacturaCompraRengExt.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saFacturaVenta.cs">
+    <Compile Include="Data\saFacturaVenta.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saFacturaVentaReng.cs">
+    <Compile Include="Data\saFacturaVentaReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saGiroCompra.cs">
+    <Compile Include="Data\saGiroCompra.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saGiroCompraReng.cs">
+    <Compile Include="Data\saGiroCompraReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saGiroVenta.cs">
+    <Compile Include="Data\saGiroVenta.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saGiroVentaReng.cs">
+    <Compile Include="Data\saGiroVentaReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saHistoricoEstado.cs">
+    <Compile Include="Data\saHistoricoEstado.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saImpMun.cs">
+    <Compile Include="Data\saImpMun.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saImpuesto.cs">
+    <Compile Include="Data\saImpuesto.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saImpuestoCuentaBancaria.cs">
+    <Compile Include="Data\saImpuestoCuentaBancaria.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saImpuestoReng.cs">
+    <Compile Include="Data\saImpuestoReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saImpuestoSobreVenta.cs">
+    <Compile Include="Data\saImpuestoSobreVenta.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saImpuestoSobreVentaReng.cs">
+    <Compile Include="Data\saImpuestoSobreVentaReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saIncoterm.cs">
+    <Compile Include="Data\saIncoterm.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saIntegr.cs">
+    <Compile Include="Data\saIntegr.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saInventarioFisico.cs">
+    <Compile Include="Data\saInventarioFisico.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saLineaArticulo.cs">
+    <Compile Include="Data\saLineaArticulo.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saLoteEntrada.cs">
+    <Compile Include="Data\saLoteEntrada.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saLoteSalida.cs">
+    <Compile Include="Data\saLoteSalida.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saMoneda.cs">
+    <Compile Include="Data\saMoneda.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saMovimientoBanco.cs">
+    <Compile Include="Data\saMovimientoBanco.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saMovimientoCaja.cs">
+    <Compile Include="Data\saMovimientoCaja.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saNCFInfoDocCompra.cs">
+    <Compile Include="Data\saNCFInfoDocCompra.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saNCFInfoDocVenta.cs">
+    <Compile Include="Data\saNCFInfoDocVenta.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saNotaDespachoVenta.cs">
+    <Compile Include="Data\saNotaDespachoVenta.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saNotaDespachoVentaReng.cs">
+    <Compile Include="Data\saNotaDespachoVentaReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saNotaEntregaVenta.cs">
+    <Compile Include="Data\saNotaEntregaVenta.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saNotaEntregaVentaReng.cs">
+    <Compile Include="Data\saNotaEntregaVentaReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saNotaRecepcionCompra.cs">
+    <Compile Include="Data\saNotaRecepcionCompra.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saNotaRecepcionCompraReng.cs">
+    <Compile Include="Data\saNotaRecepcionCompraReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saOrdenCompra.cs">
+    <Compile Include="Data\saOrdenCompra.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saOrdenCompraReng.cs">
+    <Compile Include="Data\saOrdenCompraReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saOrdenPago.cs">
+    <Compile Include="Data\saOrdenPago.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saOrdenPagoReng.cs">
+    <Compile Include="Data\saOrdenPagoReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saPago.cs">
+    <Compile Include="Data\saPago.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saPagoDocReng.cs">
+    <Compile Include="Data\saPagoDocReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saPagoRentenReng.cs">
+    <Compile Include="Data\saPagoRentenReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saPagoRetenIvaReng.cs">
+    <Compile Include="Data\saPagoRetenIvaReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saPagoTPReng.cs">
+    <Compile Include="Data\saPagoTPReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saPais.cs">
+    <Compile Include="Data\saPais.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saParametroConc.cs">
+    <Compile Include="Data\saParametroConc.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saPedidoVenta.cs">
+    <Compile Include="Data\saPedidoVenta.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saPedidoVentaReng.cs">
+    <Compile Include="Data\saPedidoVentaReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saPista.cs">
+    <Compile Include="Data\saPista.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saPlanillaFiscal.cs">
+    <Compile Include="Data\saPlanillaFiscal.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saPlantillaCompra.cs">
+    <Compile Include="Data\saPlantillaCompra.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saPlantillaCompraReng.cs">
+    <Compile Include="Data\saPlantillaCompraReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saPlantillaCompraReq.cs">
+    <Compile Include="Data\saPlantillaCompraReq.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saPlantillaCompraReqRelacion.cs">
+    <Compile Include="Data\saPlantillaCompraReqRelacion.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saPlantillaCompraReqRenglon.cs">
+    <Compile Include="Data\saPlantillaCompraReqRenglon.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saPlantillaVenta.cs">
+    <Compile Include="Data\saPlantillaVenta.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saPlantillaVentaReng.cs">
+    <Compile Include="Data\saPlantillaVentaReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saProcedencia.cs">
+    <Compile Include="Data\saProcedencia.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saProveedor.cs">
+    <Compile Include="Data\saProveedor.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saProveedorExt.cs">
+    <Compile Include="Data\saProveedorExt.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saPuntoEmision.cs">
+    <Compile Include="Data\saPuntoEmision.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saReglaInt.cs">
+    <Compile Include="Data\saReglaInt.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saResInventario.cs">
+    <Compile Include="Data\saResInventario.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saResInventarioReng.cs">
+    <Compile Include="Data\saResInventarioReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saSaldoBanco.cs">
+    <Compile Include="Data\saSaldoBanco.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saSaldoCaja.cs">
+    <Compile Include="Data\saSaldoCaja.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saSegmento.cs">
+    <Compile Include="Data\saSegmento.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saSeriales.cs">
+    <Compile Include="Data\saSeriales.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saSerie.cs">
+    <Compile Include="Data\saSerie.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saSerieTipo.cs">
+    <Compile Include="Data\saSerieTipo.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saSerieTipoExt.cs">
+    <Compile Include="Data\saSerieTipoExt.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saStockAlmacen.cs">
+    <Compile Include="Data\saStockAlmacen.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saSubLinea.cs">
+    <Compile Include="Data\saSubLinea.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saSucursal.cs">
+    <Compile Include="Data\saSucursal.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saTabuladorIslr.cs">
+    <Compile Include="Data\saTabuladorIslr.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saTabuladorIslrReng.cs">
+    <Compile Include="Data\saTabuladorIslrReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saTarjetaCredito.cs">
+    <Compile Include="Data\saTarjetaCredito.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saTasa.cs">
+    <Compile Include="Data\saTasa.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saTax.cs">
+    <Compile Include="Data\saTax.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saTipoAjuste.cs">
+    <Compile Include="Data\saTipoAjuste.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saTipoAnulacionVenta.cs">
+    <Compile Include="Data\saTipoAnulacionVenta.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saTipoCliente.cs">
+    <Compile Include="Data\saTipoCliente.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saTipoComprobante.cs">
+    <Compile Include="Data\saTipoComprobante.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saTipoDocumento.cs">
+    <Compile Include="Data\saTipoDocumento.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saTipoGasto.cs">
+    <Compile Include="Data\saTipoGasto.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saTipoImagen.cs">
+    <Compile Include="Data\saTipoImagen.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saTipoPrecio.cs">
+    <Compile Include="Data\saTipoPrecio.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saTipoProveedor.cs">
+    <Compile Include="Data\saTipoProveedor.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saTransferenciaEntreCuentas.cs">
+    <Compile Include="Data\saTransferenciaEntreCuentas.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saTransporte.cs">
+    <Compile Include="Data\saTransporte.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saTraslado.cs">
+    <Compile Include="Data\saTraslado.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saTrasladoReng.cs">
+    <Compile Include="Data\saTrasladoReng.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saUbicacion.cs">
+    <Compile Include="Data\saUbicacion.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saUnidad.cs">
+    <Compile Include="Data\saUnidad.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saUnidadTributaria.cs">
+    <Compile Include="Data\saUnidadTributaria.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saVendedor.cs">
+    <Compile Include="Data\saVendedor.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\saZona.cs">
+    <Compile Include="Data\saZona.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\scCentro.cs">
+    <Compile Include="Data\scCentro.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\scCuenta.cs">
+    <Compile Include="Data\scCuenta.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\scGastos.cs">
+    <Compile Include="Data\scGastos.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\stgFactLoteGen.cs">
+    <Compile Include="Data\stgFactLoteGen.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\stgFacturaVentaExt.cs">
+    <Compile Include="Data\stgFacturaVentaExt.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Usuario.cs">
+    <Compile Include="Data\Usuario.cs">
       <DependentUpon>DashboardProfitModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1950,7 +1966,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

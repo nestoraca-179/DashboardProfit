@@ -90,7 +90,7 @@
 	            <h1 class="text-center">Seleccionar Empresa</h1>
             </div>
             <div class="container-cards px-3">
-                <% foreach (DashboardProfit.Models.Empresa emp in emps) { %>
+                <% foreach (DashboardProfit.Data.Empresa emp in emps) { %>
                     <div class="card-prod shadow-lg" id="<%= emp.ID %>">
 				        <i class="fas fa-building"></i>
 				        <h5 class="text-white font-weight-bold"><%= emp.des_con %></h5>

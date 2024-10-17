@@ -30,22 +30,10 @@
                     <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                 </div>
                 <div ng-if="stats_v.totalInvoices != null" id="totalInvoicesV" style="display: none;">
-                    <h6>Facturas de venta</h6>
+                    <h6>Facturas de Venta</h6>
                     <p class="m-0">{{ stats_v.totalInvoices }}</p>
-                    <i class="fa-solid fa-file-invoice-dollar"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 px-0 py-2 px-md-3">
-            <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
-                <div ng-if="stats_v.totalAmountI == null" class="d-flex align-items-center">
-                    <strong>Cargando...</strong>
-                    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
-                </div>
-                <div ng-if="stats_v.totalAmountI != null" id="totalAmountV" style="display: none;">
-                    <h6>Monto Total Facturas de Venta</h6>
-                    <p class="m-0">{{ formatNumber(stats_v.totalAmountI) }}</p>
-                    <i class="fa-solid fa-dollar-sign text-success"></i>
+                    <p class="sub-amount">{{ formatNumber(stats_v.totalAmountI) }}</p>
+                    <i class="fa-solid fa-file-invoice-dollar stat-sale"></i>
                 </div>
             </div>
         </div>
@@ -59,7 +47,7 @@
                     <h6>Pedidos de Venta</h6>
                     <p class="m-0">{{ stats_v.totalOrders }}</p>
                     <p class="sub-amount">{{ formatNumber(stats_v.totalAmountO) }}</p>
-                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                    <i class="fa-solid fa-file-invoice-dollar stat-sale"></i>
                 </div>
             </div>
         </div>
@@ -73,7 +61,21 @@
                     <h6>Cobros</h6>
                     <p class="m-0">{{ stats_v.totalCollects }}</p>
                     <p class="sub-amount">{{ formatNumber(stats_v.totalAmountC) }}</p>
-                    <i class="fa-solid fa-dollar-sign text-success"></i>
+                    <i class="fa-solid fa-file-invoice-dollar stat-sale"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 px-0 py-2 px-md-3">
+            <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
+                <div ng-if="stats_v.totalRefunds == null" class="d-flex align-items-center">
+                    <strong>Cargando...</strong>
+                    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                </div>
+                <div ng-if="stats_v.totalRefunds != null" id="totalRefundsV" style="display: none;">
+                    <h6>Devoluciones de Venta</h6>
+                    <p class="m-0">{{ stats_v.totalRefunds }}</p>
+                    <p class="sub-amount">{{ formatNumber(stats_v.totalAmountR) }}</p>
+                    <i class="fa-solid fa-file-invoice-dollar stat-sale"></i>
                 </div>
             </div>
         </div>
@@ -178,22 +180,10 @@
                     <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                 </div>
                 <div ng-if="stats_c.totalInvoices != null" id="totalInvoicesC" style="display: none;">
-                    <h6>Facturas de compra</h6>
+                    <h6>Facturas de Compra</h6>
                     <p class="m-0">{{ stats_c.totalInvoices }}</p>
-                    <i class="fa-solid fa-file-invoice-dollar"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 px-0 pt-2 pb-2 px-md-3">
-            <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
-                <div ng-if="stats_c.totalAmountI == null" class="d-flex align-items-center">
-                    <strong>Cargando...</strong>
-                    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
-                </div>
-                <div ng-if="stats_c.totalAmountI != null" id="totalAmountC" style="display: none;">
-                    <h6>Monto Total Compras</h6>
-                    <p class="m-0">{{ formatNumber(stats_c.totalAmountI) }}</p>
-                    <i class="fa-solid fa-dollar-sign text-success"></i>
+                    <p class="sub-amount">{{ formatNumber(stats_c.totalAmountI) }}</p>
+                    <i class="fa-solid fa-file-invoice-dollar stat-buy"></i>
                 </div>
             </div>
         </div>
@@ -207,7 +197,7 @@
                     <h6>Ordenes de Compra</h6>
                     <p class="m-0">{{ stats_c.totalOrders }}</p>
                     <p class="sub-amount">{{ formatNumber(stats_c.totalAmountO) }}</p>
-                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                    <i class="fa-solid fa-file-invoice-dollar stat-buy"></i>
                 </div>
             </div>
         </div>
@@ -221,7 +211,21 @@
                     <h6>Pagos</h6>
                     <p class="m-0">{{ stats_c.totalPayments }}</p>
                     <p class="sub-amount">{{ formatNumber(stats_c.totalAmountC) }}</p>
-                    <i class="fa-solid fa-dollar-sign text-success"></i>
+                    <i class="fa-solid fa-file-invoice-dollar stat-buy"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 px-0 pt-2 pb-2 px-md-3">
+            <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
+                <div ng-if="stats_c.totalRefunds == null" class="d-flex align-items-center">
+                    <strong>Cargando...</strong>
+                    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                </div>
+                <div ng-if="stats_c.totalRefunds != null" id="totalRefundsC" style="display: none;">
+                    <h6>Devoluciones de Compra</h6>
+                    <p class="m-0">{{ stats_c.totalRefunds }}</p>
+                    <p class="sub-amount">{{ formatNumber(stats_c.totalAmountR) }}</p>
+                    <i class="fa-solid fa-file-invoice-dollar stat-buy"></i>
                 </div>
             </div>
         </div>
@@ -318,7 +322,7 @@
     <hr class="mx-0 mt-2 mb-0 mx-md-3" />
     <!-- ESTADISTICAS CAJA -->
     <h5 class="mx-0 mt-3 mx-md-3">Tesoreria</h5>
-    <div class="row m-0 pb-2">
+    <div class="row m-0">
         <div class="col-xl-3 px-0 pt-2 pb-2 px-md-3">
             <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
                 <div ng-if="stats_b.totalBoxesBSD == null" class="d-flex align-items-center">
@@ -368,6 +372,34 @@
                     <h6>Total Cuentas (USD)</h6>
                     <p class="m-0">{{ formatNumber(stats_b.totalAccountsUSD) }}</p>
                     <i style="font-size: 20px;">$USD</i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row m-0 pb-2">
+        <div class="col-xl-6 px-0 pt-2 pb-2 px-md-3">
+            <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
+                <div ng-if="stats_b.totalCxC == null" class="d-flex align-items-center">
+                    <strong>Cargando...</strong>
+                    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                </div>
+                <div ng-if="stats_b.totalCxC != null" id="totalCxC" style="display: none;">
+                    <h6>Total Cuentas por Cobrar (BSD)</h6>
+                    <p class="m-0">{{ formatNumber(stats_b.totalCxC) }}</p>
+                    <i style="font-size: 20px;">BSD</i>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 px-0 pt-2 pb-2 px-md-3">
+            <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
+                <div ng-if="stats_b.totalCxP == null" class="d-flex align-items-center">
+                    <strong>Cargando...</strong>
+                    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                </div>
+                <div ng-if="stats_b.totalCxP != null" id="totalCxP" style="display: none;">
+                    <h6>Total Cuentas por Pagar (BSD)</h6>
+                    <p class="m-0">{{ formatNumber(stats_b.totalCxP) }}</p>
+                    <i style="font-size: 20px;">BSD</i>
                 </div>
             </div>
         </div>
@@ -505,6 +537,7 @@
 
     app.controller("controller", function ($scope, $http) {
 
+        // CONSULTA TASA BCV
         $http.get("https://pydolarve.org/api/v1/dollar?page=bcv").then(function (response) {
             console.log(response.data);
             $scope.rate_usd_bcv = response.data.monitors.usd.price;
@@ -541,12 +574,14 @@
                 $scope.stats_v.totalAmountO = response.data.amount_o;
                 $scope.stats_v.totalCollects = response.data.total_c;
                 $scope.stats_v.totalAmountC = response.data.amount_c;
+                $scope.stats_v.totalRefunds = response.data.total_r;
+                $scope.stats_v.totalAmountR = response.data.amount_r;
 
                 setTimeout(function () {
                     $("#totalInvoicesV").removeAttr("style");
-                    $("#totalAmountV").removeAttr("style");
                     $("#totalOrdersV").removeAttr("style");
                     $("#totalCollectsV").removeAttr("style");
+                    $("#totalRefundsV").removeAttr("style");
                 }, 1);
             });
 
@@ -579,12 +614,14 @@
                 $scope.stats_c.totalAmountO = response.data.amount_o;
                 $scope.stats_c.totalPayments = response.data.total_c;
                 $scope.stats_c.totalAmountC = response.data.amount_c;
+                $scope.stats_c.totalRefunds = response.data.total_r;
+                $scope.stats_c.totalAmountR = response.data.amount_r;
                 
                 setTimeout(function () {
                     $("#totalInvoicesC").removeAttr("style");
-                    $("#totalAmountC").removeAttr("style");
                     $("#totalOrdersC").removeAttr("style");
                     $("#totalPaymentsC").removeAttr("style");
+                    $("#totalRefundsC").removeAttr("style");
                 }, 1);
             });
 
@@ -615,12 +652,16 @@
                 $scope.stats_b.totalBoxesUSD = response.data.total_b_usd;
                 $scope.stats_b.totalAccountsBSD = response.data.total_a_bsd;
                 $scope.stats_b.totalAccountsUSD = response.data.total_a_usd;
+                $scope.stats_b.totalCxC = response.data.total_cxc;
+                $scope.stats_b.totalCxP = response.data.total_cxp;
                 
                 setTimeout(function () {
                     $("#totalBoxesBSD").removeAttr("style");
                     $("#totalBoxesUSD").removeAttr("style");
                     $("#totalAccountsBSD").removeAttr("style");
                     $("#totalAccountsUSD").removeAttr("style");
+                    $("#totalCxC").removeAttr("style");
+                    $("#totalCxP").removeAttr("style");
                 }, 1);
             });
         }

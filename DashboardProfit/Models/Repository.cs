@@ -1,4 +1,6 @@
-﻿namespace DashboardProfit.Models
+﻿using DashboardProfit.Data;
+
+namespace DashboardProfit.Models
 {
 	public abstract class Repository
 	{

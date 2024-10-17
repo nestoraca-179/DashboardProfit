@@ -1,4 +1,5 @@
-﻿using DashboardProfit.Controllers;
+﻿using DashboardProfit.Data;
+using DashboardProfit.Controllers;
 using System.Data.Entity.Core.EntityClient;
 using System.Web;
 

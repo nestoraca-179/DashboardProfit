@@ -10,7 +10,8 @@ namespace DashboardProfit.Controllers
 
 			entity.Provider = "System.Data.SqlClient";
 			entity.ProviderConnectionString = conn + ";MultipleActiveResultSets=True;App=EntityFramework;";
-			entity.Metadata = @"res://*/Models.ProfitAdmModel.csdl|res://*/Models.ProfitAdmModel.ssdl|res://*/Models.ProfitAdmModel.msl";
+			entity.Metadata = @"res://*/Data.ProfitAdmModel.csdl|res://*/Data.ProfitAdmModel.ssdl|res://*/Data.ProfitAdmModel.msl";
+			// entity.Metadata = @"res://*/Models.ProfitAdmModel.csdl|res://*/Models.ProfitAdmModel.ssdl|res://*/Models.ProfitAdmModel.msl";
 
 			return entity;
 		}
