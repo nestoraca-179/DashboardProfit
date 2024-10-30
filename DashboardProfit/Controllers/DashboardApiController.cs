@@ -9,6 +9,27 @@ namespace DashboardProfit.Controllers
 {
 	public class DashboardApiController : ApiController
 	{
+		// INFO DOC
+
+		[HttpGet]
+		[Route("api/GetInfoDoc/{type}/{doc}")]
+		public object GetInfoDoc(string type, string doc)
+		{
+			switch (type)
+			{
+				case "FACV":
+					return new FacturaVentaRepository().getByID(doc);
+				case "PEDV":
+					return new PedidoVentaRepository().getByID(doc);
+				case "FACC":
+					return new FacturaCompraRepository().getByID(doc);
+				case "ORDC":
+					return new OrdenCompraRepository().getByID(doc);
+				default:
+					return null;
+			}
+		}
+
 		// VENTAS
 
 		[HttpGet]
@@ -38,21 +59,6 @@ namespace DashboardProfit.Controllers
 			amount_r = refunds.Select(c => c.total_neto.Value).Sum();
 
 			return new { total_i, amount_i, total_o, amount_o, total_c, amount_c, total_r, amount_r };
-		}
-
-		[HttpGet]
-		[Route("api/GetInfoDocSale/{type}/{doc}")]
-		public object GetInfoDoc(string type, string doc)
-		{
-			switch (type)
-			{
-				case "FACT":
-					return new FacturaVentaRepository().getByID(doc);
-				case "PEDV":
-					return new PedidoVentaRepository().getByID(doc);
-				default:
-					return null;
-			}
 		}
 
 		[HttpGet]
@@ -143,6 +149,7 @@ namespace DashboardProfit.Controllers
 		}
 
 		// CAJA Y BANCO
+
 		[HttpGet]
 		[Route("api/GetStatsBalances/{from}/{to}")]
 		public object GetStatsBalances(DateTime from, DateTime to)

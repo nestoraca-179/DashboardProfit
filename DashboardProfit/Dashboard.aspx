@@ -6,7 +6,7 @@
         <h4 class="m-0">DASHBOARD</h4>
         <div class="cont-data d-flex">
             <div class="cont-rates d-flex align-items-center px-2">
-                <small>Tasa BCV:</small>
+                <small><i class="fas fa-dollar-sign text-success fw-bold mx-2"></i>Tasa BCV:</small>
                 <small ng-if="!rate_usd_bcv" class="spinner-border ms-auto" role="status" aria-hidden="true" style="width: 20px; height: 20px; margin-left: 10px !important;"></small>
                 <small ng-if="rate_usd_bcv" class="mx-2">{{ rate_usd_bcv }}</small>
             </div>
@@ -102,7 +102,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="invoice in invoices_v" ng-click="openDoc('FACT', invoice)">
+                            <tr ng-repeat="invoice in invoices_v" ng-click="openDoc('FACV', invoice)">
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ invoice.doc_num }}</td>
                                 <td>{{ formatDate(invoice.fec_emis) }}</td>
@@ -252,7 +252,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="invoice in invoices_c">
+                            <tr ng-repeat="invoice in invoices_c" ng-click="openDoc('FACC', invoice)">
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ invoice.doc_num }}</td>
                                 <td>{{ formatDate(invoice.fec_emis) }}</td>
@@ -284,7 +284,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="order in orders_c">
+                            <tr ng-repeat="order in orders_c" ng-click="openDoc('ORDC', order)">
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ order.doc_num }}</td>
                                 <td>{{ formatDate(order.fec_emis) }}</td>
@@ -419,9 +419,13 @@
                     </div>
                     <div ng-if="doc != null" class="info-doc">
                         <div class="row">
-                            <div class="col-6">
+                            <div ng-if="doc.co_cli" class="col-6">
                                 <b>Cliente:</b>
                                 <p>{{ doc.co_cli }} - {{ doc.saCliente.cli_des }}</p>
+                            </div>
+                            <div ng-if="doc.co_prov" class="col-6">
+                                <b>Proveedor:</b>
+                                <p>{{ doc.co_prov }} - {{ doc.saProveedor.prov_des }}</p>
                             </div>
                             <div class="col-6">
                                 <b>Moneda:</b>
@@ -441,7 +445,8 @@
                         <div class="row">
                             <div class="col-6">
                                 <b>Vendedor:</b>
-                                <p>{{ doc.co_ven }} - {{ doc.saVendedor.ven_des }}</p>
+                                <p ng-if="doc.co_ven">{{ doc.co_ven }} - {{ doc.saVendedor.ven_des }}</p>
+                                <p ng-if="!doc.co_ven">N/A</p>
                             </div>
                             <div class="col-6 d-flex align-items-center">
                                 <hr class="m-0 w-100" />
@@ -497,7 +502,8 @@
                                             <th>N°</th>
                                             <th>Articulo</th>
                                             <th>Cantidad</th>
-                                            <th>Precio Venta</th>
+                                            <th ng-if="reng.prec_vta">Precio Venta</th>
+                                            <th ng-if="reng.cost_unit">Costo Unitario</th>
                                             <th>IVA</th>
                                             <th>Total</th>
                                         </tr>
@@ -507,7 +513,8 @@
                                             <td>{{ $index + 1 }}</td>
                                             <td>{{ reng.co_art }} - {{ reng.des_art }}</td>
                                             <td>{{ reng.total_art}}</td>
-                                            <td>{{ formatNumber(reng.prec_vta) }}</td>
+                                            <td ng-if="reng.prec_vta">{{ formatNumber(reng.prec_vta) }}</td>
+                                            <td ng-if="reng.cost_unit">{{ formatNumber(reng.cost_unit) }}</td>
                                             <td>{{ formatNumber(reng.monto_imp) }}</td>
                                             <td>{{ formatNumber(reng.reng_neto) }}</td>
                                         </tr>
@@ -684,26 +691,40 @@
             $scope.doc = null;
 
             switch (type) {
-                case "FACT":
-                    $scope.tit_doc = "Factura";
+                case "FACV":
+                    $scope.tit_doc = "Factura de Venta";
                     $scope.num_doc = doc.doc_num.trim();
                     break;
                 case "PEDV":
-                    $scope.tit_doc = "Pedido";
+                    $scope.tit_doc = "Pedido de Venta";
+                    $scope.num_doc = doc.doc_num.trim();
+                    break;
+                case "FACC":
+                    $scope.tit_doc = "Factura de Compra";
+                    $scope.num_doc = doc.doc_num.trim();
+                    break;
+                case "ORDC":
+                    $scope.tit_doc = "Orden de Compra";
                     $scope.num_doc = doc.doc_num.trim();
                     break;
             }
 
-            $http.get(`/api/GetInfoDocSale/${type}/${$scope.num_doc}`).then(function (response) {
+            $http.get(`/api/GetInfoDoc/${type}/${$scope.num_doc}`).then(function (response) {
                 console.log(response.data);
                 $scope.doc = response.data;
 
                 switch (type) {
-                    case "FACT":
+                    case "FACV":
                         $scope.doc.rengs = response.data.saFacturaVentaReng;
                         break;
                     case "PEDV":
                         $scope.doc.rengs = response.data.saPedidoVentaReng;
+                        break;
+                    case "FACC":
+                        $scope.doc.rengs = response.data.saFacturaCompraReng;
+                        break;
+                    case "ORDC":
+                        $scope.doc.rengs = response.data.saOrdenCompraReng;
                         break;
                 }
             });

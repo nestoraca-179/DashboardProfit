@@ -67,15 +67,22 @@ a.item-menu i {
 }
 
 /* PANEL USER */
-.panel-user {
+.panel-user, .panel-info {
     margin: 10px;
     padding: 10px 20px;
 }
-.panel-user i {
+.panel-user i.fa-user {
     font-size: 50px;
 }
 .panel-user i.fa-times {
     display: none;
+}
+
+/* PANEL INFO */
+.panel-info i.fa-building {
+    margin-right: 5px;
+    font-size: 14px;
+    color: #FFF;
 }
 
 /* BANNER */

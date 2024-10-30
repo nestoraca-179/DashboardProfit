@@ -28,6 +28,16 @@
                 <asp:Label ID="LBL_User" runat="server" CssClass="text-light" Font-Size="16px" />
                 <i class="fas fa-times text-light" style="font-size: 25px; cursor: pointer;" onclick="toggleMenu()"></i>
             </div>
+            <div class="panel-info d-flex flex-column">
+                <span>
+                    <i class="fa-solid fa-building"></i>
+                    <asp:Label ID="LBL_Emp" runat="server" CssClass="text-light" Font-Size="12px" />
+                </span>
+                <span>
+                    <i class="fa-solid fa-building"></i>
+                    <asp:Label ID="LBL_Suc" runat="server" CssClass="text-light" Font-Size="12px" />
+                </span>
+            </div>
             <hr class="mx-0 mx-md-3" style="border: solid 1px #FFF;" />
             <ul class="list-menu">
                 <li class="item-menu">Custom 1</li>

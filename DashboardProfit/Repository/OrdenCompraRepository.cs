@@ -1,5 +1,6 @@
 ﻿using DashboardProfit.Data;
 using DashboardProfit.Models;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,21 @@ namespace DashboardProfit.Controllers
 {
 	public class OrdenCompraRepository : ProfitAdmManager
 	{
+		public saOrdenCompra getByID(string doc_num)
+		{
+			saOrdenCompra order = db.saOrdenCompra.AsNoTracking().Include("saOrdenCompraReng").Include("saProveedor")
+				.Include("saCondicionPago").SingleOrDefault(i => i.doc_num.Trim() == doc_num);
+
+			order.saProveedor.saOrdenCompra = null;
+			order.saCondicionPago.saOrdenCompra = null;
+			order.saOrdenCompraReng.ForEach((r) => {
+				r.saOrdenCompra = null;
+				r.des_art = db.saArticulo.AsNoTracking().First(a => a.co_art == r.co_art).art_des;
+			});
+
+			return order;
+		}
+
 		public List<RepOrdenCompraxNum_Result> getLastTopOrders(DateTime from, DateTime to, int top)
 		{
 			List<RepOrdenCompraxNum_Result> result = new List<RepOrdenCompraxNum_Result>();

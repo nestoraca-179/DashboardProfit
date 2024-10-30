@@ -1,5 +1,6 @@
 ﻿using DashboardProfit.Data;
 using DashboardProfit.Models;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,21 @@ namespace DashboardProfit.Controllers
 {
 	public class FacturaCompraRepository : ProfitAdmManager
 	{
+		public saFacturaCompra getByID(string doc_num)
+		{
+			saFacturaCompra invoice = db.saFacturaCompra.AsNoTracking().Include("saFacturaCompraReng").Include("saProveedor")
+				.Include("saCondicionPago").SingleOrDefault(i => i.doc_num.Trim() == doc_num);
+
+			invoice.saProveedor.saFacturaCompra = null;
+			invoice.saCondicionPago.saFacturaCompra = null;
+			invoice.saFacturaCompraReng.ForEach((r) => {
+				r.saFacturaCompra = null;
+				r.des_art = db.saArticulo.AsNoTracking().First(a => a.co_art == r.co_art).art_des;
+			});
+
+			return invoice;
+		}
+
 		public List<RepCompraxFecha_Result> getLastTopInvoices(DateTime from, DateTime to, int top)
 		{
 			List<RepCompraxFecha_Result> result = new List<RepCompraxFecha_Result>();

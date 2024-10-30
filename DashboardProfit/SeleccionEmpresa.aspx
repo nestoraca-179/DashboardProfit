@@ -89,7 +89,7 @@
             <div class="title-login">
 	            <h1 class="text-center">Seleccionar Empresa</h1>
             </div>
-            <div class="container-cards px-3">
+            <div class="container-cards my-2 px-3">
                 <% foreach (DashboardProfit.Data.Empresa emp in emps) { %>
                     <div class="card-prod shadow-lg" id="<%= emp.ID %>">
 				        <i class="fas fa-building"></i>
@@ -98,9 +98,9 @@
                 <% } %>
             </div>
             <asp:HiddenField ID="HDD_Connect" runat="server" ClientIDMode="Static"></asp:HiddenField>
-            <div class="col-md-12 text-center pt-2 pb-5">
-                <asp:Button ID="BTN_Send" runat="server" CssClass="btn btn-primary w-50 px-5 py-3 disabled" OnClick="BTN_Send_Click" style="text-transform: none;" ClientIDMode="Static"
-                    OnClientClick="javascript:$('#BTN_Send').addClass('disabled', 'true'); submitted = true;" Text="Seleccionar empresa" AutoPostBack="false">
+            <div class="col-md-12 text-center pt-2 pb-3 pb-md-5">
+                <asp:Button ID="BTN_Send" runat="server" CssClass="btn btn-primary w-75 px-2 px-md-5 py-3 disabled" OnClick="BTN_Send_Click" style="text-transform: none;" 
+                    ClientIDMode="Static" OnClientClick="javascript:$('#BTN_Send').addClass('disabled', 'true'); submitted = true;" Text="Seleccionar empresa" AutoPostBack="false">
                 </asp:Button>
             </div>
         </form>
