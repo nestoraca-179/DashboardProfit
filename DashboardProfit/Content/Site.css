@@ -12,7 +12,8 @@ table td, table th {
     background: none !important;
 }
 .body-content {
-    height: 100%;
+    height: auto;
+    min-height: 100%;
     background: #f4f4f8;
     padding: 0 15px;
 }
@@ -106,6 +107,13 @@ section.container-fluid {
 }
 
 /* CARD STATS */
+.row-stats {
+    padding: 0 10px;
+    row-gap: 10px;
+}
+.row-stats > * {
+    padding: 0 5px !important;
+}
 .card-stat {
     height: 120px;
     position: relative;
@@ -198,13 +206,11 @@ section.container-fluid {
     a.item-menu {
         position: static;
     }
-    /*.menu {
-        display: none;
-        position: absolute;
-        z-index: 1;
-    }*/
     .fas.fa-bars, .panel-user i.fa-times {
         display: block;
+    }
+    .row-stats {
+        padding: 0;
     }
 }
 @media screen and (min-width: 768px) {

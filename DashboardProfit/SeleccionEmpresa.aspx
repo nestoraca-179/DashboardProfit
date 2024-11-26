@@ -12,7 +12,8 @@
 <style>
     section.container-fluid {
         width: 100%;
-        height: 100vh;
+        height: auto;
+        min-height: 100vh;
         background: rgb(4,52,128);
         background: linear-gradient(90deg, rgba(4,52,128,1) 0%, rgba(2,0,33,1) 100%);
         display: flex;
@@ -29,15 +30,16 @@
     }
     form {
         width: 100%;
-        height: 600px;
+        min-height: 600px !important;
         max-width: 1200px;
-        min-height: auto;
         background: rgba(0, 0, 0, 0.5);
-        padding: 20px 0 0;
+        margin: 10px 0;
+        padding: 20px 0 10px 0;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        /*justify-content: center;*/
         color: #f0f0f0;
+        overflow-y: auto;
     }
     .title-login {
         flex: 1;
@@ -81,12 +83,15 @@
     .card-prod.selected-card {
         outline: solid #FFF 5px;
     }
+    .btn-primary {
+	    min-width: 275px;
+    }
 </style>
 </head>
 <body>
     <section class="container-fluid">
         <form id="form1" runat="server">
-            <div class="title-login">
+            <div class="title-login pt-4 pb-2">
 	            <h1 class="text-center">Seleccionar Empresa</h1>
             </div>
             <div class="container-cards my-2 px-3">
@@ -98,7 +103,7 @@
                 <% } %>
             </div>
             <asp:HiddenField ID="HDD_Connect" runat="server" ClientIDMode="Static"></asp:HiddenField>
-            <div class="col-md-12 text-center pt-2 pb-3 pb-md-5">
+            <div class="col-md-12 text-center pt-2 pb-4">
                 <asp:Button ID="BTN_Send" runat="server" CssClass="btn btn-primary w-75 px-2 px-md-5 py-3 disabled" OnClick="BTN_Send_Click" style="text-transform: none;" 
                     ClientIDMode="Static" OnClientClick="javascript:$('#BTN_Send').addClass('disabled', 'true'); submitted = true;" Text="Seleccionar empresa" AutoPostBack="false">
                 </asp:Button>

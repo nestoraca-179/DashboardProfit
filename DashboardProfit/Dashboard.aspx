@@ -5,7 +5,7 @@
     <div class="d-flex flex-wrap justify-content-between row-gap-3 px-0 py-3 px-md-3">
         <h4 class="m-0">DASHBOARD</h4>
         <div class="cont-data d-flex">
-            <div class="cont-rates d-flex align-items-center px-2">
+            <div class="cont-rates d-flex align-items-center px-0 px-md-2">
                 <small><i class="fas fa-dollar-sign text-success fw-bold mx-2"></i>Tasa BCV:</small>
                 <small ng-if="!rate_usd_bcv" class="spinner-border ms-auto" role="status" aria-hidden="true" style="width: 20px; height: 20px; margin-left: 10px !important;"></small>
                 <small ng-if="rate_usd_bcv" class="mx-2">{{ rate_usd_bcv }}</small>
@@ -21,9 +21,9 @@
     </div>
     <hr class="mx-0 my-0 mx-md-3" />
     <!-- ESTADISTICAS VENTAS -->
-    <h5 class="mx-0 mt-3 mx-md-3">Ventas y CxC</h5>
-    <div class="row m-0">
-        <div class="col-xl-3 px-0 py-2 px-md-3">
+    <h5 class="mx-0 my-3 mx-md-3">Ventas y CxC</h5>
+    <div class="row m-0 row-stats">
+        <div class="col-xl-3">
             <div class="bg-white rounded shadow-sm p-3 card-stat">
                 <div ng-if="stats_v.totalInvoices == null" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 px-0 py-2 px-md-3">
+        <div class="col-xl-3">
             <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
                 <div ng-if="stats_v.totalOrders == null" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
@@ -51,7 +51,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 px-0 py-2 px-md-3">
+        <div class="col-xl-3">
             <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
                 <div ng-if="stats_v.totalCollects == null" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
@@ -65,7 +65,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 px-0 py-2 px-md-3">
+        <div class="col-xl-3">
             <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
                 <div ng-if="stats_v.totalRefunds == null" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
@@ -81,8 +81,8 @@
         </div>
     </div>
     <!-- GRAFICAS VENTAS -->
-    <div class="row m-0">
-        <div class="col-xl-6 px-0 py-2 px-md-3">
+    <div class="row m-0 mt-2 row-stats">
+        <div class="col-xl-6">
             <div class="bg-white rounded shadow-sm px-4 py-3">
                 <div ng-if="!invoices_v" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
@@ -114,7 +114,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-6 px-0 py-2 px-md-3">
+        <div class="col-xl-6">
             <div class="bg-white rounded shadow-sm px-4 py-3">
                 <div ng-if="!orders_v" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
@@ -147,8 +147,8 @@
             </div>
         </div>
     </div>
-    <div class="row m-0">
-        <div class="col-xxl-6 px-0 py-2 px-md-3">
+    <div class="row m-0 mt-2 row-stats">
+        <div class="col-xxl-6">
             <div class="bg-white rounded shadow-sm px-4 py-3">
                 <div ng-if="!mostSelledArts" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
@@ -158,7 +158,7 @@
                 <div id="container-arts-v"></div>
             </div>
         </div>
-        <div class="col-xxl-6 px-0 py-2 px-md-3">
+        <div class="col-xxl-6">
             <div class="bg-white rounded shadow-sm px-4 py-3">
                 <div ng-if="!mostActiveClients" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
@@ -169,11 +169,11 @@
             </div>
         </div>
     </div>
-    <hr class="mx-0 mt-2 mb-0 mx-md-3" />
+    <hr class="mx-0 mt-3 mb-0 mx-md-3" />
     <!-- ESTADISTICAS COMPRAS -->
-    <h5 class="mx-0 mt-3 mx-md-3">Compras y CxP</h5>
-    <div class="row m-0">
-        <div class="col-xl-3 px-0 pt-2 pb-2 px-md-3">
+    <h5 class="mx-0 my-3 mx-md-3">Compras y CxP</h5>
+    <div class="row m-0 row-stats">
+        <div class="col-xl-3">
             <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
                 <div ng-if="stats_c.totalInvoices == null" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
@@ -187,7 +187,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 px-0 pt-2 pb-2 px-md-3">
+        <div class="col-xl-3">
             <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
                 <div ng-if="stats_c.totalOrders == null" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
@@ -201,7 +201,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 px-0 pt-2 pb-2 px-md-3">
+        <div class="col-xl-3">
             <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
                 <div ng-if="stats_c.totalPayments == null" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
@@ -215,7 +215,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 px-0 pt-2 pb-2 px-md-3">
+        <div class="col-xl-3">
             <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
                 <div ng-if="stats_c.totalRefunds == null" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
@@ -231,8 +231,8 @@
         </div>
     </div>
     <!-- GRAFICAS COMPRAS -->
-    <div class="row m-0">
-        <div class="col-xl-6 px-0 py-2 px-md-3">
+    <div class="row m-0 mt-2 row-stats">
+        <div class="col-xl-6">
             <div class="bg-white rounded shadow-sm px-4 py-3">
                 <div ng-if="!invoices_c" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
@@ -264,7 +264,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-6 px-0 py-2 px-md-3">
+        <div class="col-xl-6">
             <div class="bg-white rounded shadow-sm px-4 py-3">
                 <div ng-if="!orders_c" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
@@ -297,8 +297,8 @@
             </div>
         </div>
     </div>
-    <div class="row m-0">
-        <div class="col-xxl-6 px-0 py-2 px-md-3">
+    <div class="row m-0 mt-2 row-stats">
+        <div class="col-xxl-6">
             <div class="bg-white rounded shadow-sm px-4 py-3">
                 <div ng-if="!mostPurchasedArts" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
@@ -308,7 +308,7 @@
                 <div id="container-arts-c"></div>
             </div>
         </div>
-        <div class="col-xxl-6 px-0 py-2 px-md-3">
+        <div class="col-xxl-6">
             <div class="bg-white rounded shadow-sm px-4 py-3">
                 <div ng-if="!mostActiveSuppliers" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
@@ -319,11 +319,11 @@
             </div>
         </div>
     </div>
-    <hr class="mx-0 mt-2 mb-0 mx-md-3" />
+    <hr class="mx-0 mt-3 mb-0 mx-md-3" />
     <!-- ESTADISTICAS CAJA -->
-    <h5 class="mx-0 mt-3 mx-md-3">Tesoreria</h5>
-    <div class="row m-0">
-        <div class="col-xl-3 px-0 pt-2 pb-2 px-md-3">
+    <h5 class="mx-0 my-3 mx-md-3">Tesoreria</h5>
+    <div class="row m-0 mt-2 row-stats">
+        <div class="col-xl-3">
             <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
                 <div ng-if="stats_b.totalBoxesBSD == null" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
@@ -336,7 +336,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 px-0 pt-2 pb-2 px-md-3">
+        <div class="col-xl-3">
             <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
                 <div ng-if="stats_b.totalAccountsBSD == null" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
@@ -349,7 +349,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 px-0 pt-2 pb-2 px-md-3">
+        <div class="col-xl-3">
             <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
                 <div ng-if="stats_b.totalBoxesUSD == null" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
@@ -362,7 +362,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 px-0 pt-2 pb-2 px-md-3">
+        <div class="col-xl-3">
             <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
                 <div ng-if="stats_b.totalAccountsUSD == null" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
@@ -376,8 +376,8 @@
             </div>
         </div>
     </div>
-    <div class="row m-0 pb-2">
-        <div class="col-xl-6 px-0 pt-2 pb-2 px-md-3">
+    <div class="row m-0 mt-2 row-stats">
+        <div class="col-xl-6">
             <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
                 <div ng-if="stats_b.totalCxC == null" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
@@ -390,7 +390,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-6 px-0 pt-2 pb-2 px-md-3">
+        <div class="col-xl-6">
             <div class="bg-white rounded shadow-sm px-4 py-3 card-stat">
                 <div ng-if="stats_b.totalCxP == null" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
@@ -404,6 +404,7 @@
             </div>
         </div>
     </div>
+    <hr class="mx-0 my-3 mb-0 mx-md-3" />
     <!-- MODAL DOCUMENTO -->
     <div class="modal fade modal-doc" id="modalDoc" tabindex="-1">
         <div class="modal-dialog" style="max-width: 900px;">
