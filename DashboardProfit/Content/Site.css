@@ -115,8 +115,9 @@ section.container-fluid {
     padding: 0 5px !important;
 }
 .card-stat {
-    height: 120px;
+    height: 140px;
     position: relative;
+    cursor: pointer;
 }
 .card-stat h6 {
     color: #373737;
@@ -130,6 +131,9 @@ section.container-fluid {
 .card-stat .sub-amount {
     font-size: 14px;
     color: #a2a2a2;
+}
+.card-stat .sub-amount.fw-normal {
+    font-size: 13px;
 }
 .card-stat i {
     font-size: 45px;
@@ -193,6 +197,10 @@ section.container-fluid {
     .param-dates button {
         width: 100%;
         justify-content: center;
+    }
+    .main-title {
+        width: 100%;
+        text-align: center;
     }
 }
 @media screen and (max-width: 767px) {

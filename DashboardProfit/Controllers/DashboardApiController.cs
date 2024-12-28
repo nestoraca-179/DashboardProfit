@@ -38,13 +38,17 @@ namespace DashboardProfit.Controllers
 		{
 			int total_i = 0, total_o = 0, total_c = 0, total_r = 0;
 			decimal amount_i = 0, amount_o = 0, amount_c = 0, amount_r = 0;
+			decimal amount_i_usd = 0, amount_o_usd = 0, amount_c_usd = 0, amount_r_usd = 0;
 
 			List<RepFacturaVentaxFecha_Result> data_i = new FacturaVentaRepository().getLastTopInvoices(from, to, 0);
 			foreach (RepFacturaVentaxFecha_Result item in data_i)
 			{
 				total_i++;
 				if (!item.anulado)
+				{
 					amount_i += item.total_neto.Value;
+					amount_i_usd += Math.Round(item.total_neto.Value / item.tasa, 2);
+				}
 			}
 
 			List<RepPedidoVentaxNum_Result> orders = new PedidoVentaRepository().getLastTopOrders(from, to, 0);
@@ -53,12 +57,22 @@ namespace DashboardProfit.Controllers
 
 			total_o = orders.Count;
 			amount_o = orders.Select(o => o.total_neto.Value).Sum();
+			amount_o_usd = orders.Select(o => Math.Round(o.total_neto.Value / o.tasa, 2)).Sum();
+
 			total_c = collects.Count;
 			amount_c = collects.Select(c => c.mont_doc).Sum();
-			total_r = refunds.Count;
-			amount_r = refunds.Select(c => c.total_neto.Value).Sum();
+			amount_c_usd = collects.Select(c => Math.Round(c.mont_doc / c.tasa_doc, 2)).Sum();
 
-			return new { total_i, amount_i, total_o, amount_o, total_c, amount_c, total_r, amount_r };
+			total_r = refunds.Count;
+			amount_r = refunds.Select(r => r.total_neto.Value).Sum();
+			amount_r_usd = refunds.Select(r => Math.Round(r.total_neto.Value / r.tasa, 2)).Sum();
+
+			return new { 
+				total_i, amount_i, amount_i_usd, 
+				total_o, amount_o, amount_o_usd,
+				total_c, amount_c, amount_c_usd,
+				total_r, amount_r, amount_r_usd
+			};
 		}
 
 		[HttpGet]
@@ -97,13 +111,17 @@ namespace DashboardProfit.Controllers
 		{
 			int total_i = 0, total_o = 0, total_c = 0, total_r = 0;
 			decimal amount_i = 0, amount_o = 0, amount_c = 0, amount_r = 0;
+			decimal amount_i_usd = 0, amount_o_usd = 0, amount_c_usd = 0, amount_r_usd = 0;
 
 			List<RepCompraxFecha_Result> data = new FacturaCompraRepository().getLastTopInvoices(from, to, 0);
 			foreach (RepCompraxFecha_Result item in data)
 			{
 				total_i++;
 				if (!item.anulado)
+				{
 					amount_i += item.total_neto.Value;
+					amount_i_usd += Math.Round(item.total_neto.Value / item.tasa, 2);
+				}
 			}
 
 			List<RepOrdenCompraxNum_Result> orders = new OrdenCompraRepository().getLastTopOrders(from, to, 0);
@@ -112,12 +130,22 @@ namespace DashboardProfit.Controllers
 
 			total_o = orders.Count;
 			amount_o = orders.Select(o => o.total_neto.Value).Sum();
+			amount_o_usd = orders.Select(o => Math.Round(o.total_neto.Value / o.tasa, 2)).Sum();
+
 			total_c = collects.Count;
 			amount_c = collects.Where(c => !string.IsNullOrEmpty(c.forma_pag)).Select(c => c.abono.Value).Sum();
-			total_r = refunds.Count;
-			amount_r = refunds.Select(c => c.total_neto.Value).Sum();
+			amount_c_usd = collects.Where(c => !string.IsNullOrEmpty(c.forma_pag)).Select(c => Math.Round(c.abono.Value / c.tasa_doc.Value, 2)).Sum();
 
-			return new { total_i, amount_i, total_o, amount_o, total_c, amount_c, total_r, amount_r };
+			total_r = refunds.Count;
+			amount_r = refunds.Select(r => r.total_neto.Value).Sum();
+			amount_r_usd = refunds.Select(r => Math.Round(r.total_neto.Value / r.tasa, 2)).Sum();
+
+			return new { 
+				total_i, amount_i, amount_i_usd, 
+				total_o, amount_o, amount_o_usd,
+				total_c, amount_c, amount_c_usd,
+				total_r, amount_r, amount_r_usd
+			};
 		}
 
 		[HttpGet]
