@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Dashboard" Language="C#" MasterPageFile="Site.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="DashboardProfit.Dashboard" %>
+﻿<%@ Page Title="Home" Language="C#" MasterPageFile="Site.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="DashboardProfit.Dashboard" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 <div class="container-fluid" ng-app="Dashboard" ng-controller="controller">
@@ -85,74 +85,28 @@
         </div>
     </div>
     <!-- GRAFICAS VENTAS -->
-    <!--
     <div class="row m-0 mt-2 row-stats">
         <div class="col-xl-6">
             <div class="bg-white rounded shadow-sm px-4 py-3">
-                <div ng-if="!invoices_v" class="d-flex align-items-center">
+                <div ng-if="!invoicesSaleByDate" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
                     <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                 </div>
-                <h6 ng-if="invoices_v && invoices_v.length == 0" class="m-0 text-center fw-light">Sin Datos</h6>
-                <div ng-if="invoices_v && invoices_v.length > 0" class="overflow-auto">
-                    <h4 class="title-table">Facturas de Venta</h4>
-                    <table class="table table-borderless table-hover table-stats">
-                        <thead class="border-bottom">
-                            <tr>
-                                <th>#</th>
-                                <th>Nro. Factura</th>
-                                <th>Fecha</th>
-                                <th>Cliente</th>
-                                <th>Monto</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="invoice in invoices_v" ng-click="openDoc('FACV', invoice)">
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ invoice.doc_num }}</td>
-                                <td>{{ formatDate(invoice.fec_emis) }}</td>
-                                <td>{{ invoice.cli_des }}</td>
-                                <td>{{ invoice.total_neto.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <h6 ng-if="invoicesSaleByDate && invoicesSaleByDate.length == 0" class="m-0 text-center fw-light">Sin Datos</h6>
+                <div id="container-invs-v"></div>
             </div>
         </div>
         <div class="col-xl-6">
             <div class="bg-white rounded shadow-sm px-4 py-3">
-                <div ng-if="!orders_v" class="d-flex align-items-center">
+                <div ng-if="!ordersSaleByDate" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
                     <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                 </div>
-                <h6 ng-if="orders_v && orders_v.length == 0" class="m-0 text-center fw-light">Sin Datos</h6>
-                <div ng-if="orders_v && orders_v.length > 0" class="overflow-auto">
-                    <h4 class="title-table">Pedidos de Venta</h4>
-                    <table class="table table-borderless table-hover table-stats">
-                        <thead class="border-bottom">
-                            <tr>
-                                <th>#</th>
-                                <th>Nro. Pedido</th>
-                                <th>Fecha</th>
-                                <th>Cliente</th>
-                                <th>Monto</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="order in orders_v" ng-click="openDoc('PEDV', order)">
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ order.doc_num }}</td>
-                                <td>{{ formatDate(order.fec_emis) }}</td>
-                                <td>{{ order.cli_des }}</td>
-                                <td>{{ order.total_neto.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <h6 ng-if="ordersSaleByDate && ordersSaleByDate.length == 0" class="m-0 text-center fw-light">Sin Datos</h6>
+                <div id="container-ords-v"></div>
             </div>
         </div>
     </div>
-    -->
     <div class="row m-0 mt-2 row-stats">
         <div class="col-xxl-6">
             <div class="bg-white rounded shadow-sm px-4 py-3">
@@ -241,74 +195,28 @@
         </div>
     </div>
     <!-- GRAFICAS COMPRAS -->
-    <!--
     <div class="row m-0 mt-2 row-stats">
         <div class="col-xl-6">
             <div class="bg-white rounded shadow-sm px-4 py-3">
-                <div ng-if="!invoices_c" class="d-flex align-items-center">
+                <div ng-if="!invoicesBuyByDate" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
                     <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                 </div>
-                <h6 ng-if="invoices_c && invoices_c.length == 0" class="m-0 text-center fw-light">Sin Datos</h6>
-                <div ng-if="invoices_c && invoices_c.length > 0" class="overflow-auto">
-                    <h4 class="title-table">Facturas de Compra</h4>
-                    <table class="table table-borderless table-hover table-stats">
-                        <thead class="border-bottom">
-                            <tr>
-                                <th>#</th>
-                                <th>Nro. Factura</th>
-                                <th>Fecha</th>
-                                <th>Proveedor</th>
-                                <th>Monto</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="invoice in invoices_c" ng-click="openDoc('FACC', invoice)">
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ invoice.doc_num }}</td>
-                                <td>{{ formatDate(invoice.fec_emis) }}</td>
-                                <td>{{ invoice.prov_des }}</td>
-                                <td>{{ invoice.total_neto.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <h6 ng-if="invoicesBuyByDate && invoicesBuyByDate.length == 0" class="m-0 text-center fw-light">Sin Datos</h6>
+                <div id="container-invs-c"></div>
             </div>
         </div>
         <div class="col-xl-6">
             <div class="bg-white rounded shadow-sm px-4 py-3">
-                <div ng-if="!orders_c" class="d-flex align-items-center">
+                <div ng-if="!ordersBuyByDate" class="d-flex align-items-center">
                     <strong>Cargando...</strong>
                     <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                 </div>
-                <h6 ng-if="orders_c && orders_c.length == 0" class="m-0 text-center fw-light">Sin Datos</h6>
-                <div ng-if="orders_c && orders_c.length > 0" class="overflow-auto">
-                    <h4 class="title-table">Ordenes de Compra</h4>
-                    <table class="table table-borderless table-hover table-stats">
-                        <thead class="border-bottom">
-                            <tr>
-                                <th>#</th>
-                                <th>Nro. Orden</th>
-                                <th>Fecha</th>
-                                <th>Proveedor</th>
-                                <th>Monto</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="order in orders_c" ng-click="openDoc('ORDC', order)">
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ order.doc_num }}</td>
-                                <td>{{ formatDate(order.fec_emis) }}</td>
-                                <td>{{ order.prov_des }}</td>
-                                <td>{{ order.total_neto.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <h6 ng-if="ordersBuyByDate && ordersBuyByDate.length == 0" class="m-0 text-center fw-light">Sin Datos</h6>
+                <div id="container-ords-c"></div>
             </div>
         </div>
     </div>
-    -->
     <div class="row m-0 mt-2 row-stats">
         <div class="col-xxl-6">
             <div class="bg-white rounded shadow-sm px-4 py-3">
@@ -591,13 +499,11 @@
     var options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
 	var today = new Date();
     today.setDate(today.getDate() - 30);
-    var dateFrom = formatDate(today);
-    var dateTo = formatDate(new Date());
+    var dateFrom = "2024-10-01"; // formatDate(today);
+    var dateTo = "2024-10-31"; // formatDate(new Date());
 
-    $("#dateFrom").val(new Date("2024-10-01").toISOString().split("T")[0]); // ELIMINAR DESPUES
-    $("#dateTo").val(new Date("2024-10-31").toISOString().split("T")[0]); // ELIMINAR DESPUES
-    // $("#dateFrom").val(dateFrom);
-    // $("#dateTo").val(dateTo);
+    $("#dateFrom").val(dateFrom);
+    $("#dateTo").val(dateTo);
 
     app.controller("controller", function ($scope, $http) {
 
@@ -611,16 +517,20 @@
             $scope.stats_v = {};
             $scope.stats_c = {};
             $scope.stats_b = {};
-            $scope.invoices_v = null;
-            $scope.orders_v = null;
+            $scope.invoicesSaleByDate = null;
+            $scope.ordersSaleByDate = null;
             $scope.mostSelledArts = null;
             $scope.mostActiveClients = null;
-            $scope.invoices_c = null;
-            $scope.orders_c = null;
+			$scope.invoicesBuyByDate = null;
+			$scope.ordersBuyByDate = null;
             $scope.mostPurchasedArts = null;
             $scope.mostActiveSuppliers = null;
+            $("#container-invs-v").html("");
+            $("#container-ords-v").html("");
             $("#container-arts-v").html("");
-            $("#container-clis").html("");
+			$("#container-clis").html("");
+			$("#container-invs-c").html("");
+			$("#container-ords-c").html("");
             $("#container-arts-c").html("");
             $("#container-sups").html("");
         }
@@ -628,6 +538,22 @@
         $scope.init();
 
         $scope.loadStats = function (from, to) {
+
+            // CALCULANDO LOS 7 DIAS PREVIOS
+			let diffDays = calcDiffDays(from, to) > 7 ? 7 : calcDiffDays(from, to);
+            let tempDateTo = new Date(to + "T00:00:00");
+            tempDateTo.setDate(tempDateTo.getDate() - diffDays);
+            let date7Days = formatDate(tempDateTo);
+            let datesToShow = [];
+
+			let auxDate = formatDate(tempDateTo) + "T00:00:00";
+			for (let i = 0; i <= diffDays; i++) {
+                let d = convertToCustomFormat(auxDate);
+                datesToShow.push(d);
+                auxDate = new Date(auxDate);
+                auxDate.setDate(auxDate.getDate() + 1);
+                auxDate = formatDate(auxDate) + "T00:00:00";
+            }
 
             // VENTAS
 
@@ -657,15 +583,31 @@
                 }, 1);
             });
 
-            /*
-            $http.get(`/api/GetSaleInvoices/${from}/${to}/5`).then(function (response) {
-                $scope.invoices_v = response.data;
+            $http.get(`/api/GetSaleInvoices/${date7Days}/${to}/0`).then(function (response) {
+                $scope.invoicesSaleByDate = response.data;
+                if (response.data.length > 0) {
+					var res = sortByDate(response.data);
+					for (let r of res) {
+						r.fecha_simple = convertToCustomFormat(r.fec_emis);
+					}
+
+                    var series = countByDate(res, datesToShow);
+					initChartLine("container-invs-v", `Facturas de Venta por Dia (Ultimos ${diffDays} dias)`, series, date7Days);
+				}
             });
 
-            $http.get(`/api/GetSaleOrders/${from}/${to}/5`).then(function (response) {
-                $scope.orders_v = response.data;
-            });
-            */
+            $http.get(`/api/GetSaleOrders/${date7Days}/${to}/0`).then(function (response) {
+				$scope.ordersSaleByDate = response.data;
+				if (response.data.length > 0) {
+					var res = sortByDate(response.data);
+					for (let r of res) {
+						r.fecha_simple = convertToCustomFormat(r.fec_emis);
+					}
+
+					var series = countByDate(res, datesToShow);
+					initChartArea("container-ords-v", `Pedidos de Venta por Dia (Ultimos ${diffDays} dias)`, series, date7Days);
+				}
+			});
 
             $http.get(`/api/GetMostSelledArts/${from}/${to}/5`).then(function (response) {
                 $scope.mostSelledArts = response.data;
@@ -707,15 +649,31 @@
                 }, 1);
             });
 
-            /*
-            $http.get(`/api/GetPurchaseInvoices/${from}/${to}/5`).then(function (response) {
-                $scope.invoices_c = response.data;
+            $http.get(`/api/GetPurchaseInvoices/${date7Days}/${to}/0`).then(function (response) {
+				$scope.invoicesBuyByDate = response.data;
+				if (response.data.length > 0) {
+					var res = sortByDate(response.data);
+					for (let r of res) {
+						r.fecha_simple = convertToCustomFormat(r.fec_emis);
+					}
+
+					var series = countByDate(res, datesToShow);
+					initChartArea("container-invs-c", `Facturas de Compra por Dia (Ultimos ${diffDays} dias)`, series, date7Days);
+				}
             });
 
-            $http.get(`/api/GetPurchaseOrders/${from}/${to}/5`).then(function (response) {
-                $scope.orders_c = response.data;
+            $http.get(`/api/GetPurchaseOrders/${date7Days}/${to}/0`).then(function (response) {
+				$scope.ordersBuyByDate = response.data;
+				if (response.data.length > 0) {
+					var res = sortByDate(response.data);
+					for (let r of res) {
+						r.fecha_simple = convertToCustomFormat(r.fec_emis);
+					}
+
+					var series = countByDate(res, datesToShow);
+					initChartLine("container-ords-c", `Ordenes de Compra por Dia (Ultimos ${diffDays} dias)`, series, date7Days);
+				}
             });
-            */
 
             $http.get(`/api/GetMostPurchasedArts/${from}/${to}/5`).then(function (response) {
                 $scope.mostPurchasedArts = response.data;
@@ -750,8 +708,7 @@
             });
         }
 
-        $scope.loadStats($("#dateFrom").val(), $("#dateTo").val()); // ELIMINAR DESPUES
-        // $scope.loadStats(dateFrom, dateTo);
+        $scope.loadStats(dateFrom, dateTo);
 
         $scope.searchStats = function () {
             let from = $("#dateFrom").val(), to = $("#dateTo").val();
@@ -861,10 +818,172 @@
 		const d = String(date.getDate()).padStart(2, '0');
 
 		return `${y}-${m}-${d}`;
+    }
+
+	function sortByDate(data) {
+		return data.sort((a, b) => {
+			const dateA = new Date(a.fec_emis);
+			const dateB = new Date(b.fec_emis);
+			return dateA - dateB;
+		});
+	}
+
+    function convertToCustomFormat(dateString) {
+
+		const date = new Date(dateString);
+		const day = String(date.getDate()).padStart(2, '0');
+		const month = String(date.getMonth() + 1).padStart(2, '0');
+
+		return `${day}/${month}`;
+    }
+
+	function countByDate(data, dates) {
+		
+        const countMap = {};
+        for (let d of dates) {
+            var count = data.filter(i => i.fecha_simple == d).length;
+            countMap[d] = count;
+		}
+
+		const result = Object.values(countMap);
+		return result;
+    }
+
+	function calcDiffDays(dateStart, dateEnd) {
+
+		const start = new Date(dateStart);
+		const end = new Date(dateEnd);
+
+		const diffMs = end - start;
+		const diffDays = Math.round(diffMs / (1000 * 60 * 60 * 24));
+
+		return diffDays;
 	}
 
 </script>
 <script>
+
+    function initChartLine(name, title, data, from7Days) {
+
+        let [y, m, d] = from7Days.split("-");
+
+		Highcharts.chart(name, {
+			title: {
+				text: title,
+				margin: 40,
+				align: 'left'
+            },
+			colors: ['#0277bd'],
+			exporting: {
+				enabled: false,
+			},
+			yAxis: {
+                title: {
+					text: '<b style="font-family: \'Raleway\', sans-serif;">Cantidad</b>'
+				}
+			},
+			xAxis: {
+				type: 'datetime', // Cambia el tipo a datetime
+				labels: {
+					formatter: function () {
+						return Highcharts.dateFormat('%d/%m', this.value); // Formato de fecha
+					}
+				}
+			},
+            legend: {
+                enabled: false,
+			},
+			plotOptions: {
+				series: {
+					label: {
+						connectorAllowed: false
+					},
+					// pointStart: 2010
+					pointStart: Date.UTC(y, parseInt(m) - 1, d),
+                    pointInterval: 24 * 3600 * 1000,
+					dataLabels: {
+						enabled: true,
+                        format: '{point.y}',
+						padding: 15,
+						style: {
+                            fontWeight: 'bold'
+						}
+					}
+				}
+			},
+            series: [
+                {
+				    name: 'Facturas',
+				    data: data
+                },
+            ]
+		});
+	}
+
+    function initChartArea(name, title, data, from7Days) {
+
+		let [y, m, d] = from7Days.split("-");
+		
+		Highcharts.chart(name, {
+			chart: {
+				type: 'area'
+			},
+			title: {
+				text: title,
+				margin: 40,
+				align: 'left'
+			},
+			colors: ['#028CDB'],
+			exporting: {
+				enabled: false,
+			},
+			yAxis: {
+				title: {
+					text: '<b style="font-family: \'Raleway\', sans-serif;">Cantidad</b>'
+				}
+			},
+			xAxis: {
+				type: 'datetime', // Cambia el tipo a datetime
+				labels: {
+					formatter: function () {
+						return Highcharts.dateFormat('%d/%m', this.value); // Formato de fecha
+					}
+				}
+            },
+            legend: {
+                enabled: false,
+            },
+			plotOptions: {
+				area: {
+					// pointStart: 1940,
+					pointStart: Date.UTC(y, parseInt(m) - 1, d),
+					pointInterval: 24 * 3600 * 1000,
+					dataLabels: {
+						enabled: true,
+						format: '{point.y}',
+						padding: 15,
+						style: {
+							fontWeight: 'bold'
+						}
+					},
+					marker: {
+						enabled: false,
+						symbol: 'circle',
+						radius: 2,
+						states: {
+							hover: {
+								enabled: true
+							}
+						}
+					}
+				}
+			},
+			series: [{
+				name: 'Pedidos',
+				data: data
+			}]
+		});
+	}
 
     function initMostSelledArts(prods) {
 
