@@ -8,6 +8,11 @@ namespace DashboardProfit.Controllers
 {
 	public class ProveedorRepository : ProfitAdmManager
 	{
+		public saProveedor getByID(string id)
+		{
+			return db.saProveedor.AsNoTracking().SingleOrDefault(s => s.co_prov.Trim() == id);
+		}
+
 		public List<RepProveedorMasCompra_Result> getMostActiveSuppliers(DateTime from, DateTime to, int limit)
 		{
 			List<RepProveedorMasCompra_Result> result = new List<RepProveedorMasCompra_Result>();

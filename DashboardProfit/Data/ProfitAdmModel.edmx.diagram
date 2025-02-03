@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a333366045794a508a2dac3c9c933497" Name="Diagram1">
+      <Diagram DiagramId="a333366045794a508a2dac3c9c933497" Name="Diagram1" ZoomLevel="94">
         <EntityTypeShape EntityType="ProfitAdmModel.par_emp" Width="1.5" PointX="41.75" PointY="348" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfitAdmModel.pvArticuloExt" Width="1.5" PointX="5.75" PointY="14.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ProfitAdmModel.pvCaja" Width="1.5" PointX="5.25" PointY="374.25" IsExpanded="true" />

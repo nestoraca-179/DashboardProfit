@@ -214,6 +214,8 @@
     <Content Include="Data\ProfitAdmModel.edmx.diagram">
       <DependentUpon>ProfitAdmModel.edmx</DependentUpon>
     </Content>
+    <Content Include="PagoFactura.aspx" />
+    <Content Include="PagoOrden.aspx" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -1063,11 +1065,31 @@
       <DependentUpon>CambiarClave.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Data\RepCompraxArt2_Result.cs">
+      <DependentUpon>ProfitAdmModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\RepDevolucionClientexNum_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\RepDevolucionProveedorxNum_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\RepOrdenPagoxNumero_Result.cs">
+      <DependentUpon>ProfitAdmModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PagoFactura.aspx.cs">
+      <DependentUpon>PagoFactura.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagoFactura.aspx.designer.cs">
+      <DependentUpon>PagoFactura.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagoOrden.aspx.cs">
+      <DependentUpon>PagoOrden.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagoOrden.aspx.designer.cs">
+      <DependentUpon>PagoOrden.aspx</DependentUpon>
     </Compile>
     <Compile Include="Repository\ArticuloRepository.cs" />
     <Compile Include="Repository\CajaRepository.cs" />
@@ -1085,6 +1107,7 @@
     <Compile Include="Controllers\IncidentController.cs" />
     <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Repository\OrdenCompraRepository.cs" />
+    <Compile Include="Repository\OrdenPagoRepository.cs" />
     <Compile Include="Repository\PagoRepository.cs" />
     <Compile Include="Repository\PedidoVentaRepository.cs" />
     <Compile Include="Repository\ProveedorRepository.cs" />

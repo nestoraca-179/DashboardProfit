@@ -2,6 +2,7 @@
 using DashboardProfit.Controllers;
 using System.Data.Entity.Core.EntityClient;
 using System.Web;
+using System;
 
 namespace DashboardProfit.Models
 {
@@ -18,21 +19,12 @@ namespace DashboardProfit.Models
 
 		public ProfitAdmManager()
 		{
+			if (HttpContext.Current.Session["CONNECT"] == null)
+				throw new InvalidOperationException("SESSION EXPIRED");
+
 			connect = HttpContext.Current.Session["CONNECT"].ToString();
 			entity = EntityController.GetEntity(connect);
 			db = new ProfitAdmEntities(entity.ToString());
 		}
-
-		//public string GetNextConsec(string sucur, string serie)
-		//{
-		//	string num = "";
-
-		//	var sp = db.pConsecutivoProximo(sucur, serie).GetEnumerator();
-		//	if (sp.MoveNext())
-		//		num = sp.Current;
-
-		//	sp.Dispose();
-		//	return num;
-		//}
 	}
 }

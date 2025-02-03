@@ -339,7 +339,7 @@
                         <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
                     </div>
                     <div ng-if="table != null" class="overflow-auto" style="max-height: 600px;">
-                        <table class="table table-borderless table-hover table-stats">
+                        <table ng-if="table && table.length > 0" class="table table-borderless table-hover table-stats">
                             <thead class="border-bottom">
                                 <tr>
                                     <th>#</th>
@@ -361,6 +361,7 @@
                                 </tr>
                             </tbody>
                         </table>
+						<h5 ng-if="!table || table.length == 0" class="text-center m-0">No hay resultados</h5>
                     </div>
                 </div>
             </div>
@@ -499,8 +500,8 @@
     var options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
 	var today = new Date();
     today.setDate(today.getDate() - 30);
-    var dateFrom = "2024-10-01"; // formatDate(today);
-    var dateTo = "2024-10-31"; // formatDate(new Date());
+	var dateFrom = formatDate(today); // "2024-10-01"; // formatDate(today);
+	var dateTo = formatDate(new Date()); // "2024-10-31"; // formatDate(new Date());
 
     $("#dateFrom").val(dateFrom);
     $("#dateTo").val(dateTo);

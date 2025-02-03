@@ -25,6 +25,8 @@ namespace DashboardProfit.Controllers
 					return new FacturaCompraRepository().getByID(doc);
 				case "ORDC":
 					return new OrdenCompraRepository().getByID(doc);
+				case "ORDP":
+					return new OrdenPagoRepository().getByID(doc);
 				default:
 					return null;
 			}
@@ -176,6 +178,13 @@ namespace DashboardProfit.Controllers
 			return new ProveedorRepository().getMostActiveSuppliers(from, to, limit);
 		}
 
+		[HttpGet]
+		[Route("api/GetInvoicesByArt/{from}/{to}/{limit}")]
+		public List<RepCompraxArt2_Result> GetInvoicesByArt(DateTime from, DateTime to, int limit)
+		{
+			return new FacturaCompraRepository().getInvoicesByArt(from, to, limit);
+		}
+
 		// CAJA Y BANCO
 
 		[HttpGet]
@@ -198,6 +207,13 @@ namespace DashboardProfit.Controllers
 			total_cxp = cxps.Where(c => !c.anulado).Select(c => c.tipo_mov == "CR" ? c.saldo.Value * -1 : c.saldo.Value).Sum();
 
 			return new { total_b_bsd, total_b_usd, total_a_bsd, total_a_usd, total_cxc, total_cxp };
+		}
+
+		[HttpGet]
+		[Route("api/GetOrdersByNum/{from}/{to}/{limit}")]
+		public List<RepOrdenPagoxNumero_Result> GetOrdersByNum(DateTime from, DateTime to, int limit)
+		{
+			return new OrdenPagoRepository().getLastTopOrders(from, to, limit);
 		}
 	}
 }
