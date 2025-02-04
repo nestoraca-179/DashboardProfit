@@ -13,7 +13,7 @@
             <div class="d-flex gap-2 param-dates">
                 <input type="date" id="dateFrom" class="form-control" />
                 <input type="date" id="dateTo" class="form-control" />
-                <button type="button" class="btn btn-primary d-flex gap-2" ng-click="searchStats()">
+                <button type="button" class="btn btn-primary d-flex align-items-center gap-2" ng-click="searchStats()">
                     <i class="fa-solid fa-magnifying-glass d-flex align-items-center"></i> Buscar
                 </button>
             </div>
@@ -384,11 +384,11 @@
                         <div class="row">
                             <div ng-if="doc.co_cli" class="col-6">
                                 <b>Cliente:</b>
-                                <p>{{ doc.co_cli }} - {{ doc.saCliente.cli_des }}</p>
+                                <p class="ms-2" style="word-break: break-word;">{{ doc.co_cli }} - {{ doc.saCliente.cli_des }}</p>
                             </div>
                             <div ng-if="doc.co_prov" class="col-6">
                                 <b>Proveedor:</b>
-                                <p>{{ doc.co_prov }} - {{ doc.saProveedor.prov_des }}</p>
+                                <p class="ms-2" style="word-break: break-word;">{{ doc.co_prov }} - {{ doc.saProveedor.prov_des }}</p>
                             </div>
                             <div class="col-6">
                                 <b>Moneda:</b>

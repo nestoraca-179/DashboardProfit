@@ -8,7 +8,7 @@
 			<div class="d-flex gap-2 param-dates">
 				<input type="date" id="dateFrom" class="form-control" />
 				<input type="date" id="dateTo" class="form-control" />
-				<button type="button" class="btn btn-primary d-flex gap-2" ng-click="searchStats()">
+				<button type="button" class="btn btn-primary d-flex align-items-center gap-2" ng-click="searchStats()">
 					<i class="fa-solid fa-magnifying-glass d-flex align-items-center"></i>Buscar
 				</button>
 			</div>
@@ -69,7 +69,7 @@
                         <div class="row">
                             <div class="col-6">
                                 <b>Beneficiario:</b>
-                                <p>{{ doc.cod_ben }} - {{ doc.saBeneficiario.ben_des }}</p>
+                                <p class="ms-2" style="word-break: break-word;">{{ doc.cod_ben }} - {{ doc.saBeneficiario.ben_des }}</p>
                             </div>
 							<div class="col-6">
 								<b>Caja:</b>
@@ -120,7 +120,7 @@
 						<div class="row">
 							<div class="col-6">
 								<b>Concepto:</b>
-								<p>{{ doc.descrip }}</p>
+								<p class="ms-2" style="word-break: break-word;">{{ doc.descrip }}</p>
 							</div>
 							<div class="col-6">
 								<b>Total:</b>
