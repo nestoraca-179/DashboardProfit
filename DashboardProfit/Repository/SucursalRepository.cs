@@ -3,7 +3,7 @@ using DashboardProfit.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DashboardProfit.Controllers
+namespace DashboardProfit.Repository
 {
 	public class SucursalRepository : ProfitAdmManager
 	{

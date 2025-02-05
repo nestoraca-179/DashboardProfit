@@ -2,11 +2,22 @@
 using DashboardProfit.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace DashboardProfit.Controllers
+namespace DashboardProfit.Repository
 {
 	public class CajaRepository : ProfitAdmManager
 	{
+		public saCaja getByID(string id)
+		{
+			return db.saCaja.AsNoTracking().SingleOrDefault(b => b.cod_caja.Trim() == id);
+		}
+
+		public List<saCaja> getAll()
+		{
+			return db.saCaja.AsNoTracking().ToList();
+		}
+
 		public List<RepSaldoCaja_Result> getBalances(DateTime from, DateTime to)
 		{
 			List<RepSaldoCaja_Result> result = new List<RepSaldoCaja_Result>();

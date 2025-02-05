@@ -1,4 +1,4 @@
-﻿using DashboardProfit.Controllers;
+﻿using DashboardProfit.Repository;
 using Newtonsoft.Json;
 using System;
 using System.Linq;

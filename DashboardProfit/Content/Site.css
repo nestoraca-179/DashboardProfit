@@ -181,6 +181,28 @@ section.container-fluid {
     justify-content: space-between;
 }
 
+/* MODAL SEARCH */
+.modal-header {
+    padding: 10px 15px;
+    justify-content: space-between;
+}
+.modal-header button {
+    background: none;
+    border: 0;
+}
+.modal-header button span {
+    font-size: 25px;
+}
+.modal-footer button {
+    font-size: 14px;
+}
+.selected-row {
+    background: #01579b;
+}
+.selected-row td {
+    color: #FFF !important;
+}
+
 /* RESPONSIVE */
 @media screen and (max-width: 564px) {
     .cont-data {

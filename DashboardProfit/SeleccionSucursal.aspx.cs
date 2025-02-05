@@ -1,9 +1,9 @@
-﻿using DashboardProfit.Controllers;
-using DashboardProfit.Models;
+﻿using DashboardProfit.Models;
 using DashboardProfit.Data;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using DashboardProfit.Repository;
 
 namespace DashboardProfit
 {

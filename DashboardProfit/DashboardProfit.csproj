@@ -1100,11 +1100,13 @@
       <DependentUpon>PagoOrden.aspx</DependentUpon>
     </Compile>
     <Compile Include="Repository\ArticuloRepository.cs" />
+    <Compile Include="Repository\BeneficiarioRepository.cs" />
     <Compile Include="Repository\CajaRepository.cs" />
     <Compile Include="Repository\ClienteRepository.cs" />
     <Compile Include="Repository\CobroRepository.cs" />
     <Compile Include="Repository\CuentaBancariaRepository.cs" />
     <Compile Include="Controllers\DashboardApiController.cs" />
+    <Compile Include="Repository\CuentaIngrEgrRepository.cs" />
     <Compile Include="Repository\DevolucionCompraRepository.cs" />
     <Compile Include="Repository\DevolucionVentaRepository.cs" />
     <Compile Include="Repository\DocumentoCompraRepository.cs" />

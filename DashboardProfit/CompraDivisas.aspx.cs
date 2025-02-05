@@ -1,9 +1,8 @@
-﻿using System;
+﻿using DashboardProfit.Data;
+using DashboardProfit.Repository;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace DashboardProfit
 {
@@ -13,7 +12,19 @@ namespace DashboardProfit
 		{
 			if (Session["USER"] != null)
 			{
-				if (Session["CONNECT"] == null)
+				if (Session["CONNECT"] != null)
+				{
+					List<saBeneficiario> benefs = new BeneficiarioRepository().getAll();
+					List<saCaja> boxes = new CajaRepository().getAll();
+					List<saCuentaBancaria> bankAccounts = new CuentaBancariaRepository().getAll();
+					List<saCuentaIngEgr> accounts = new CuentaIngrEgrRepository().getAll();
+
+					hiddenFieldJsonBen.Value = JsonConvert.SerializeObject(benefs);
+					hiddenFieldJsonBox.Value = JsonConvert.SerializeObject(boxes);
+					hiddenFieldJsonAcc.Value = JsonConvert.SerializeObject(bankAccounts);
+					hiddenFieldJsonAie.Value = JsonConvert.SerializeObject(accounts);
+				}
+				else
 					Response.Redirect("/Login.aspx?logout=1");
 			}
 			else
