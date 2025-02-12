@@ -1073,6 +1073,18 @@
       <DependentUpon>CompraDivisas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Data\pInsertarMovimientoBanco_Result.cs">
+      <DependentUpon>ProfitAdmModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\pInsertarMovimientoCaja_Result.cs">
+      <DependentUpon>ProfitAdmModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\pInsertarOrdenPago_Result.cs">
+      <DependentUpon>ProfitAdmModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\pInsertarRenglonesOrdenPago_Result.cs">
+      <DependentUpon>ProfitAdmModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\RepCompraxArt2_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
@@ -1085,6 +1097,7 @@
     <Compile Include="Data\RepOrdenPagoxNumero_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DashboardResponse.cs" />
     <Compile Include="PagoFactura.aspx.cs">
       <DependentUpon>PagoFactura.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

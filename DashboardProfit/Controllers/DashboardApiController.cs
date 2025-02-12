@@ -1,8 +1,10 @@
 ﻿using DashboardProfit.Data;
+using DashboardProfit.Models;
 using DashboardProfit.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Http;
 
 namespace DashboardProfit.Controllers
@@ -26,7 +28,7 @@ namespace DashboardProfit.Controllers
 				case "ORDC":
 					return new OrdenCompraRepository().getByID(doc);
 				case "ORDP":
-					return new OrdenPagoRepository().getByID(doc);
+					return new OrdenPagoRepository().GetByID(doc);
 				default:
 					return null;
 			}
@@ -213,7 +215,36 @@ namespace DashboardProfit.Controllers
 		[Route("api/GetOrdersByNum/{from}/{to}/{limit}")]
 		public List<RepOrdenPagoxNumero_Result> GetOrdersByNum(DateTime from, DateTime to, int limit)
 		{
-			return new OrdenPagoRepository().getLastTopOrders(from, to, limit);
+			return new OrdenPagoRepository().GetLastTopOrders(from, to, limit);
+		}
+
+		// ORDEN PAGO
+
+		[HttpPost]
+		[Route("api/AddPayOrder")]
+		public DashboardResponse AddPayOrder(saOrdenPago order)
+		{
+			DashboardResponse response = new DashboardResponse();
+
+			string user = (HttpContext.Current.Session["USER"] as Usuario).username;
+			string sucur = (HttpContext.Current.Session["BRANCH"] as saSucursal)?.co_sucur.ToString();
+			int conn = int.Parse(HttpContext.Current.Session["ID_CONN"].ToString());
+
+			try
+			{
+				saOrdenPago new_order = new OrdenPagoRepository().Add(order, user, sucur, conn);
+
+				response.Status = "OK";
+				response.Result = new_order;
+			}
+			catch (Exception ex)
+			{
+				response.Status = "ERROR";
+				response.Message = ex.Message;
+				IncidentController.CreateIncident("ERROR AGREGANDO ORDEN DE PAGO", ex);
+			}
+
+			return response;
 		}
 	}
 }

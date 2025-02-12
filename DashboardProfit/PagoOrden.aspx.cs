@@ -12,7 +12,7 @@ namespace DashboardProfit
 			{
 				if (Session["CONNECT"] != null)
 				{
-					var orders = new OrdenPagoRepository().getLastTopOrders(DateTime.Now.AddDays(-30), DateTime.Now, 0);
+					var orders = new OrdenPagoRepository().GetLastTopOrders(DateTime.Now.AddDays(-30), DateTime.Now, 0);
 					string json_orders = JsonConvert.SerializeObject(orders);
 					hiddenFieldJsonOrd.Value = json_orders;
 				}

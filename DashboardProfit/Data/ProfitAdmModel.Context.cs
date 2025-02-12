@@ -1847,5 +1847,608 @@ namespace DashboardProfit.Data
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RepCompraxArt2_Result>("RepCompraxArt2", cCo_Articulo_dParameter, cCo_Articulo_hParameter, dCo_fecha_dParameter, dCo_fecha_hParameter, cCo_Prov_dParameter, cCo_Prov_hParameter, cCo_Linea_dParameter, cCo_Linea_hParameter, cCo_SubLinea_dParameter, cCo_SubLinea_hParameter, cCo_Categoria_dParameter, cCo_Categoria_hParameter, cCo_Almacen_dParameter, cCo_Almacen_hParameter, cCo_MonedaParameter, cStatusParameter, cAnuladoParameter, cCo_SucursalParameter, sCampOrderByParameter, sDirParameter, bHeaderRepParameter);
         }
+    
+        public virtual ObjectResult<string> pConsecutivoProximo(string sCo_Sucur, string sCo_Consecutivo)
+        {
+            var sCo_SucurParameter = sCo_Sucur != null ?
+                new ObjectParameter("sCo_Sucur", sCo_Sucur) :
+                new ObjectParameter("sCo_Sucur", typeof(string));
+    
+            var sCo_ConsecutivoParameter = sCo_Consecutivo != null ?
+                new ObjectParameter("sCo_Consecutivo", sCo_Consecutivo) :
+                new ObjectParameter("sCo_Consecutivo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("pConsecutivoProximo", sCo_SucurParameter, sCo_ConsecutivoParameter);
+        }
+    
+        public virtual ObjectResult<pInsertarMovimientoBanco_Result> pInsertarMovimientoBanco(string sMov_Num, string sDescrip, string sCod_Cta, Nullable<System.DateTime> sdFecha, Nullable<decimal> deTasa, string sTipo_Op, string sDoc_Num, Nullable<decimal> deMonto, string sCo_Cta_Ingr_Egr, string sOrigen, string sCob_Pag, Nullable<decimal> deIDB, string sDep_Num, Nullable<bool> bAnulado, Nullable<bool> bSaldo_Ini, Nullable<bool> bConciliado, Nullable<bool> bOri_Dep, Nullable<int> iDep_Con, Nullable<System.DateTime> sdFec_Con, string sCod_IngBen, Nullable<System.DateTime> sdFecha_Che, string sDis_Cen, Nullable<int> iNro_Transf_Nomi, string sCampo1, string sCampo2, string sCampo3, string sCampo4, string sCampo5, string sCampo6, string sCampo7, string sCampo8, string sCo_Us_In, string sCo_Sucu_In, string sMaquina, string sRevisado, string sTrasnfe)
+        {
+            var sMov_NumParameter = sMov_Num != null ?
+                new ObjectParameter("sMov_Num", sMov_Num) :
+                new ObjectParameter("sMov_Num", typeof(string));
+    
+            var sDescripParameter = sDescrip != null ?
+                new ObjectParameter("sDescrip", sDescrip) :
+                new ObjectParameter("sDescrip", typeof(string));
+    
+            var sCod_CtaParameter = sCod_Cta != null ?
+                new ObjectParameter("sCod_Cta", sCod_Cta) :
+                new ObjectParameter("sCod_Cta", typeof(string));
+    
+            var sdFechaParameter = sdFecha.HasValue ?
+                new ObjectParameter("sdFecha", sdFecha) :
+                new ObjectParameter("sdFecha", typeof(System.DateTime));
+    
+            var deTasaParameter = deTasa.HasValue ?
+                new ObjectParameter("deTasa", deTasa) :
+                new ObjectParameter("deTasa", typeof(decimal));
+    
+            var sTipo_OpParameter = sTipo_Op != null ?
+                new ObjectParameter("sTipo_Op", sTipo_Op) :
+                new ObjectParameter("sTipo_Op", typeof(string));
+    
+            var sDoc_NumParameter = sDoc_Num != null ?
+                new ObjectParameter("sDoc_Num", sDoc_Num) :
+                new ObjectParameter("sDoc_Num", typeof(string));
+    
+            var deMontoParameter = deMonto.HasValue ?
+                new ObjectParameter("deMonto", deMonto) :
+                new ObjectParameter("deMonto", typeof(decimal));
+    
+            var sCo_Cta_Ingr_EgrParameter = sCo_Cta_Ingr_Egr != null ?
+                new ObjectParameter("sCo_Cta_Ingr_Egr", sCo_Cta_Ingr_Egr) :
+                new ObjectParameter("sCo_Cta_Ingr_Egr", typeof(string));
+    
+            var sOrigenParameter = sOrigen != null ?
+                new ObjectParameter("sOrigen", sOrigen) :
+                new ObjectParameter("sOrigen", typeof(string));
+    
+            var sCob_PagParameter = sCob_Pag != null ?
+                new ObjectParameter("sCob_Pag", sCob_Pag) :
+                new ObjectParameter("sCob_Pag", typeof(string));
+    
+            var deIDBParameter = deIDB.HasValue ?
+                new ObjectParameter("deIDB", deIDB) :
+                new ObjectParameter("deIDB", typeof(decimal));
+    
+            var sDep_NumParameter = sDep_Num != null ?
+                new ObjectParameter("sDep_Num", sDep_Num) :
+                new ObjectParameter("sDep_Num", typeof(string));
+    
+            var bAnuladoParameter = bAnulado.HasValue ?
+                new ObjectParameter("bAnulado", bAnulado) :
+                new ObjectParameter("bAnulado", typeof(bool));
+    
+            var bSaldo_IniParameter = bSaldo_Ini.HasValue ?
+                new ObjectParameter("bSaldo_Ini", bSaldo_Ini) :
+                new ObjectParameter("bSaldo_Ini", typeof(bool));
+    
+            var bConciliadoParameter = bConciliado.HasValue ?
+                new ObjectParameter("bConciliado", bConciliado) :
+                new ObjectParameter("bConciliado", typeof(bool));
+    
+            var bOri_DepParameter = bOri_Dep.HasValue ?
+                new ObjectParameter("bOri_Dep", bOri_Dep) :
+                new ObjectParameter("bOri_Dep", typeof(bool));
+    
+            var iDep_ConParameter = iDep_Con.HasValue ?
+                new ObjectParameter("iDep_Con", iDep_Con) :
+                new ObjectParameter("iDep_Con", typeof(int));
+    
+            var sdFec_ConParameter = sdFec_Con.HasValue ?
+                new ObjectParameter("sdFec_Con", sdFec_Con) :
+                new ObjectParameter("sdFec_Con", typeof(System.DateTime));
+    
+            var sCod_IngBenParameter = sCod_IngBen != null ?
+                new ObjectParameter("sCod_IngBen", sCod_IngBen) :
+                new ObjectParameter("sCod_IngBen", typeof(string));
+    
+            var sdFecha_CheParameter = sdFecha_Che.HasValue ?
+                new ObjectParameter("sdFecha_Che", sdFecha_Che) :
+                new ObjectParameter("sdFecha_Che", typeof(System.DateTime));
+    
+            var sDis_CenParameter = sDis_Cen != null ?
+                new ObjectParameter("sDis_Cen", sDis_Cen) :
+                new ObjectParameter("sDis_Cen", typeof(string));
+    
+            var iNro_Transf_NomiParameter = iNro_Transf_Nomi.HasValue ?
+                new ObjectParameter("iNro_Transf_Nomi", iNro_Transf_Nomi) :
+                new ObjectParameter("iNro_Transf_Nomi", typeof(int));
+    
+            var sCampo1Parameter = sCampo1 != null ?
+                new ObjectParameter("sCampo1", sCampo1) :
+                new ObjectParameter("sCampo1", typeof(string));
+    
+            var sCampo2Parameter = sCampo2 != null ?
+                new ObjectParameter("sCampo2", sCampo2) :
+                new ObjectParameter("sCampo2", typeof(string));
+    
+            var sCampo3Parameter = sCampo3 != null ?
+                new ObjectParameter("sCampo3", sCampo3) :
+                new ObjectParameter("sCampo3", typeof(string));
+    
+            var sCampo4Parameter = sCampo4 != null ?
+                new ObjectParameter("sCampo4", sCampo4) :
+                new ObjectParameter("sCampo4", typeof(string));
+    
+            var sCampo5Parameter = sCampo5 != null ?
+                new ObjectParameter("sCampo5", sCampo5) :
+                new ObjectParameter("sCampo5", typeof(string));
+    
+            var sCampo6Parameter = sCampo6 != null ?
+                new ObjectParameter("sCampo6", sCampo6) :
+                new ObjectParameter("sCampo6", typeof(string));
+    
+            var sCampo7Parameter = sCampo7 != null ?
+                new ObjectParameter("sCampo7", sCampo7) :
+                new ObjectParameter("sCampo7", typeof(string));
+    
+            var sCampo8Parameter = sCampo8 != null ?
+                new ObjectParameter("sCampo8", sCampo8) :
+                new ObjectParameter("sCampo8", typeof(string));
+    
+            var sCo_Us_InParameter = sCo_Us_In != null ?
+                new ObjectParameter("sCo_Us_In", sCo_Us_In) :
+                new ObjectParameter("sCo_Us_In", typeof(string));
+    
+            var sCo_Sucu_InParameter = sCo_Sucu_In != null ?
+                new ObjectParameter("sCo_Sucu_In", sCo_Sucu_In) :
+                new ObjectParameter("sCo_Sucu_In", typeof(string));
+    
+            var sMaquinaParameter = sMaquina != null ?
+                new ObjectParameter("sMaquina", sMaquina) :
+                new ObjectParameter("sMaquina", typeof(string));
+    
+            var sRevisadoParameter = sRevisado != null ?
+                new ObjectParameter("sRevisado", sRevisado) :
+                new ObjectParameter("sRevisado", typeof(string));
+    
+            var sTrasnfeParameter = sTrasnfe != null ?
+                new ObjectParameter("sTrasnfe", sTrasnfe) :
+                new ObjectParameter("sTrasnfe", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pInsertarMovimientoBanco_Result>("pInsertarMovimientoBanco", sMov_NumParameter, sDescripParameter, sCod_CtaParameter, sdFechaParameter, deTasaParameter, sTipo_OpParameter, sDoc_NumParameter, deMontoParameter, sCo_Cta_Ingr_EgrParameter, sOrigenParameter, sCob_PagParameter, deIDBParameter, sDep_NumParameter, bAnuladoParameter, bSaldo_IniParameter, bConciliadoParameter, bOri_DepParameter, iDep_ConParameter, sdFec_ConParameter, sCod_IngBenParameter, sdFecha_CheParameter, sDis_CenParameter, iNro_Transf_NomiParameter, sCampo1Parameter, sCampo2Parameter, sCampo3Parameter, sCampo4Parameter, sCampo5Parameter, sCampo6Parameter, sCampo7Parameter, sCampo8Parameter, sCo_Us_InParameter, sCo_Sucu_InParameter, sMaquinaParameter, sRevisadoParameter, sTrasnfeParameter);
+        }
+    
+        public virtual ObjectResult<pInsertarMovimientoCaja_Result> pInsertarMovimientoCaja(string sMov_Num, Nullable<System.DateTime> sdFecha, string sDescrip, string sCod_Caja, Nullable<decimal> deTasa, string sTipo_Mov, string sForma_Pag, string sNum_Pago, string sCo_Ban, string sCo_Tar, string sCo_Vale, string sCo_Cta_Ingr_Egr, Nullable<decimal> deMonto, Nullable<bool> bSaldo_Ini, string sOrigen, string sDoc_Num, string sDep_Num, Nullable<bool> bAnulado, Nullable<bool> bDepositado, Nullable<bool> bConciliado, Nullable<bool> bTransferido, string sMov_Nro, Nullable<System.DateTime> sdFecha_Che, Nullable<decimal> deAux01, string sAux02, Nullable<System.DateTime> dFeccom, Nullable<int> iNumcom, string sDis_Cen, string sCampo1, string sCampo2, string sCampo3, string sCampo4, string sCampo5, string sCampo6, string sCampo7, string sCampo8, string sCo_Us_In, string sCo_Sucu_In, string sMaquina, string sRevisado, string sTrasnfe)
+        {
+            var sMov_NumParameter = sMov_Num != null ?
+                new ObjectParameter("sMov_Num", sMov_Num) :
+                new ObjectParameter("sMov_Num", typeof(string));
+    
+            var sdFechaParameter = sdFecha.HasValue ?
+                new ObjectParameter("sdFecha", sdFecha) :
+                new ObjectParameter("sdFecha", typeof(System.DateTime));
+    
+            var sDescripParameter = sDescrip != null ?
+                new ObjectParameter("sDescrip", sDescrip) :
+                new ObjectParameter("sDescrip", typeof(string));
+    
+            var sCod_CajaParameter = sCod_Caja != null ?
+                new ObjectParameter("sCod_Caja", sCod_Caja) :
+                new ObjectParameter("sCod_Caja", typeof(string));
+    
+            var deTasaParameter = deTasa.HasValue ?
+                new ObjectParameter("deTasa", deTasa) :
+                new ObjectParameter("deTasa", typeof(decimal));
+    
+            var sTipo_MovParameter = sTipo_Mov != null ?
+                new ObjectParameter("sTipo_Mov", sTipo_Mov) :
+                new ObjectParameter("sTipo_Mov", typeof(string));
+    
+            var sForma_PagParameter = sForma_Pag != null ?
+                new ObjectParameter("sForma_Pag", sForma_Pag) :
+                new ObjectParameter("sForma_Pag", typeof(string));
+    
+            var sNum_PagoParameter = sNum_Pago != null ?
+                new ObjectParameter("sNum_Pago", sNum_Pago) :
+                new ObjectParameter("sNum_Pago", typeof(string));
+    
+            var sCo_BanParameter = sCo_Ban != null ?
+                new ObjectParameter("sCo_Ban", sCo_Ban) :
+                new ObjectParameter("sCo_Ban", typeof(string));
+    
+            var sCo_TarParameter = sCo_Tar != null ?
+                new ObjectParameter("sCo_Tar", sCo_Tar) :
+                new ObjectParameter("sCo_Tar", typeof(string));
+    
+            var sCo_ValeParameter = sCo_Vale != null ?
+                new ObjectParameter("sCo_Vale", sCo_Vale) :
+                new ObjectParameter("sCo_Vale", typeof(string));
+    
+            var sCo_Cta_Ingr_EgrParameter = sCo_Cta_Ingr_Egr != null ?
+                new ObjectParameter("sCo_Cta_Ingr_Egr", sCo_Cta_Ingr_Egr) :
+                new ObjectParameter("sCo_Cta_Ingr_Egr", typeof(string));
+    
+            var deMontoParameter = deMonto.HasValue ?
+                new ObjectParameter("deMonto", deMonto) :
+                new ObjectParameter("deMonto", typeof(decimal));
+    
+            var bSaldo_IniParameter = bSaldo_Ini.HasValue ?
+                new ObjectParameter("bSaldo_Ini", bSaldo_Ini) :
+                new ObjectParameter("bSaldo_Ini", typeof(bool));
+    
+            var sOrigenParameter = sOrigen != null ?
+                new ObjectParameter("sOrigen", sOrigen) :
+                new ObjectParameter("sOrigen", typeof(string));
+    
+            var sDoc_NumParameter = sDoc_Num != null ?
+                new ObjectParameter("sDoc_Num", sDoc_Num) :
+                new ObjectParameter("sDoc_Num", typeof(string));
+    
+            var sDep_NumParameter = sDep_Num != null ?
+                new ObjectParameter("sDep_Num", sDep_Num) :
+                new ObjectParameter("sDep_Num", typeof(string));
+    
+            var bAnuladoParameter = bAnulado.HasValue ?
+                new ObjectParameter("bAnulado", bAnulado) :
+                new ObjectParameter("bAnulado", typeof(bool));
+    
+            var bDepositadoParameter = bDepositado.HasValue ?
+                new ObjectParameter("bDepositado", bDepositado) :
+                new ObjectParameter("bDepositado", typeof(bool));
+    
+            var bConciliadoParameter = bConciliado.HasValue ?
+                new ObjectParameter("bConciliado", bConciliado) :
+                new ObjectParameter("bConciliado", typeof(bool));
+    
+            var bTransferidoParameter = bTransferido.HasValue ?
+                new ObjectParameter("bTransferido", bTransferido) :
+                new ObjectParameter("bTransferido", typeof(bool));
+    
+            var sMov_NroParameter = sMov_Nro != null ?
+                new ObjectParameter("sMov_Nro", sMov_Nro) :
+                new ObjectParameter("sMov_Nro", typeof(string));
+    
+            var sdFecha_CheParameter = sdFecha_Che.HasValue ?
+                new ObjectParameter("sdFecha_Che", sdFecha_Che) :
+                new ObjectParameter("sdFecha_Che", typeof(System.DateTime));
+    
+            var deAux01Parameter = deAux01.HasValue ?
+                new ObjectParameter("deAux01", deAux01) :
+                new ObjectParameter("deAux01", typeof(decimal));
+    
+            var sAux02Parameter = sAux02 != null ?
+                new ObjectParameter("sAux02", sAux02) :
+                new ObjectParameter("sAux02", typeof(string));
+    
+            var dFeccomParameter = dFeccom.HasValue ?
+                new ObjectParameter("dFeccom", dFeccom) :
+                new ObjectParameter("dFeccom", typeof(System.DateTime));
+    
+            var iNumcomParameter = iNumcom.HasValue ?
+                new ObjectParameter("iNumcom", iNumcom) :
+                new ObjectParameter("iNumcom", typeof(int));
+    
+            var sDis_CenParameter = sDis_Cen != null ?
+                new ObjectParameter("sDis_Cen", sDis_Cen) :
+                new ObjectParameter("sDis_Cen", typeof(string));
+    
+            var sCampo1Parameter = sCampo1 != null ?
+                new ObjectParameter("sCampo1", sCampo1) :
+                new ObjectParameter("sCampo1", typeof(string));
+    
+            var sCampo2Parameter = sCampo2 != null ?
+                new ObjectParameter("sCampo2", sCampo2) :
+                new ObjectParameter("sCampo2", typeof(string));
+    
+            var sCampo3Parameter = sCampo3 != null ?
+                new ObjectParameter("sCampo3", sCampo3) :
+                new ObjectParameter("sCampo3", typeof(string));
+    
+            var sCampo4Parameter = sCampo4 != null ?
+                new ObjectParameter("sCampo4", sCampo4) :
+                new ObjectParameter("sCampo4", typeof(string));
+    
+            var sCampo5Parameter = sCampo5 != null ?
+                new ObjectParameter("sCampo5", sCampo5) :
+                new ObjectParameter("sCampo5", typeof(string));
+    
+            var sCampo6Parameter = sCampo6 != null ?
+                new ObjectParameter("sCampo6", sCampo6) :
+                new ObjectParameter("sCampo6", typeof(string));
+    
+            var sCampo7Parameter = sCampo7 != null ?
+                new ObjectParameter("sCampo7", sCampo7) :
+                new ObjectParameter("sCampo7", typeof(string));
+    
+            var sCampo8Parameter = sCampo8 != null ?
+                new ObjectParameter("sCampo8", sCampo8) :
+                new ObjectParameter("sCampo8", typeof(string));
+    
+            var sCo_Us_InParameter = sCo_Us_In != null ?
+                new ObjectParameter("sCo_Us_In", sCo_Us_In) :
+                new ObjectParameter("sCo_Us_In", typeof(string));
+    
+            var sCo_Sucu_InParameter = sCo_Sucu_In != null ?
+                new ObjectParameter("sCo_Sucu_In", sCo_Sucu_In) :
+                new ObjectParameter("sCo_Sucu_In", typeof(string));
+    
+            var sMaquinaParameter = sMaquina != null ?
+                new ObjectParameter("sMaquina", sMaquina) :
+                new ObjectParameter("sMaquina", typeof(string));
+    
+            var sRevisadoParameter = sRevisado != null ?
+                new ObjectParameter("sRevisado", sRevisado) :
+                new ObjectParameter("sRevisado", typeof(string));
+    
+            var sTrasnfeParameter = sTrasnfe != null ?
+                new ObjectParameter("sTrasnfe", sTrasnfe) :
+                new ObjectParameter("sTrasnfe", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pInsertarMovimientoCaja_Result>("pInsertarMovimientoCaja", sMov_NumParameter, sdFechaParameter, sDescripParameter, sCod_CajaParameter, deTasaParameter, sTipo_MovParameter, sForma_PagParameter, sNum_PagoParameter, sCo_BanParameter, sCo_TarParameter, sCo_ValeParameter, sCo_Cta_Ingr_EgrParameter, deMontoParameter, bSaldo_IniParameter, sOrigenParameter, sDoc_NumParameter, sDep_NumParameter, bAnuladoParameter, bDepositadoParameter, bConciliadoParameter, bTransferidoParameter, sMov_NroParameter, sdFecha_CheParameter, deAux01Parameter, sAux02Parameter, dFeccomParameter, iNumcomParameter, sDis_CenParameter, sCampo1Parameter, sCampo2Parameter, sCampo3Parameter, sCampo4Parameter, sCampo5Parameter, sCampo6Parameter, sCampo7Parameter, sCampo8Parameter, sCo_Us_InParameter, sCo_Sucu_InParameter, sMaquinaParameter, sRevisadoParameter, sTrasnfeParameter);
+        }
+    
+        public virtual ObjectResult<pInsertarOrdenPago_Result> pInsertarOrdenPago(string sOrd_Num, string sStatus, Nullable<System.DateTime> sdFecha, string sCod_Ben, string sDescrip, string sForma_Pag, Nullable<System.DateTime> sdFec_Pag, string sCod_Cta, string sDoc_Num, string sCod_Caja, string sMov_Num_C, string sMov_Num_B, string sDis_Cen, Nullable<decimal> deTasa, string sCo_mone, Nullable<bool> bAnulado, Nullable<bool> bSino_Reten, Nullable<int> iPagar, string sOrigen, string sOrigen_D, string sCampo1, string sCampo2, string sCampo3, string sCampo4, string sCampo5, string sCampo6, string sCampo7, string sCampo8, string sCo_Us_In, string sCo_Sucu_In, string sMaquina, string sRevisado, string sTrasnfe)
+        {
+            var sOrd_NumParameter = sOrd_Num != null ?
+                new ObjectParameter("sOrd_Num", sOrd_Num) :
+                new ObjectParameter("sOrd_Num", typeof(string));
+    
+            var sStatusParameter = sStatus != null ?
+                new ObjectParameter("sStatus", sStatus) :
+                new ObjectParameter("sStatus", typeof(string));
+    
+            var sdFechaParameter = sdFecha.HasValue ?
+                new ObjectParameter("sdFecha", sdFecha) :
+                new ObjectParameter("sdFecha", typeof(System.DateTime));
+    
+            var sCod_BenParameter = sCod_Ben != null ?
+                new ObjectParameter("sCod_Ben", sCod_Ben) :
+                new ObjectParameter("sCod_Ben", typeof(string));
+    
+            var sDescripParameter = sDescrip != null ?
+                new ObjectParameter("sDescrip", sDescrip) :
+                new ObjectParameter("sDescrip", typeof(string));
+    
+            var sForma_PagParameter = sForma_Pag != null ?
+                new ObjectParameter("sForma_Pag", sForma_Pag) :
+                new ObjectParameter("sForma_Pag", typeof(string));
+    
+            var sdFec_PagParameter = sdFec_Pag.HasValue ?
+                new ObjectParameter("sdFec_Pag", sdFec_Pag) :
+                new ObjectParameter("sdFec_Pag", typeof(System.DateTime));
+    
+            var sCod_CtaParameter = sCod_Cta != null ?
+                new ObjectParameter("sCod_Cta", sCod_Cta) :
+                new ObjectParameter("sCod_Cta", typeof(string));
+    
+            var sDoc_NumParameter = sDoc_Num != null ?
+                new ObjectParameter("sDoc_Num", sDoc_Num) :
+                new ObjectParameter("sDoc_Num", typeof(string));
+    
+            var sCod_CajaParameter = sCod_Caja != null ?
+                new ObjectParameter("sCod_Caja", sCod_Caja) :
+                new ObjectParameter("sCod_Caja", typeof(string));
+    
+            var sMov_Num_CParameter = sMov_Num_C != null ?
+                new ObjectParameter("sMov_Num_C", sMov_Num_C) :
+                new ObjectParameter("sMov_Num_C", typeof(string));
+    
+            var sMov_Num_BParameter = sMov_Num_B != null ?
+                new ObjectParameter("sMov_Num_B", sMov_Num_B) :
+                new ObjectParameter("sMov_Num_B", typeof(string));
+    
+            var sDis_CenParameter = sDis_Cen != null ?
+                new ObjectParameter("sDis_Cen", sDis_Cen) :
+                new ObjectParameter("sDis_Cen", typeof(string));
+    
+            var deTasaParameter = deTasa.HasValue ?
+                new ObjectParameter("deTasa", deTasa) :
+                new ObjectParameter("deTasa", typeof(decimal));
+    
+            var sCo_moneParameter = sCo_mone != null ?
+                new ObjectParameter("sCo_mone", sCo_mone) :
+                new ObjectParameter("sCo_mone", typeof(string));
+    
+            var bAnuladoParameter = bAnulado.HasValue ?
+                new ObjectParameter("bAnulado", bAnulado) :
+                new ObjectParameter("bAnulado", typeof(bool));
+    
+            var bSino_RetenParameter = bSino_Reten.HasValue ?
+                new ObjectParameter("bSino_Reten", bSino_Reten) :
+                new ObjectParameter("bSino_Reten", typeof(bool));
+    
+            var iPagarParameter = iPagar.HasValue ?
+                new ObjectParameter("iPagar", iPagar) :
+                new ObjectParameter("iPagar", typeof(int));
+    
+            var sOrigenParameter = sOrigen != null ?
+                new ObjectParameter("sOrigen", sOrigen) :
+                new ObjectParameter("sOrigen", typeof(string));
+    
+            var sOrigen_DParameter = sOrigen_D != null ?
+                new ObjectParameter("sOrigen_D", sOrigen_D) :
+                new ObjectParameter("sOrigen_D", typeof(string));
+    
+            var sCampo1Parameter = sCampo1 != null ?
+                new ObjectParameter("sCampo1", sCampo1) :
+                new ObjectParameter("sCampo1", typeof(string));
+    
+            var sCampo2Parameter = sCampo2 != null ?
+                new ObjectParameter("sCampo2", sCampo2) :
+                new ObjectParameter("sCampo2", typeof(string));
+    
+            var sCampo3Parameter = sCampo3 != null ?
+                new ObjectParameter("sCampo3", sCampo3) :
+                new ObjectParameter("sCampo3", typeof(string));
+    
+            var sCampo4Parameter = sCampo4 != null ?
+                new ObjectParameter("sCampo4", sCampo4) :
+                new ObjectParameter("sCampo4", typeof(string));
+    
+            var sCampo5Parameter = sCampo5 != null ?
+                new ObjectParameter("sCampo5", sCampo5) :
+                new ObjectParameter("sCampo5", typeof(string));
+    
+            var sCampo6Parameter = sCampo6 != null ?
+                new ObjectParameter("sCampo6", sCampo6) :
+                new ObjectParameter("sCampo6", typeof(string));
+    
+            var sCampo7Parameter = sCampo7 != null ?
+                new ObjectParameter("sCampo7", sCampo7) :
+                new ObjectParameter("sCampo7", typeof(string));
+    
+            var sCampo8Parameter = sCampo8 != null ?
+                new ObjectParameter("sCampo8", sCampo8) :
+                new ObjectParameter("sCampo8", typeof(string));
+    
+            var sCo_Us_InParameter = sCo_Us_In != null ?
+                new ObjectParameter("sCo_Us_In", sCo_Us_In) :
+                new ObjectParameter("sCo_Us_In", typeof(string));
+    
+            var sCo_Sucu_InParameter = sCo_Sucu_In != null ?
+                new ObjectParameter("sCo_Sucu_In", sCo_Sucu_In) :
+                new ObjectParameter("sCo_Sucu_In", typeof(string));
+    
+            var sMaquinaParameter = sMaquina != null ?
+                new ObjectParameter("sMaquina", sMaquina) :
+                new ObjectParameter("sMaquina", typeof(string));
+    
+            var sRevisadoParameter = sRevisado != null ?
+                new ObjectParameter("sRevisado", sRevisado) :
+                new ObjectParameter("sRevisado", typeof(string));
+    
+            var sTrasnfeParameter = sTrasnfe != null ?
+                new ObjectParameter("sTrasnfe", sTrasnfe) :
+                new ObjectParameter("sTrasnfe", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pInsertarOrdenPago_Result>("pInsertarOrdenPago", sOrd_NumParameter, sStatusParameter, sdFechaParameter, sCod_BenParameter, sDescripParameter, sForma_PagParameter, sdFec_PagParameter, sCod_CtaParameter, sDoc_NumParameter, sCod_CajaParameter, sMov_Num_CParameter, sMov_Num_BParameter, sDis_CenParameter, deTasaParameter, sCo_moneParameter, bAnuladoParameter, bSino_RetenParameter, iPagarParameter, sOrigenParameter, sOrigen_DParameter, sCampo1Parameter, sCampo2Parameter, sCampo3Parameter, sCampo4Parameter, sCampo5Parameter, sCampo6Parameter, sCampo7Parameter, sCampo8Parameter, sCo_Us_InParameter, sCo_Sucu_InParameter, sMaquinaParameter, sRevisadoParameter, sTrasnfeParameter);
+        }
+    
+        public virtual ObjectResult<pInsertarRenglonesOrdenPago_Result> pInsertarRenglonesOrdenPago(Nullable<int> iRENG_NUM, string sOrd_Num, string sCo_Cta_Ingr_Egr, string sCo_Islr, Nullable<decimal> deMonto_D, Nullable<decimal> deMonto_H, Nullable<decimal> deMonto_Iva, Nullable<decimal> dePorc_Retn, Nullable<decimal> deSustraendo, Nullable<decimal> deMonto_Reten, string sTipo_Imp, string sDescrip, string sDis_Cen, string sco_sucu_in, string sco_us_in, string sREVISADO, string sTRASNFE, string sMaquina)
+        {
+            var iRENG_NUMParameter = iRENG_NUM.HasValue ?
+                new ObjectParameter("iRENG_NUM", iRENG_NUM) :
+                new ObjectParameter("iRENG_NUM", typeof(int));
+    
+            var sOrd_NumParameter = sOrd_Num != null ?
+                new ObjectParameter("sOrd_Num", sOrd_Num) :
+                new ObjectParameter("sOrd_Num", typeof(string));
+    
+            var sCo_Cta_Ingr_EgrParameter = sCo_Cta_Ingr_Egr != null ?
+                new ObjectParameter("sCo_Cta_Ingr_Egr", sCo_Cta_Ingr_Egr) :
+                new ObjectParameter("sCo_Cta_Ingr_Egr", typeof(string));
+    
+            var sCo_IslrParameter = sCo_Islr != null ?
+                new ObjectParameter("sCo_Islr", sCo_Islr) :
+                new ObjectParameter("sCo_Islr", typeof(string));
+    
+            var deMonto_DParameter = deMonto_D.HasValue ?
+                new ObjectParameter("deMonto_D", deMonto_D) :
+                new ObjectParameter("deMonto_D", typeof(decimal));
+    
+            var deMonto_HParameter = deMonto_H.HasValue ?
+                new ObjectParameter("deMonto_H", deMonto_H) :
+                new ObjectParameter("deMonto_H", typeof(decimal));
+    
+            var deMonto_IvaParameter = deMonto_Iva.HasValue ?
+                new ObjectParameter("deMonto_Iva", deMonto_Iva) :
+                new ObjectParameter("deMonto_Iva", typeof(decimal));
+    
+            var dePorc_RetnParameter = dePorc_Retn.HasValue ?
+                new ObjectParameter("dePorc_Retn", dePorc_Retn) :
+                new ObjectParameter("dePorc_Retn", typeof(decimal));
+    
+            var deSustraendoParameter = deSustraendo.HasValue ?
+                new ObjectParameter("deSustraendo", deSustraendo) :
+                new ObjectParameter("deSustraendo", typeof(decimal));
+    
+            var deMonto_RetenParameter = deMonto_Reten.HasValue ?
+                new ObjectParameter("deMonto_Reten", deMonto_Reten) :
+                new ObjectParameter("deMonto_Reten", typeof(decimal));
+    
+            var sTipo_ImpParameter = sTipo_Imp != null ?
+                new ObjectParameter("sTipo_Imp", sTipo_Imp) :
+                new ObjectParameter("sTipo_Imp", typeof(string));
+    
+            var sDescripParameter = sDescrip != null ?
+                new ObjectParameter("sDescrip", sDescrip) :
+                new ObjectParameter("sDescrip", typeof(string));
+    
+            var sDis_CenParameter = sDis_Cen != null ?
+                new ObjectParameter("sDis_Cen", sDis_Cen) :
+                new ObjectParameter("sDis_Cen", typeof(string));
+    
+            var sco_sucu_inParameter = sco_sucu_in != null ?
+                new ObjectParameter("sco_sucu_in", sco_sucu_in) :
+                new ObjectParameter("sco_sucu_in", typeof(string));
+    
+            var sco_us_inParameter = sco_us_in != null ?
+                new ObjectParameter("sco_us_in", sco_us_in) :
+                new ObjectParameter("sco_us_in", typeof(string));
+    
+            var sREVISADOParameter = sREVISADO != null ?
+                new ObjectParameter("sREVISADO", sREVISADO) :
+                new ObjectParameter("sREVISADO", typeof(string));
+    
+            var sTRASNFEParameter = sTRASNFE != null ?
+                new ObjectParameter("sTRASNFE", sTRASNFE) :
+                new ObjectParameter("sTRASNFE", typeof(string));
+    
+            var sMaquinaParameter = sMaquina != null ?
+                new ObjectParameter("sMaquina", sMaquina) :
+                new ObjectParameter("sMaquina", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pInsertarRenglonesOrdenPago_Result>("pInsertarRenglonesOrdenPago", iRENG_NUMParameter, sOrd_NumParameter, sCo_Cta_Ingr_EgrParameter, sCo_IslrParameter, deMonto_DParameter, deMonto_HParameter, deMonto_IvaParameter, dePorc_RetnParameter, deSustraendoParameter, deMonto_RetenParameter, sTipo_ImpParameter, sDescripParameter, sDis_CenParameter, sco_sucu_inParameter, sco_us_inParameter, sREVISADOParameter, sTRASNFEParameter, sMaquinaParameter);
+        }
+    
+        public virtual int pActualizarSaldoBanco(string sCodigo, string sCodigoOri, string sTipo, string sTipoOri, Nullable<decimal> deSaldo, Nullable<System.Guid> gRowguid)
+        {
+            var sCodigoParameter = sCodigo != null ?
+                new ObjectParameter("sCodigo", sCodigo) :
+                new ObjectParameter("sCodigo", typeof(string));
+    
+            var sCodigoOriParameter = sCodigoOri != null ?
+                new ObjectParameter("sCodigoOri", sCodigoOri) :
+                new ObjectParameter("sCodigoOri", typeof(string));
+    
+            var sTipoParameter = sTipo != null ?
+                new ObjectParameter("sTipo", sTipo) :
+                new ObjectParameter("sTipo", typeof(string));
+    
+            var sTipoOriParameter = sTipoOri != null ?
+                new ObjectParameter("sTipoOri", sTipoOri) :
+                new ObjectParameter("sTipoOri", typeof(string));
+    
+            var deSaldoParameter = deSaldo.HasValue ?
+                new ObjectParameter("deSaldo", deSaldo) :
+                new ObjectParameter("deSaldo", typeof(decimal));
+    
+            var gRowguidParameter = gRowguid.HasValue ?
+                new ObjectParameter("gRowguid", gRowguid) :
+                new ObjectParameter("gRowguid", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pActualizarSaldoBanco", sCodigoParameter, sCodigoOriParameter, sTipoParameter, sTipoOriParameter, deSaldoParameter, gRowguidParameter);
+        }
+    
+        public virtual int pActualizarSaldoCaja(string sCodigo, string sCodigoOri, string sTipo, string sTipoOri, Nullable<decimal> deSaldo, Nullable<System.Guid> gRowguid)
+        {
+            var sCodigoParameter = sCodigo != null ?
+                new ObjectParameter("sCodigo", sCodigo) :
+                new ObjectParameter("sCodigo", typeof(string));
+    
+            var sCodigoOriParameter = sCodigoOri != null ?
+                new ObjectParameter("sCodigoOri", sCodigoOri) :
+                new ObjectParameter("sCodigoOri", typeof(string));
+    
+            var sTipoParameter = sTipo != null ?
+                new ObjectParameter("sTipo", sTipo) :
+                new ObjectParameter("sTipo", typeof(string));
+    
+            var sTipoOriParameter = sTipoOri != null ?
+                new ObjectParameter("sTipoOri", sTipoOri) :
+                new ObjectParameter("sTipoOri", typeof(string));
+    
+            var deSaldoParameter = deSaldo.HasValue ?
+                new ObjectParameter("deSaldo", deSaldo) :
+                new ObjectParameter("deSaldo", typeof(decimal));
+    
+            var gRowguidParameter = gRowguid.HasValue ?
+                new ObjectParameter("gRowguid", gRowguid) :
+                new ObjectParameter("gRowguid", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pActualizarSaldoCaja", sCodigoParameter, sCodigoOriParameter, sTipoParameter, sTipoOriParameter, deSaldoParameter, gRowguidParameter);
+        }
     }
 }

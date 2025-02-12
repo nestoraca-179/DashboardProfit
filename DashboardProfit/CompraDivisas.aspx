@@ -38,27 +38,52 @@
                 <i class="fas fa-search d-flex justify-content-center align-items-center rounded bg-primary text-light p-2" role="button" onclick="openModal(this, 'modalAccounts')" data-name="acc" style="width: 40px;"></i>
             </div>
 		</div>
+		<hr class="w-50" />
+		<h6>Origen (BSD)</h6>
 		<div class="form-group d-flex align-items-center w-50 mt-1">
 			<label class="form-check-label" style="flex: 1;">
-                <input type="checkbox" class="form-check-input me-2" ng-model="useBox" ng-click="reset($event, true);" />Caja: 
+                <input type="checkbox" class="form-check-input me-2" ng-model="useBoxO" ng-click="reset($event, true, true);" />Caja: 
 			</label>
 			<div class="input-search d-flex ms-2" style="flex: 2;">
-                <input type="text" class="form-control" id="box" ng-model="order.cod_caja" ng-required="true" ng-readonly="true" style="flex: 1;" ng-disabled="!useBox" />
-                <input type="text" class="form-control mx-1" id="des_box" ng-model="order.saCaja.descrip" ng-required="true" ng-readonly="true" style="flex: 3;" ng-disabled="!useBox" />
-                <i class="fas fa-search d-flex justify-content-center align-items-center rounded bg-primary text-light p-2" role="button" onclick="openModal(this, 'modalBoxes')" data-name="box" style="width: 40px;"></i>
+                <input type="text" class="form-control" id="box_o" ng-model="order.cod_caja" ng-required="true" ng-readonly="true" style="flex: 1;" ng-disabled="!useBoxO" />
+                <input type="text" class="form-control mx-1" id="des_box_o" ng-model="order.saCaja.descrip" ng-required="true" ng-readonly="true" style="flex: 3;" ng-disabled="!useBoxO" />
+                <i class="fas fa-search d-flex justify-content-center align-items-center rounded bg-primary text-light p-2" role="button" onclick="openModal(this, 'modalBoxes')" data-name="box_o" style="width: 40px;"></i>
             </div>
 		</div>
 		<div class="form-group d-flex align-items-center w-50 mt-1">
             <label class="form-check-label" style="flex: 1;">
-                <input type="checkbox" class="form-check-input me-2" ng-model="useBank" ng-click="reset($event, false);" />Cuenta Bancaria: 
+                <input type="checkbox" class="form-check-input me-2" ng-model="useBankO" ng-click="reset($event, false, true);" />Cuenta Bancaria: 
             </label>
 			<div class="input-search d-flex ms-2" style="flex: 2;">
-                <input type="text" class="form-control" id="bacc" ng-model="order.cod_cta" ng-required="true" ng-readonly="true" style="flex: 1;" ng-disabled="!useBank" />
-                <input type="text" class="form-control mx-1" id="des_bacc" ng-model="order.saCuentaBancaria.num_cta" ng-required="true" ng-readonly="true" style="flex: 3;" ng-disabled="!useBank" />
-                <i class="fas fa-search d-flex justify-content-center align-items-center rounded bg-primary text-light p-2" role="button" onclick="openModal(this, 'modalBankAccounts')" data-name="bacc" style="width: 40px;"></i>
+                <input type="text" class="form-control" id="bacc_o" ng-model="order.cod_cta" ng-required="true" ng-readonly="true" style="flex: 1;" ng-disabled="!useBankO" />
+                <input type="text" class="form-control mx-1" id="des_bacc_o" ng-model="order.saCuentaBancaria.num_cta" ng-required="true" ng-readonly="true" style="flex: 3;" ng-disabled="!useBankO" />
+                <i class="fas fa-search d-flex justify-content-center align-items-center rounded bg-primary text-light p-2" role="button" onclick="openModal(this, 'modalBankAccounts')" data-name="bacc_o" style="width: 40px;"></i>
+            </div>
+		</div>
+		<hr class="w-50" />
+		<h6>Destino (USD)</h6>
+        <div class="form-group d-flex align-items-center w-50 mt-1">
+			<label class="form-check-label" style="flex: 1;">
+                <input type="checkbox" class="form-check-input me-2" ng-model="useBoxD" ng-click="reset($event, true, false);" />Caja: 
+			</label>
+			<div class="input-search d-flex ms-2" style="flex: 2;">
+                <input type="text" class="form-control" id="box_d" ng-model="order.box_d" ng-required="true" ng-readonly="true" style="flex: 1;" ng-disabled="!useBoxD" />
+                <input type="text" class="form-control mx-1" id="des_box_d" ng-model="order.des_box_d" ng-required="true" ng-readonly="true" style="flex: 3;" ng-disabled="!useBoxD" />
+                <i class="fas fa-search d-flex justify-content-center align-items-center rounded bg-primary text-light p-2" role="button" onclick="openModal(this, 'modalBoxes')" data-name="box_d" style="width: 40px;"></i>
             </div>
 		</div>
 		<div class="form-group d-flex align-items-center w-50 mt-1">
+            <label class="form-check-label" style="flex: 1;">
+                <input type="checkbox" class="form-check-input me-2" ng-model="useBankD" ng-click="reset($event, false, false);" />Cuenta Bancaria: 
+            </label>
+			<div class="input-search d-flex ms-2" style="flex: 2;">
+                <input type="text" class="form-control" id="bacc_d" ng-model="order.bacc_d" ng-required="true" ng-readonly="true" style="flex: 1;" ng-disabled="!useBankD" />
+                <input type="text" class="form-control mx-1" id="des_bacc_d" ng-model="order.des_bacc_d" ng-required="true" ng-readonly="true" style="flex: 3;" ng-disabled="!useBankD" />
+                <i class="fas fa-search d-flex justify-content-center align-items-center rounded bg-primary text-light p-2" role="button" onclick="openModal(this, 'modalBankAccounts')" data-name="bacc_d" style="width: 40px;"></i>
+            </div>
+		</div>
+		<hr class="w-50" />
+        <div class="form-group d-flex align-items-center w-50 mt-1">
             <label style="flex: 1;">Monto a comprar $USD (*)</label>
 			<div class="ms-2" style="flex: 2;">
 				<input type="text" class="form-control" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)" ng-model="order.saOrdenPagoReng[0].monto_d" ng-required="true" />
@@ -81,6 +106,52 @@
             <button type="button" class="btn btn-primary mt-3" ng-click="sendOrder()">Generar Orden Pago</button>
 		</div>
 	</div>
+    <!-- MODAL LOADING -->
+    <div class="modal fade modal-info" id="modalLoading" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="max-width: 800px; margin: 0 auto;">
+            <div class="modal-content">
+                <div class="modal-body" style="max-height: 450px; overflow-y: auto; padding: 45px;">
+                    <div style="display: flex; justify-content: center;">
+                        <i class="fas fa-spinner fa-spin" style="color: #01579b; font-size: 7em;"></i>
+                    </div>
+                    <h1 class="text-center mt-5">Cargando datos...</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL SUCCESS -->
+    <div class="modal fade modal-info" id="modalSuccess" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="max-width: 800px; margin: 0 auto;">
+            <div class="modal-content">
+                <div class="modal-body" style="max-height: 450px; overflow-y: auto; padding: 45px;">
+                    <div style="display: flex; justify-content: center;">
+                        <i class="fas fa-check-circle py-5" style="color: var(--bs-green); font-size: 7em;"></i>
+                    </div>
+                    <h2 class="text-center">{{ successMessage }}</h2>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="$('#modalSuccess').modal('hide');">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL ERROR -->
+    <div class="modal fade modal-info" id="modalError" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="max-width: 800px; margin: 0 auto;">
+            <div class="modal-content">
+                <div class="modal-body" style="max-height: 450px; overflow-y: auto; padding: 45px;">
+                    <div style="display: flex; justify-content: center;">
+                        <i class="fas fa-exclamation-triangle py-5" style="color: var(--bs-red); font-size: 7em;"></i>
+                    </div>
+                    <h2 class="text-center">Ha ocurrido un error</h2>
+                    <p class="text-center">{{ errorMessage }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="$('#modalError').modal('hide');">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 	<!-- Modal 1 -->
     <div class="modal fade" id="modalBenefs" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document" style="max-width: 800px;">
@@ -156,7 +227,7 @@
                     <table class="table table-bordered table-hover table-striped mt-3" id="results">
                         <tr ng-repeat="box in boxes" style="cursor: pointer" onclick="selectRow(this)">
                             <td>{{ box.cod_caja }}</td>
-                            <td>{{ box.descrip }}</td>
+                            <td>{{ box.descrip }} ({{ box.co_mone.trim() }})</td>
                         </tr>
                     </table>
                     <input type="hidden" id="name-input" />
@@ -185,7 +256,7 @@
                     <table class="table table-bordered table-hover table-striped mt-3" id="results">
                         <tr ng-repeat="bacc in bankAccounts" style="cursor: pointer" onclick="selectRow(this)">
                             <td>{{ bacc.cod_cta }}</td>
-                            <td>{{ bacc.num_cta }}</td>
+                            <td>{{ bacc.num_cta }} ({{ bacc.co_mone.trim() }})</td>
                         </tr>
                     </table>
                     <input type="hidden" id="name-input" />
@@ -212,32 +283,60 @@
 
 	app.controller("controller", function ($scope, $http) {
 
-        $scope.order = { saOrdenPagoReng: [] };
 		$scope.benefs = benefs;
 		$scope.boxes = boxes;
 		$scope.bankAccounts = bankAccounts;
         $scope.accounts = accounts;
-        $scope.useBox = false;
-        $scope.useBank = false;
+        
+		$scope.init = function () {
+			$scope.order = { saOrdenPagoReng: [] };
+			$scope.useBoxO = false;
+			$scope.useBankO = false;
+			$scope.useBoxD = false;
+			$scope.useBankD = false;
+			$(".container-form input, .container-form textarea").val("");
+		}
 
-        $scope.reset = function ($event, isBox) {
-            if (isBox) {
-                if (!$scope.useBank) {
-                    $("#box").val("");
-                    $("#des_box").val("");
+        $scope.reset = function ($event, isBox, isOrigin) {
+            if (isOrigin) {
+                if (isBox) {
+                    if (!$scope.useBankO) {
+                        $("#box_o").val("");
+                        $("#des_box_o").val("");
+                    } else {
+                        alert("La opcion de cuenta bancaria de origen ya esta marcada");
+                        $event.preventDefault();
+                        return;
+                    }
                 } else {
-                    alert("La opcion de cuenta bancaria ya esta marcada");
-					$event.preventDefault();
-                    return;
-				}
+                    if (!$scope.useBoxO) {
+                        $("#bacc_o").val("");
+                        $("#des_bacc_o").val("");
+                    } else {
+						alert("La opcion de caja de origen ya esta marcada");
+                        $event.preventDefault();
+                        return;
+                    }
+                }
             } else {
-				if (!$scope.useBox) {
-					$("#bacc").val("");
-					$("#des_bacc").val("");
+				if (isBox) {
+					if (!$scope.useBankD) {
+						$("#box_d").val("");
+						$("#des_box_d").val("");
+					} else {
+						alert("La opcion de cuenta bancaria de destino ya esta marcada");
+						$event.preventDefault();
+						return;
+					}
 				} else {
-					alert("La opcion de caja ya esta marcada");
-					$event.preventDefault();
-					return;
+					if (!$scope.useBoxD) {
+						$("#bacc_d").val("");
+						$("#des_bacc_d").val("");
+					} else {
+						alert("La opcion de caja de destino ya esta marcada");
+						$event.preventDefault();
+						return;
+					}
 				}
 			}
 		}
@@ -254,20 +353,37 @@
                 return;
             }
 
-            if (!$scope.useBox && !$scope.useBank) {
-				alert("Debes seleccionar caja o cuenta bancaria");
+            // ORIGEN
+            if (!$scope.useBoxO && !$scope.useBankO) {
+				alert("Debes seleccionar en origen una caja o cuenta bancaria");
                 return;
 			}
 
-            if ($scope.useBox && isNullOrEmpty($("#box").val())) {
-				alert("Debes agregar la caja");
+            if ($scope.useBoxO && isNullOrEmpty($("#box_o").val())) {
+				alert("Debes agregar la caja de origen");
 				return;
             }
 
-            if ($scope.useBank && isNullOrEmpty($("#bacc").val())) {
-				alert("Debes agregar la cuenta bancaria");
+            if ($scope.useBankO && isNullOrEmpty($("#bacc_o").val())) {
+				alert("Debes agregar la cuenta bancaria de origen");
 				return;
             }
+
+            // DESTINO
+			if (!$scope.useBoxD && !$scope.useBankD) {
+				alert("Debes seleccionar en destino una caja o cuenta bancaria");
+				return;
+			}
+
+			if ($scope.useBoxD && isNullOrEmpty($("#box_d").val())) {
+				alert("Debes agregar la caja de destino");
+				return;
+			}
+
+			if ($scope.useBankD && isNullOrEmpty($("#bacc_d").val())) {
+				alert("Debes agregar la cuenta bancaria de destino");
+				return;
+			}
 
             if (isNullOrEmpty($scope.order.saOrdenPagoReng[0]?.monto_d)) {
 				alert("Debes agregar el monto a comprar");
@@ -279,15 +395,40 @@
 				return;
 			}
 
+            $("#modalLoading").modal("show");
             $scope.order.cod_ben = $("#ben").val();
             $scope.order.saOrdenPagoReng[0].co_cta_ingr_egr = $("#acc").val();
-            $scope.order.cod_caja = isNullOrEmpty($("#box").val()) ? null : $("#box").val();
-			$scope.order.cod_cta = isNullOrEmpty($("#bacc").val()) ? null : $("#bacc").val();
-            
-            console.log($scope.order);
-            alert("En desarrollo...");
+            $scope.order.cod_caja = isNullOrEmpty($("#box_o").val()) ? null : $("#box_o").val();
+            $scope.order.cod_cta = isNullOrEmpty($("#bacc_o").val()) ? null : $("#bacc_o").val();
+            $scope.order.campo7 = $scope.useBoxD;
+			$scope.order.campo8 = isNullOrEmpty($("#box_d").val()) ? $("#bacc_d").val() : $("#box_d").val();
+
+			var req = {
+				method: 'POST',
+				url: '/api/AddPayOrder/',
+				data: $scope.order,
+				headers: {
+					'Content-Type': 'application/json'
+				},
+            }
+
+            $http(req).then(function (response) {
+                var res = response.data;
+				setTimeout(function () { $("#modalLoading").modal("hide"); }, 200);
+
+                if (res.Status == "OK") {
+					console.log(res.Result);                    $scope
+                    $scope.init();
+                    $scope.successMessage = `Orden de Pago Nro. ${res.Result.ord_num.trim()} generada con exito`;
+					$("#modalSuccess").modal("show");
+                } else {
+                    $scope.errorMessage = res.Message;
+					$("#modalError").modal("show");
+				}
+            });
 		}
 
+        $scope.init();
 	});
 
 	function searchBenef(value) {
@@ -361,13 +502,17 @@
 			$("#" + modal).find("button[name=search-btn]").trigger("click");
 
             if (input == "ben") {
-				$("#des_ben").val(searchBenef(value));
-			} else if (input == "acc") {
-				$("#des_acc").val(searchAccount(value));
-			} else if (input == "box") {
-				$("#des_box").val(searchBox(value));
-			} else if (input == "bacc") {
-				$("#des_bacc").val(searchBankAccount(value));
+                $("#des_ben").val(searchBenef(value));
+            } else if (input == "acc") {
+                $("#des_acc").val(searchAccount(value));
+            } else if (input == "box_o") {
+                $("#des_box_o").val(searchBox(value));
+            } else if (input == "box_d") {
+                $("#des_box_d").val(searchBox(value));
+            } else if (input == "bacc_o") {
+                $("#des_bacc_o").val(searchBankAccount(value));
+            } else if (input == "bacc_d") {
+				$("#des_bacc_d").val(searchBankAccount(value));
 			}
 
 			rows.forEach(row => row.style.display = "");
