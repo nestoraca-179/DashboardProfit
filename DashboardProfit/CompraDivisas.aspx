@@ -10,7 +10,7 @@
 <div class="container-fluid" id="form-op" ng-app="CompraDivisas" ng-controller="controller">
 	<div class="d-flex flex-wrap justify-content-between row-gap-3 px-0 py-3 px-md-3">
 		<h4 class="main-title m-0">Compra Divisas</h4>
-		<!--<div class="cont-data d-flex">
+		<div class="cont-data d-flex">
 			<div class="d-flex gap-2 param-dates">
 				<input type="date" id="dateFrom" class="form-control" />
 				<input type="date" id="dateTo" class="form-control" />
@@ -18,25 +18,60 @@
 					<i class="fa-solid fa-magnifying-glass d-flex align-items-center"></i>Buscar
 				</button>
 			</div>
-		</div>-->
+		</div>
 	</div>
 	<hr class="mx-0 my-0 mx-md-3" />
 	<div class="container-form mx-0 my-0 mt-3 mx-md-3">
-		<div class="form-group d-flex align-items-center w-50">
-			<label style="flex: 1;">Beneficiario (*): </label>
-			<div class="input-search d-flex ms-2" style="flex: 2;">
-                <input type="text" class="form-control" id="ben" ng-model="order.cod_ben" ng-required="true" ng-readonly="true" style="flex: 1;" />
-                <input type="text" class="form-control mx-1" id="des_ben" ng-model="order.saCondicionPago.des_bend" ng-required="true" ng-readonly="true" style="flex: 3;" />
-                <i class="fas fa-search d-flex justify-content-center align-items-center rounded bg-primary text-light p-2" role="button" onclick="openModal(this, 'modalBenefs')" data-name="ben" style="width: 40px;"></i>
-            </div>
-		</div>
-		<div class="form-group d-flex align-items-center w-50 mt-1">
-			<label style="flex: 1;">Cuenta Ingr/Egr (*): </label>
-			<div class="input-search d-flex ms-2" style="flex: 2;">
-                <input type="text" class="form-control" id="acc" ng-model="order.co_cta_ingr_egr" ng-required="true" ng-readonly="false" style="flex: 1;" />
-                <input type="text" class="form-control mx-1" id="des_acc" ng-model="order.saCuentaIngEgr.descrip" ng-required="true" ng-readonly="true" style="flex: 3;" />
-                <i class="fas fa-search d-flex justify-content-center align-items-center rounded bg-primary text-light p-2" role="button" onclick="openModal(this, 'modalAccounts')" data-name="acc" style="width: 40px;"></i>
-            </div>
+		<div class="row m-0">
+			<div class="col-6 p-0">
+                <div class="form-group d-flex align-items-center">
+			        <label style="flex: 1;">Beneficiario (*): </label>
+			        <div class="input-search d-flex ms-2" style="flex: 2;">
+                        <input type="text" class="form-control" id="ben" ng-model="order.cod_ben" ng-required="true" ng-readonly="true" style="flex: 1;" />
+                        <input type="text" class="form-control mx-1" id="des_ben" ng-model="order.saCondicionPago.des_bend" ng-required="true" ng-readonly="true" style="flex: 3;" />
+                        <i class="fas fa-search d-flex justify-content-center align-items-center rounded bg-primary text-light p-2" role="button" onclick="openModal(this, 'modalBenefs')" data-name="ben" style="width: 40px;"></i>
+                    </div>
+		        </div>
+		        <div class="form-group d-flex align-items-center mt-1">
+			        <label style="flex: 1;">Cuenta Ingr/Egr (*): </label>
+			        <div class="input-search d-flex ms-2" style="flex: 2;">
+                        <input type="text" class="form-control" id="acc" ng-model="order.co_cta_ingr_egr" ng-required="true" ng-readonly="false" style="flex: 1;" />
+                        <input type="text" class="form-control mx-1" id="des_acc" ng-model="order.saCuentaIngEgr.descrip" ng-required="true" ng-readonly="true" style="flex: 3;" />
+                        <i class="fas fa-search d-flex justify-content-center align-items-center rounded bg-primary text-light p-2" role="button" onclick="openModal(this, 'modalAccounts')" data-name="acc" style="width: 40px;"></i>
+                    </div>
+		        </div>
+			</div>
+			<div class="col-6 p-0 row m-0">
+				<div class="col-6 pe-0">
+                    <div class="bg-white rounded shadow-sm p-3 card-stat" ng-click="showData('FACV')">
+                        <div ng-if="stats_op.totalAmountI == null" class="d-flex align-items-center">
+                            <strong>Cargando...</strong>
+                            <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                        </div>
+                        <div ng-if="stats_op.totalAmountI != null" id="totalInvoices" style="display: none;">
+                            <h6>Ventas Generadas</h6>
+                            <p class="m-0">{{ formatNumber(stats_op.totalAmountIUSD) }} $USD</p>
+                            <p class="sub-amount m-0">{{ formatNumber(stats_op.totalAmountI) }} Bs. D</p>
+                            <i class="fa-solid fa-file-invoice-dollar stat-sale"></i>
+                        </div>
+                    </div>
+				</div>
+                <div class="col-6 pe-0">
+                    <div class="bg-white rounded shadow-sm p-3 card-stat" ng-click="showData('FACV')">
+                        <div ng-if="stats_op.totalAmountO == null" class="d-flex align-items-center">
+                            <strong>Cargando...</strong>
+                            <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                        </div>
+                        <div ng-if="stats_op.totalAmountO != null" id="totalOrders" style="display: none;">
+                            <h6>Compras de Divisas</h6>
+                            <p class="m-0">{{ formatNumber(stats_op.totalAmountOUSD) }} $USD</p>
+                            <p class="sub-amount m-0">{{ formatNumber(stats_op.totalAmountO) }} Bs. D</p>
+                            <i class="fa-solid fa-file-invoice-dollar stat-sale"></i>
+                        </div>
+                    </div>
+				</div>
+				<div class="col-6 p-0"></div>
+			</div>
 		</div>
 		<hr class="w-50" />
 		<h6>Origen (BSD)</h6>
@@ -279,7 +314,14 @@
 	var boxes = JSON.parse($('#<%= hiddenFieldJsonBox.ClientID %>').val());
 	var bankAccounts = JSON.parse($('#<%= hiddenFieldJsonAcc.ClientID %>').val());
     var accounts = JSON.parse($('#<%= hiddenFieldJsonAie.ClientID %>').val());
-    var isNullOrEmpty = (str) => str == null || str == "";
+	var isNullOrEmpty = (str) => str == null || str == "";
+	var today = new Date();
+	today.setDate(today.getDate() - 30);
+	var dateFrom = formatDate(today); // "2024-10-01"; // formatDate(today);
+	var dateTo = formatDate(new Date()); // "2024-10-31"; // formatDate(new Date());
+
+	$("#dateFrom").val(dateFrom);
+	$("#dateTo").val(dateTo);
 
 	app.controller("controller", function ($scope, $http) {
 
@@ -287,14 +329,35 @@
 		$scope.boxes = boxes;
 		$scope.bankAccounts = bankAccounts;
         $scope.accounts = accounts;
-        
-		$scope.init = function () {
+
+        $scope.init = function () {
+            $scope.stats_op = {};
 			$scope.order = { saOrdenPagoReng: [] };
 			$scope.useBoxO = false;
 			$scope.useBankO = false;
 			$scope.useBoxD = false;
 			$scope.useBankD = false;
 			$(".container-form input, .container-form textarea").val("");
+        }
+
+		$scope.loadStats = function (from, to) {
+			$http.get(`/api/GetStatsPayOrders/${from}/${to}`).then(function (response) {
+				$scope.stats_op.totalAmountI = response.data.amount_i;
+				$scope.stats_op.totalAmountIUSD = response.data.amount_i_usd;
+				$scope.stats_op.totalAmountO = response.data.amount_o;
+				$scope.stats_op.totalAmountOUSD = response.data.amount_o_usd;
+
+				setTimeout(function () {
+					$("#totalInvoices").removeAttr("style");
+					$("#totalOrders").removeAttr("style");
+				}, 1);
+			});
+		}
+
+		$scope.searchStats = function () {
+			let from = $("#dateFrom").val(), to = $("#dateTo").val();
+			$scope.init();
+			$scope.loadStats(from, to);
 		}
 
         $scope.reset = function ($event, isBox, isOrigin) {
@@ -428,8 +491,22 @@
             });
 		}
 
+		$scope.formatDate = (date) => date != null ? new Date(date).toLocaleString("es-ES", options).replace(",", "").split(" ")[0] : "";
+
+		$scope.formatNumber = (number) => number.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
         $scope.init();
+        $scope.loadStats(dateFrom, dateTo);
 	});
+
+	function formatDate(date) {
+
+		const y = date.getFullYear();
+		const m = String(date.getMonth() + 1).padStart(2, '0');
+		const d = String(date.getDate()).padStart(2, '0');
+
+		return `${y}-${m}-${d}`;
+	}
 
 	function searchBenef(value) {
 		return benefs.find(c => c.cod_ben.trim() == value.trim()).ben_des;

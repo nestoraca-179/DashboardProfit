@@ -536,8 +536,6 @@
             $("#container-sups").html("");
         }
 
-        $scope.init();
-
         $scope.loadStats = function (from, to) {
 
             // CALCULANDO LOS 7 DIAS PREVIOS
@@ -709,8 +707,6 @@
             });
         }
 
-        $scope.loadStats(dateFrom, dateTo);
-
         $scope.searchStats = function () {
             let from = $("#dateFrom").val(), to = $("#dateTo").val();
             $scope.init();
@@ -809,7 +805,10 @@
 
             var modal = new bootstrap.Modal(document.getElementById('modalDoc'), options);
             modal.show();
-        }
+		}
+
+		$scope.init();
+		$scope.loadStats(dateFrom, dateTo);
     });
 
 	function formatDate(date) {

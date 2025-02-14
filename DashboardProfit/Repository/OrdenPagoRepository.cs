@@ -22,6 +22,17 @@ namespace DashboardProfit.Repository
 			return order;
 		}
 
+        public List<saOrdenPago> GetAllOrderPayCurrencies(DateTime from, DateTime to)
+		{
+            List<saOrdenPago> orders = db.saOrdenPago.AsNoTracking().Include("saOrdenPagoReng").Where(o => o.campo1.Trim() == "COMPRA DIVISAS" && 
+                o.fecha >= from && o.fecha <= to).ToList();
+			
+            foreach (saOrdenPago order in orders)
+                order.saOrdenPagoReng.ToList().ForEach((r) => { r.saOrdenPago = null; });
+
+            return orders;
+		}
+
 		public List<RepOrdenPagoxNumero_Result> GetLastTopOrders(DateTime from, DateTime to, int top)
 		{
 			List<RepOrdenPagoxNumero_Result> result = new List<RepOrdenPagoxNumero_Result>();

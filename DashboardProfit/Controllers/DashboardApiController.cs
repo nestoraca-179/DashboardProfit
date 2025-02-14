@@ -220,6 +220,48 @@ namespace DashboardProfit.Controllers
 
 		// ORDEN PAGO
 
+		[HttpGet]
+		[Route("api/GetStatsPayOrders/{from}/{to}")]
+		public object GetStatsPayOrders(DateTime from, DateTime to)
+		{
+			int total_i = 0, total_o = 0;
+			decimal amount_i = 0, amount_o = 0;
+			decimal amount_i_usd = 0, amount_o_usd = 0;
+
+			List<RepFacturaVentaxFecha_Result> data_i = new FacturaVentaRepository().getLastTopInvoices(from, to, 0);
+			foreach (RepFacturaVentaxFecha_Result item in data_i)
+			{
+				total_i++;
+				if (!item.anulado)
+				{
+					amount_i += item.total_neto.Value;
+					amount_i_usd += Math.Round(item.total_neto.Value / item.tasa, 2);
+				}
+			}
+
+			List<saOrdenPago> orders = new OrdenPagoRepository().GetAllOrderPayCurrencies(from, to);
+			foreach (saOrdenPago order in orders)
+			{
+				total_o++;
+				if (!order.anulado && order.status == "C")
+				{
+					amount_o += order.saOrdenPagoReng.Select(r => r.monto_d - r.monto_h).Sum();
+					amount_o_usd += Math.Round(order.saOrdenPagoReng.Select(r => r.monto_d - r.monto_h).Sum() / order.tasa, 2);
+				}
+
+			}
+
+			return new
+			{
+				total_i,
+				amount_i,
+				amount_i_usd,
+				total_o,
+				amount_o,
+				amount_o_usd
+			};
+		}
+
 		[HttpPost]
 		[Route("api/AddPayOrder")]
 		public DashboardResponse AddPayOrder(saOrdenPago order)
