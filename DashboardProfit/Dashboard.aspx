@@ -361,7 +361,7 @@
                                 </tr>
                             </tbody>
                         </table>
-						<h5 ng-if="!table || table.length == 0" class="text-center m-0">No hay resultados</h5>
+						<h6 ng-if="!table || table.length == 0" class="text-center m-0">No hay resultados</h6>
                     </div>
                 </div>
             </div>

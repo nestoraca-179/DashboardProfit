@@ -227,6 +227,7 @@ namespace DashboardProfit.Controllers
 			int total_i = 0, total_o = 0;
 			decimal amount_i = 0, amount_o = 0;
 			decimal amount_i_usd = 0, amount_o_usd = 0;
+			to = to.AddHours(23).AddMinutes(59).AddSeconds(59);
 
 			List<RepFacturaVentaxFecha_Result> data_i = new FacturaVentaRepository().getLastTopInvoices(from, to, 0);
 			foreach (RepFacturaVentaxFecha_Result item in data_i)
@@ -248,7 +249,6 @@ namespace DashboardProfit.Controllers
 					amount_o += order.saOrdenPagoReng.Select(r => r.monto_d - r.monto_h).Sum();
 					amount_o_usd += Math.Round(order.saOrdenPagoReng.Select(r => r.monto_d - r.monto_h).Sum() / order.tasa, 2);
 				}
-
 			}
 
 			return new

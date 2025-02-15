@@ -2,9 +2,48 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 <style>
-    .container-form label, .container-form .btn.btn-primary, 
+    .container-form {
+        padding-bottom: 10px;
+    }
+    .container-form label, .container-form .btn.btn-primary,
     .container-form input, .modal td {
         font-size: 14px;
+    }
+    .container-form button.btn-primary {
+        width: 300px !important;
+    }
+    .container-stats .row {
+        row-gap: 10px;
+    }
+    .card-stat p {
+        font-size: 20px;
+    }
+    @media screen and (max-width: 564px) {
+        .container-form .form-group {
+            flex-direction: column;
+        }
+        .container-form .form-group label {
+            width: 100%;
+            margin: 5px 0;
+            text-align: left;
+        }
+        .container-form .form-group .input-search, .container-form .form-group .ms-2 {
+            width: 100%;
+            margin-left: 0 !important;
+        }
+        .container-form button.btn-primary {
+            width: 100% !important;
+        }
+    }
+    @media screen and (max-width: 1199px) {
+        .container-stats {
+            margin-top: 20px !important;
+        }
+    }
+    @media screen and (min-width: 1200px) {
+        .bg-white.rounded {
+            margin-left: 10px;
+        }
     }
 </style>
 <div class="container-fluid" id="form-op" ng-app="CompraDivisas" ng-controller="controller">
@@ -23,7 +62,7 @@
 	<hr class="mx-0 my-0 mx-md-3" />
 	<div class="container-form mx-0 my-0 mt-3 mx-md-3">
 		<div class="row m-0">
-			<div class="col-6 p-0">
+			<div class="col-xl-6 p-0">
                 <div class="form-group d-flex align-items-center">
 			        <label style="flex: 1;">Beneficiario (*): </label>
 			        <div class="input-search d-flex ms-2" style="flex: 2;">
@@ -40,105 +79,129 @@
                         <i class="fas fa-search d-flex justify-content-center align-items-center rounded bg-primary text-light p-2" role="button" onclick="openModal(this, 'modalAccounts')" data-name="acc" style="width: 40px;"></i>
                     </div>
 		        </div>
-			</div>
-			<div class="col-6 p-0 row m-0">
-				<div class="col-6 pe-0">
-                    <div class="bg-white rounded shadow-sm p-3 card-stat" ng-click="showData('FACV')">
-                        <div ng-if="stats_op.totalAmountI == null" class="d-flex align-items-center">
-                            <strong>Cargando...</strong>
-                            <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
-                        </div>
-                        <div ng-if="stats_op.totalAmountI != null" id="totalInvoices" style="display: none;">
-                            <h6>Ventas Generadas</h6>
-                            <p class="m-0">{{ formatNumber(stats_op.totalAmountIUSD) }} $USD</p>
-                            <p class="sub-amount m-0">{{ formatNumber(stats_op.totalAmountI) }} Bs. D</p>
-                            <i class="fa-solid fa-file-invoice-dollar stat-sale"></i>
-                        </div>
+                <hr />
+		        <h6>Origen (BSD)</h6>
+		        <div class="form-group d-flex align-items-center mt-1">
+			        <label class="form-check-label" style="flex: 1;">
+                        <input type="checkbox" class="form-check-input me-2" ng-model="useBoxO" ng-click="reset($event, true, true);" />Caja:
+			        </label>
+			        <div class="input-search d-flex ms-2" style="flex: 2;">
+                        <input type="text" class="form-control" id="box_o" ng-model="order.cod_caja" ng-required="true" ng-readonly="true" style="flex: 1;" ng-disabled="!useBoxO" />
+                        <input type="text" class="form-control mx-1" id="des_box_o" ng-model="order.saCaja.descrip" ng-required="true" ng-readonly="true" style="flex: 3;" ng-disabled="!useBoxO" />
+                        <i class="fas fa-search d-flex justify-content-center align-items-center rounded bg-primary text-light p-2" role="button" onclick="openModal(this, 'modalBoxes')" data-name="box_o" style="width: 40px;"></i>
                     </div>
-				</div>
-                <div class="col-6 pe-0">
-                    <div class="bg-white rounded shadow-sm p-3 card-stat" ng-click="showData('FACV')">
-                        <div ng-if="stats_op.totalAmountO == null" class="d-flex align-items-center">
-                            <strong>Cargando...</strong>
-                            <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
-                        </div>
-                        <div ng-if="stats_op.totalAmountO != null" id="totalOrders" style="display: none;">
-                            <h6>Compras de Divisas</h6>
-                            <p class="m-0">{{ formatNumber(stats_op.totalAmountOUSD) }} $USD</p>
-                            <p class="sub-amount m-0">{{ formatNumber(stats_op.totalAmountO) }} Bs. D</p>
-                            <i class="fa-solid fa-file-invoice-dollar stat-sale"></i>
-                        </div>
+		        </div>
+		        <div class="form-group d-flex align-items-center mt-1">
+                    <label class="form-check-label" style="flex: 1;">
+                        <input type="checkbox" class="form-check-input me-2" ng-model="useBankO" ng-click="reset($event, false, true);" />Cuenta Bancaria:
+                    </label>
+			        <div class="input-search d-flex ms-2" style="flex: 2;">
+                        <input type="text" class="form-control" id="bacc_o" ng-model="order.cod_cta" ng-required="true" ng-readonly="true" style="flex: 1;" ng-disabled="!useBankO" />
+                        <input type="text" class="form-control mx-1" id="des_bacc_o" ng-model="order.saCuentaBancaria.num_cta" ng-required="true" ng-readonly="true" style="flex: 3;" ng-disabled="!useBankO" />
+                        <i class="fas fa-search d-flex justify-content-center align-items-center rounded bg-primary text-light p-2" role="button" onclick="openModal(this, 'modalBankAccounts')" data-name="bacc_o" style="width: 40px;"></i>
                     </div>
+		        </div>
+                <div class="form-group d-flex align-items-center mt-1">
+                    <label style="flex: 1;">Ref. Transferencia: </label>
+			        <div class="ms-2" style="flex: 2;">
+				        <input type="text" class="form-control" id="doc_num" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" ng-model="order.doc_num" ng-required="true" ng-disabled="!useBankO" />
+			        </div>
+		        </div>
+		        <hr />
+		        <h6>Destino (USD)</h6>
+                <div class="form-group d-flex align-items-center mt-1">
+			        <label class="form-check-label" style="flex: 1;">
+                        <input type="checkbox" class="form-check-input me-2" ng-model="useBoxD" ng-click="reset($event, true, false);" />Caja:
+			        </label>
+			        <div class="input-search d-flex ms-2" style="flex: 2;">
+                        <input type="text" class="form-control" id="box_d" ng-model="order.box_d" ng-required="true" ng-readonly="true" style="flex: 1;" ng-disabled="!useBoxD" />
+                        <input type="text" class="form-control mx-1" id="des_box_d" ng-model="order.des_box_d" ng-required="true" ng-readonly="true" style="flex: 3;" ng-disabled="!useBoxD" />
+                        <i class="fas fa-search d-flex justify-content-center align-items-center rounded bg-primary text-light p-2" role="button" onclick="openModal(this, 'modalBoxes')" data-name="box_d" style="width: 40px;"></i>
+                    </div>
+		        </div>
+		        <div class="form-group d-flex align-items-center mt-1">
+                    <label class="form-check-label" style="flex: 1;">
+                        <input type="checkbox" class="form-check-input me-2" ng-model="useBankD" ng-click="reset($event, false, false);" />Cuenta Bancaria:
+                    </label>
+			        <div class="input-search d-flex ms-2" style="flex: 2;">
+                        <input type="text" class="form-control" id="bacc_d" ng-model="order.bacc_d" ng-required="true" ng-readonly="true" style="flex: 1;" ng-disabled="!useBankD" />
+                        <input type="text" class="form-control mx-1" id="des_bacc_d" ng-model="order.des_bacc_d" ng-required="true" ng-readonly="true" style="flex: 3;" ng-disabled="!useBankD" />
+                        <i class="fas fa-search d-flex justify-content-center align-items-center rounded bg-primary text-light p-2" role="button" onclick="openModal(this, 'modalBankAccounts')" data-name="bacc_d" style="width: 40px;"></i>
+                    </div>
+		        </div>
+		        <hr />
+                <div class="form-group d-flex align-items-center mt-1">
+                    <label style="flex: 1;">Monto a comprar $USD (*)</label>
+			        <div class="ms-2" style="flex: 2;">
+				        <input type="text" class="form-control" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)" ng-model="order.saOrdenPagoReng[0].monto_d" ng-required="true" />
+			        </div>
+		        </div>
+		        <div class="form-group d-flex align-items-center mt-1">
+                    <label style="flex: 1;">Tasa (*)</label>
+			        <div class="ms-2" style="flex: 2;">
+				        <input type="text" class="form-control" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)" ng-model="order.tasa" ng-required="true" />
+			        </div>
+                </div>
+                <div class="form-group d-flex mt-1">
+                    <label style="flex: 1;">Comentario</label>
+			        <div class="ms-2" style="flex: 2;">
+				        <textarea class="form-control" style="height: 75px; font-size: 14px; resize: none;" ng-model="order.descrip" ng-required="true"></textarea>
+			        </div>
+                </div>
+		        <div class="d-flex flex-wrap justify-content-between align-items-center mt-3">
+		            <small class="mt-2">(*) Campo Obligatorio</small>
+                    <button type="button" class="btn btn-primary w-100 mt-3" ng-click="sendOrder()">Generar Orden Pago</button>
+		        </div>
+			</div>
+			<div class="container-stats col-xl-6 p-0">
+				<div class="row m-0">
+                    <div class="col-xl-6 px-0">
+                        <div class="bg-white rounded shadow-sm p-3 card-stat">
+                            <div ng-if="stats_op.totalAmountI == null" class="d-flex align-items-center">
+                                <strong>Cargando...</strong>
+                                <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                            </div>
+                            <div ng-if="stats_op.totalAmountI != null" id="totalInvoices" style="display: none;">
+                                <h6>Ventas Generadas</h6>
+                                <p class="m-0">{{ formatNumber(stats_op.totalAmountIUSD) }} $USD</p>
+                                <p class="sub-amount m-0">{{ formatNumber(stats_op.totalAmountI) }} Bs. D</p>
+                                <i class="fa-solid fa-file-invoice-dollar stat-sale"></i>
+                            </div>
+                        </div>
+				    </div>
+                    <div class="col-xl-6 px-0">
+                        <div class="bg-white rounded shadow-sm p-3 card-stat">
+                            <div ng-if="stats_op.totalAmountO == null" class="d-flex align-items-center">
+                                <strong>Cargando...</strong>
+                                <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                            </div>
+                            <div ng-if="stats_op.totalAmountO != null" id="totalOrders" style="display: none;">
+                                <h6>Compras de Divisas</h6>
+                                <p class="m-0">{{ formatNumber(stats_op.totalAmountOUSD) }} $USD</p>
+                                <p class="sub-amount m-0">{{ formatNumber(stats_op.totalAmountO) }} Bs. D</p>
+                                <i class="fa-solid fa-file-invoice-dollar stat-sale"></i>
+                            </div>
+                        </div>
+				    </div>
 				</div>
-				<div class="col-6 p-0"></div>
+				<div class="row mx-0 mt-2">
+					<div class="col-xl-12 px-0">
+                        <div class="bg-white rounded shadow-sm p-3 card-stat">
+                            <div ng-if="stats_op.totalAmountI == null" class="d-flex align-items-center">
+                                <strong>Cargando...</strong>
+                                <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                            </div>
+                            <div ng-if="stats_op.totalAmountI != null " id="totalDiff" style="display: none;">
+                                <h6>Vendido vs Comprado</h6>
+                                <p class="m-0 {{ getDiff(true) >= 0 ? 'text-success' : 'text-danger' }}">{{ formatNumber(getDiff(false)) }} $USD</p>
+                                <p class="sub-amount m-0 {{ getDiff(true) >= 0 ? 'text-success' : 'text-danger' }}">{{ formatNumber(getDiff(true)) }} Bs. D</p>
+                                <p class="sub-amount fw-normal {{ getDiff(true) >= 0 ? 'text-success' : 'text-danger' }}">{{ formatNumber(getPorcDiff()) }}%</p>
+                                <i class="fa-solid {{ getDiff(true) >= 0 ? 'fa-arrow-trend-up text-success' : 'fa-arrow-trend-down text-danger' }}"></i>
+                            </div>
+                        </div>
+					</div>
+				</div>
 			</div>
-		</div>
-		<hr class="w-50" />
-		<h6>Origen (BSD)</h6>
-		<div class="form-group d-flex align-items-center w-50 mt-1">
-			<label class="form-check-label" style="flex: 1;">
-                <input type="checkbox" class="form-check-input me-2" ng-model="useBoxO" ng-click="reset($event, true, true);" />Caja: 
-			</label>
-			<div class="input-search d-flex ms-2" style="flex: 2;">
-                <input type="text" class="form-control" id="box_o" ng-model="order.cod_caja" ng-required="true" ng-readonly="true" style="flex: 1;" ng-disabled="!useBoxO" />
-                <input type="text" class="form-control mx-1" id="des_box_o" ng-model="order.saCaja.descrip" ng-required="true" ng-readonly="true" style="flex: 3;" ng-disabled="!useBoxO" />
-                <i class="fas fa-search d-flex justify-content-center align-items-center rounded bg-primary text-light p-2" role="button" onclick="openModal(this, 'modalBoxes')" data-name="box_o" style="width: 40px;"></i>
-            </div>
-		</div>
-		<div class="form-group d-flex align-items-center w-50 mt-1">
-            <label class="form-check-label" style="flex: 1;">
-                <input type="checkbox" class="form-check-input me-2" ng-model="useBankO" ng-click="reset($event, false, true);" />Cuenta Bancaria: 
-            </label>
-			<div class="input-search d-flex ms-2" style="flex: 2;">
-                <input type="text" class="form-control" id="bacc_o" ng-model="order.cod_cta" ng-required="true" ng-readonly="true" style="flex: 1;" ng-disabled="!useBankO" />
-                <input type="text" class="form-control mx-1" id="des_bacc_o" ng-model="order.saCuentaBancaria.num_cta" ng-required="true" ng-readonly="true" style="flex: 3;" ng-disabled="!useBankO" />
-                <i class="fas fa-search d-flex justify-content-center align-items-center rounded bg-primary text-light p-2" role="button" onclick="openModal(this, 'modalBankAccounts')" data-name="bacc_o" style="width: 40px;"></i>
-            </div>
-		</div>
-		<hr class="w-50" />
-		<h6>Destino (USD)</h6>
-        <div class="form-group d-flex align-items-center w-50 mt-1">
-			<label class="form-check-label" style="flex: 1;">
-                <input type="checkbox" class="form-check-input me-2" ng-model="useBoxD" ng-click="reset($event, true, false);" />Caja: 
-			</label>
-			<div class="input-search d-flex ms-2" style="flex: 2;">
-                <input type="text" class="form-control" id="box_d" ng-model="order.box_d" ng-required="true" ng-readonly="true" style="flex: 1;" ng-disabled="!useBoxD" />
-                <input type="text" class="form-control mx-1" id="des_box_d" ng-model="order.des_box_d" ng-required="true" ng-readonly="true" style="flex: 3;" ng-disabled="!useBoxD" />
-                <i class="fas fa-search d-flex justify-content-center align-items-center rounded bg-primary text-light p-2" role="button" onclick="openModal(this, 'modalBoxes')" data-name="box_d" style="width: 40px;"></i>
-            </div>
-		</div>
-		<div class="form-group d-flex align-items-center w-50 mt-1">
-            <label class="form-check-label" style="flex: 1;">
-                <input type="checkbox" class="form-check-input me-2" ng-model="useBankD" ng-click="reset($event, false, false);" />Cuenta Bancaria: 
-            </label>
-			<div class="input-search d-flex ms-2" style="flex: 2;">
-                <input type="text" class="form-control" id="bacc_d" ng-model="order.bacc_d" ng-required="true" ng-readonly="true" style="flex: 1;" ng-disabled="!useBankD" />
-                <input type="text" class="form-control mx-1" id="des_bacc_d" ng-model="order.des_bacc_d" ng-required="true" ng-readonly="true" style="flex: 3;" ng-disabled="!useBankD" />
-                <i class="fas fa-search d-flex justify-content-center align-items-center rounded bg-primary text-light p-2" role="button" onclick="openModal(this, 'modalBankAccounts')" data-name="bacc_d" style="width: 40px;"></i>
-            </div>
-		</div>
-		<hr class="w-50" />
-        <div class="form-group d-flex align-items-center w-50 mt-1">
-            <label style="flex: 1;">Monto a comprar $USD (*)</label>
-			<div class="ms-2" style="flex: 2;">
-				<input type="text" class="form-control" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)" ng-model="order.saOrdenPagoReng[0].monto_d" ng-required="true" />
-			</div>
-		</div>
-		<div class="form-group d-flex align-items-center w-50 mt-1">
-            <label style="flex: 1;">Tasa (*)</label>
-			<div class="ms-2" style="flex: 2;">
-				<input type="text" class="form-control" onkeypress="return (event.charCode >= 46 && event.charCode <= 57)" ng-model="order.tasa" ng-required="true" />
-			</div>
-        </div>
-        <div class="form-group d-flex w-50 mt-1">
-            <label style="flex: 1;">Comentario</label>
-			<div class="ms-2" style="flex: 2;">
-				<textarea class="form-control" style="height: 100px; font-size: 14px; resize: none;" ng-model="order.descrip" ng-required="true"></textarea>
-			</div>
-        </div>
-		<div class="d-flex justify-content-between align-items-center w-50 mt-3">
-		    <small class="mt-2">(*) Campo Obligatorio</small>
-            <button type="button" class="btn btn-primary mt-3" ng-click="sendOrder()">Generar Orden Pago</button>
 		</div>
 	</div>
     <!-- MODAL LOADING -->
@@ -316,7 +379,7 @@
     var accounts = JSON.parse($('#<%= hiddenFieldJsonAie.ClientID %>').val());
 	var isNullOrEmpty = (str) => str == null || str == "";
 	var today = new Date();
-	today.setDate(today.getDate() - 30);
+	// today.setDate(today.getDate() - 30);
 	var dateFrom = formatDate(today); // "2024-10-01"; // formatDate(today);
 	var dateTo = formatDate(new Date()); // "2024-10-31"; // formatDate(new Date());
 
@@ -326,9 +389,9 @@
 	app.controller("controller", function ($scope, $http) {
 
 		$scope.benefs = benefs;
-		$scope.boxes = boxes;
-		$scope.bankAccounts = bankAccounts;
-        $scope.accounts = accounts;
+		$scope.accounts = accounts;
+		$scope.boxes = boxes.filter(b => !b.inactivo);
+		$scope.bankAccounts = bankAccounts.filter(b => !b.inactivo);
 
         $scope.init = function () {
             $scope.stats_op = {};
@@ -338,9 +401,10 @@
 			$scope.useBoxD = false;
 			$scope.useBankD = false;
 			$(".container-form input, .container-form textarea").val("");
+			$scope.loadStats(dateFrom, dateTo);
         }
 
-		$scope.loadStats = function (from, to) {
+        $scope.loadStats = function (from, to) {
 			$http.get(`/api/GetStatsPayOrders/${from}/${to}`).then(function (response) {
 				$scope.stats_op.totalAmountI = response.data.amount_i;
 				$scope.stats_op.totalAmountIUSD = response.data.amount_i_usd;
@@ -350,6 +414,7 @@
 				setTimeout(function () {
 					$("#totalInvoices").removeAttr("style");
 					$("#totalOrders").removeAttr("style");
+					$("#totalDiff").removeAttr("style");
 				}, 1);
 			});
 		}
@@ -358,6 +423,13 @@
 			let from = $("#dateFrom").val(), to = $("#dateTo").val();
 			$scope.init();
 			$scope.loadStats(from, to);
+        }
+
+        $scope.getDiff = (isBsd) => isBsd ? $scope.stats_op.totalAmountI - $scope.stats_op.totalAmountO : $scope.stats_op.totalAmountIUSD - $scope.stats_op.totalAmountOUSD;
+
+        $scope.getPorcDiff = function () {
+            var temp = ($scope.stats_op.totalAmountO * 100) / $scope.stats_op.totalAmountI;
+            return temp *= (temp > 100 ? -1 : 1);
 		}
 
         $scope.reset = function ($event, isBox, isOrigin) {
@@ -375,6 +447,8 @@
                     if (!$scope.useBoxO) {
                         $("#bacc_o").val("");
                         $("#des_bacc_o").val("");
+                        $scope.order.fec_pag = null;
+						$scope.order.doc_num = null;
                     } else {
 						alert("La opcion de caja de origen ya esta marcada");
                         $event.preventDefault();
@@ -406,6 +480,7 @@
 
         $scope.sendOrder = function () {
 
+            // PRINCIPAL
             if (isNullOrEmpty($("#ben").val())) {
                 alert("Debes agregar el beneficiario");
                 return;
@@ -430,7 +505,12 @@
             if ($scope.useBankO && isNullOrEmpty($("#bacc_o").val())) {
 				alert("Debes agregar la cuenta bancaria de origen");
 				return;
-            }
+			}
+
+			if ($scope.useBankO && isNullOrEmpty($("#doc_num").val())) {
+				alert("Debes agregar la referencia de la transferencia");
+				return;
+			}
 
             // DESTINO
 			if (!$scope.useBoxD && !$scope.useBankD) {
@@ -446,8 +526,9 @@
 			if ($scope.useBankD && isNullOrEmpty($("#bacc_d").val())) {
 				alert("Debes agregar la cuenta bancaria de destino");
 				return;
-			}
+            }
 
+            // MONTO
             if (isNullOrEmpty($scope.order.saOrdenPagoReng[0]?.monto_d)) {
 				alert("Debes agregar el monto a comprar");
 				return;
@@ -496,7 +577,6 @@
 		$scope.formatNumber = (number) => number.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
         $scope.init();
-        $scope.loadStats(dateFrom, dateTo);
 	});
 
 	function formatDate(date) {

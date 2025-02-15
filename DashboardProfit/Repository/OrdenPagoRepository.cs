@@ -131,7 +131,7 @@ namespace DashboardProfit.Repository
                                 descrip = string.Format("COMPRA DIVISAS (-) ({0})", n_ord.Trim()),
                                 tasa = order.tasa,
                                 tipo_op = "TR",
-                                doc_num = "000", // CAMBIAR
+                                doc_num = order.doc_num, // CAMBIAR
                                 co_cta_ingr_egr = reng.co_cta_ingr_egr,
                                 monto_d = amount_bsd,
                                 origen = "OPA",
@@ -226,7 +226,7 @@ namespace DashboardProfit.Repository
                         }
 
                         // ORDEN PAGO
-                        var sp = context.pInsertarOrdenPago(n_ord, "C", DateTime.Now, order.cod_ben, order.descrip, forma_pag, DateTime.Now, order.cod_cta, null,
+                        var sp = context.pInsertarOrdenPago(n_ord, "C", DateTime.Now, order.cod_ben, order.descrip, forma_pag, DateTime.Now, order.cod_cta, order.doc_num,
                             order.cod_caja, n_movc_o, n_movb_o, null, order.tasa, co_mone, false, false, 0, null, null, "COMPRA DIVISAS", n_movc_d, n_movb_d, null, 
                             null, null, null, null, user, sucur, "DASHBOARD PROFIT", null, null);
                         sp.Dispose();
