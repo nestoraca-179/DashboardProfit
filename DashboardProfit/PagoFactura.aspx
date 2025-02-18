@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Pago Facturas" Language="C#" MasterPageFile="Site.Master" AutoEventWireup="true" CodeBehind="PagoFactura.aspx.cs" Inherits="DashboardProfit.PagoFactura" %>
+﻿<%@ Page Title="Pago Facturas" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PagoFactura.aspx.cs" Inherits="DashboardProfit.PagoFactura" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 <div class="container-fluid" ng-app="PagoFactura" ng-controller="controller">

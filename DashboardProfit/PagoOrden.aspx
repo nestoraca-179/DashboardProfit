@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Pago Ordenes" Language="C#" MasterPageFile="Site.Master" AutoEventWireup="true" CodeBehind="PagoOrden.aspx.cs" Inherits="DashboardProfit.PagoOrden" %>
+﻿<%@ Page Title="Pago Ordenes" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PagoOrden.aspx.cs" Inherits="DashboardProfit.PagoOrden" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 <div class="container-fluid" ng-app="PagoOrden" ng-controller="controller">

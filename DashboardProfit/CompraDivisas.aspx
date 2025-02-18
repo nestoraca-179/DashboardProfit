@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Compra Divisas" Language="C#" MasterPageFile="Site.Master" AutoEventWireup="true" CodeBehind="CompraDivisas.aspx.cs" Inherits="DashboardProfit.CompraDivisas" %>
+﻿<%@ Page Title="Compra Divisas" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CompraDivisas.aspx.cs" Inherits="DashboardProfit.CompraDivisas" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 <style>

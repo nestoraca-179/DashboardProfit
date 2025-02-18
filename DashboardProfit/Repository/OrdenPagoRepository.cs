@@ -76,7 +76,7 @@ namespace DashboardProfit.Repository
                         string n_movb_d = null;
                         string forma_pag = isBox ? "EF" : "TR";
 
-                        string sucur_aux = null;
+                        string sucur_aux = "";
                         var sp_usa_cons = context.pSeleccionarUsoSucursalConsecutivoTipo("ORDP_NUM").GetEnumerator();
                         if (sp_usa_cons.MoveNext())
 						{

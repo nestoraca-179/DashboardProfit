@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home" Language="C#" MasterPageFile="Site.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="DashboardProfit.Dashboard" %>
+﻿<%@ Page Title="Home" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="DashboardProfit.Dashboard" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 <div class="container-fluid" ng-app="Dashboard" ng-controller="controller">
