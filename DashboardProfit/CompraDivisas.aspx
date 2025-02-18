@@ -5,8 +5,8 @@
     .container-form {
         padding-bottom: 10px;
     }
-    .container-form label, .container-form .btn.btn-primary,
-    .container-form input, .modal td {
+    .container-form label, .container-form .btn.btn-primary, .container-form input, 
+    .container-form textarea, .modal input[type=text] {
         font-size: 14px;
     }
     .container-form button.btn-primary {
@@ -17,6 +17,9 @@
     }
     .card-stat p {
         font-size: 20px;
+    }
+    .modal td {
+        font-size: 12px;
     }
     @media screen and (max-width: 564px) {
         .container-form .form-group {
@@ -255,7 +258,7 @@
         <div class="modal-dialog" role="document" style="max-width: 800px;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Buscar Beneficiario</h5>
+                    <h6 class="modal-title">Buscar Beneficiario</h6>
                     <button type="button" class="btn close" data-dismiss="modal" aria-label="Cerrar" onclick="$('#modalBenefs').modal('hide');">
 						<span aria-hidden="true">&times;</span>
                     </button>
@@ -284,7 +287,7 @@
         <div class="modal-dialog" role="document" style="max-width: 800px;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Buscar Cuenta de Ingr/Egr</h5>
+                    <h6 class="modal-title">Buscar Cuenta de Ingr/Egr</h6>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" onclick="$('#modalAccounts').modal('hide');">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -313,7 +316,7 @@
         <div class="modal-dialog" role="document" style="max-width: 800px;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Buscar Caja</h5>
+                    <h6 class="modal-title">Buscar Caja</h6>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" onclick="$('#modalBoxes').modal('hide');">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -342,7 +345,7 @@
         <div class="modal-dialog" role="document" style="max-width: 800px;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Buscar Cuenta</h5>
+                    <h6 class="modal-title">Buscar Cuenta</h6>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar" onclick="$('#modalBankAccounts').modal('hide');">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -429,7 +432,9 @@
 
         $scope.getPorcDiff = function () {
             var temp = ($scope.stats_op.totalAmountO * 100) / $scope.stats_op.totalAmountI;
-            return temp *= (temp > 100 ? -1 : 1);
+            temp *= (temp > 100 ? -1 : 1);
+
+            return isNaN(temp) ? 0 : temp;
 		}
 
         $scope.reset = function ($event, isBox, isOrigin) {
@@ -558,10 +563,10 @@
 
             $http(req).then(function (response) {
                 var res = response.data;
-				setTimeout(function () { $("#modalLoading").modal("hide"); }, 200);
+				setTimeout(function () { $("#modalLoading").modal("hide"); }, 300);
 
                 if (res.Status == "OK") {
-					console.log(res.Result);                    $scope
+					console.log(res.Result);
                     $scope.init();
                     $scope.successMessage = `Orden de Pago Nro. ${res.Result.ord_num.trim()} generada con exito`;
 					$("#modalSuccess").modal("show");

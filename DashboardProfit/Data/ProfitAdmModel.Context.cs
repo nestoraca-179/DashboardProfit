@@ -21,7 +21,7 @@ namespace DashboardProfit.Data
         {
             Configuration.ProxyCreationEnabled = false;
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -2449,6 +2449,15 @@ namespace DashboardProfit.Data
                 new ObjectParameter("gRowguid", typeof(System.Guid));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pActualizarSaldoCaja", sCodigoParameter, sCodigoOriParameter, sTipoParameter, sTipoOriParameter, deSaldoParameter, gRowguidParameter);
+        }
+    
+        public virtual ObjectResult<pSeleccionarUsoSucursalConsecutivoTipo_Result> pSeleccionarUsoSucursalConsecutivoTipo(string sCo_Consecutivo)
+        {
+            var sCo_ConsecutivoParameter = sCo_Consecutivo != null ?
+                new ObjectParameter("sCo_Consecutivo", sCo_Consecutivo) :
+                new ObjectParameter("sCo_Consecutivo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSeleccionarUsoSucursalConsecutivoTipo_Result>("pSeleccionarUsoSucursalConsecutivoTipo", sCo_ConsecutivoParameter);
         }
     }
 }

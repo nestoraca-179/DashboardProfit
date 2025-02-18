@@ -14532,6 +14532,9 @@ advertencia 6035: La relación 'FK_stgFacturaVentaExt_stgFactLoteGen' tiene colu
           <Parameter Name="sTRASNFE" Type="char" Mode="In" />
           <Parameter Name="sMaquina" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="pSeleccionarUsoSucursalConsecutivoTipo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sCo_Consecutivo" Type="char" Mode="In" />
+        </Function>
         <Function Name="RepArticulosMasCompras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="dFecha_d" Type="smalldatetime" Mode="In" />
           <Parameter Name="dFecha_h" Type="smalldatetime" Mode="In" />
@@ -34982,6 +34985,9 @@ advertencia 6035: La relación 'FK_stgFacturaVentaExt_stgFactLoteGen' tiene colu
             <Parameter Name="deSaldo" Mode="In" Type="Decimal" />
             <Parameter Name="gRowguid" Mode="In" Type="Guid" />
           </FunctionImport>
+          <FunctionImport Name="pSeleccionarUsoSucursalConsecutivoTipo" ReturnType="Collection(ProfitAdmModel.pSeleccionarUsoSucursalConsecutivoTipo_Result)">
+            <Parameter Name="sCo_Consecutivo" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="RepPedidoVentaxNum_Result">
           <Property Type="String" Name="Filtro_anulado" Nullable="true" MaxLength="6" />
@@ -35694,6 +35700,10 @@ advertencia 6035: La relación 'FK_stgFacturaVentaExt_stgFactLoteGen' tiene colu
           <Property Type="DateTime" Name="fe_us_in" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="fe_us_mo" Nullable="true" Precision="23" />
           <Property Type="Guid" Name="rowguid" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="pSeleccionarUsoSucursalConsecutivoTipo_Result">
+          <Property Type="Boolean" Name="UsoSucursal" Nullable="false" />
+          <Property Type="Boolean" Name="maneja_sucursal" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -45017,6 +45027,14 @@ advertencia 6035: La relación 'FK_stgFacturaVentaExt_stgFactLoteGen' tiene colu
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pActualizarSaldoBanco" FunctionName="ProfitAdmModel.Store.pActualizarSaldoBanco" />
           <FunctionImportMapping FunctionImportName="pActualizarSaldoCaja" FunctionName="ProfitAdmModel.Store.pActualizarSaldoCaja" />
+          <FunctionImportMapping FunctionImportName="pSeleccionarUsoSucursalConsecutivoTipo" FunctionName="ProfitAdmModel.Store.pSeleccionarUsoSucursalConsecutivoTipo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProfitAdmModel.pSeleccionarUsoSucursalConsecutivoTipo_Result">
+                <ScalarProperty Name="UsoSucursal" ColumnName="UsoSucursal" />
+                <ScalarProperty Name="maneja_sucursal" ColumnName="maneja_sucursal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

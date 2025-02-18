@@ -76,7 +76,16 @@ namespace DashboardProfit.Repository
                         string n_movb_d = null;
                         string forma_pag = isBox ? "EF" : "TR";
 
-                        var sp_n_ord = context.pConsecutivoProximo(sucur, "ORDP_NUM").GetEnumerator();
+                        string sucur_aux = null;
+                        var sp_usa_cons = context.pSeleccionarUsoSucursalConsecutivoTipo("ORDP_NUM").GetEnumerator();
+                        if (sp_usa_cons.MoveNext())
+						{
+                            if (sp_usa_cons.Current.UsoSucursal)
+                                sucur_aux = sucur;
+						}
+                        sp_usa_cons.Dispose();
+
+                        var sp_n_ord = context.pConsecutivoProximo(sucur_aux, "ORDP_NUM").GetEnumerator();
                         if (sp_n_ord.MoveNext())
                             n_ord = sp_n_ord.Current;
                         sp_n_ord.Dispose();
@@ -159,7 +168,7 @@ namespace DashboardProfit.Repository
                             code = order.campo8;
                             co_mone = context.saCaja.AsNoTracking().Single(c => c.cod_caja == code).co_mone;
                             if (!co_mone.StartsWith("US"))
-                                throw new Exception("La caja de origen debe ser en USD");
+                                throw new Exception("La caja de destino debe ser en USD");
 
                             // AGREGAR MOVIMIENTO DE CAJA
                             saMovimientoCaja move_c = new saMovimientoCaja()
@@ -194,7 +203,7 @@ namespace DashboardProfit.Repository
                             code = order.campo8;
                             co_mone = context.saCuentaBancaria.AsNoTracking().Single(c => c.cod_cta == code).co_mone;
                             if (!co_mone.StartsWith("US"))
-                                throw new Exception("La cuenta bancaria de origen debe ser en USD");
+                                throw new Exception("La cuenta bancaria de destino debe ser en USD");
 
                             // AGREGAR MOVIMIENTO DE BANCO
                             saMovimientoBanco move_b = new saMovimientoBanco()

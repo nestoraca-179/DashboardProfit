@@ -1085,6 +1085,9 @@
     <Compile Include="Data\pInsertarRenglonesOrdenPago_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\pSeleccionarUsoSucursalConsecutivoTipo_Result.cs">
+      <DependentUpon>ProfitAdmModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\RepCompraxArt2_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
