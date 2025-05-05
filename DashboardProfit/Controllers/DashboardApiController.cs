@@ -87,10 +87,24 @@ namespace DashboardProfit.Controllers
 		}
 
 		[HttpGet]
+		[Route("api/GetSaleInvoicesLine/{from}/{to}/{top}")]
+		public List<RepFacturaVentaxReng_Result> GetSaleInvoicesLine(DateTime from, DateTime to, int top)
+		{
+			return new FacturaVentaRepository().getLastTopInvoicesByLine(from, to, top);
+		}
+
+		[HttpGet]
 		[Route("api/GetSaleOrders/{from}/{to}/{top}")]
 		public List<RepPedidoVentaxNum_Result> GetOrders(DateTime from, DateTime to, int top)
 		{
 			return new PedidoVentaRepository().getLastTopOrders(from, to, top);
+		}
+
+		[HttpGet]
+		[Route("api/GetSaleOrdersLine/{from}/{to}/{top}")]
+		public List<RepPedidoVentaxReng_Result> GetOrdersLine(DateTime from, DateTime to, int top)
+		{
+			return new PedidoVentaRepository().getLastTopOrdersByLine(from, to, top);
 		}
 
 		[HttpGet]
@@ -138,7 +152,7 @@ namespace DashboardProfit.Controllers
 
 			total_c = collects.Count;
 			amount_c = collects.Where(c => !string.IsNullOrEmpty(c.forma_pag)).Select(c => c.abono.Value).Sum();
-			amount_c_usd = collects.Where(c => !string.IsNullOrEmpty(c.forma_pag)).Select(c => Math.Round(c.abono.Value / c.tasa_doc.Value, 2)).Sum();
+			amount_c_usd = collects.Where(c => !string.IsNullOrEmpty(c.forma_pag)).Select(c => Math.Round(c.abono.Value / (c.tasa_doc ?? 1), 2)).Sum();
 
 			total_r = refunds.Count;
 			amount_r = refunds.Select(r => r.total_neto.Value).Sum();

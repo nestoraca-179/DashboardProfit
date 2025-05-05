@@ -28,6 +28,7 @@ table td, table th {
     background: #222e3c;
     position: relative;
     transition: ease 0.5s all;
+    overflow-y: auto;
 }
 .menu ul.list-menu {
     padding: 0;

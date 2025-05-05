@@ -41,6 +41,7 @@
             <hr class="mx-0 mx-md-3" style="border: solid 1px #FFF;" />
             <ul class="list-menu">
                 <li class="item-menu"><i class="fa-solid fa-calendar-day me-2"></i><a href="/Dashboard.aspx" class="text-light text-decoration-none">Dia Consolidado</a></li>
+                <li class="item-menu"><i class="fa-solid fa-calendar-day me-2"></i><a href="/DashboardLinea.aspx" class="text-light text-decoration-none">Dia Consolidado (Linea)</a></li>
                 <li class="item-menu"><i class="fa-solid fa-file-invoice-dollar me-2"></i><a href="/PagoFactura.aspx" class="text-light text-decoration-none">Pagos Facturas</a></li>
                 <li class="item-menu"><i class="fa-solid fa-file-invoice me-2"></i><a href="/PagoOrden.aspx" class="text-light text-decoration-none">Pagos Ordenes Pagos</a></li>
                 <li class="item-menu"><i class="fa-solid fa-arrow-right-arrow-left me-2"></i><a href="/CompraDivisas.aspx" class="text-light text-decoration-none">Compras Divisas</a></li>

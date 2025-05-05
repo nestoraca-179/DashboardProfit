@@ -39,5 +39,24 @@ namespace DashboardProfit.Repository
 			else
 				return result.OrderByDescending(o => o.fec_emis).ToList();
 		}
+
+		public List<RepPedidoVentaxReng_Result> getLastTopOrdersByLine(DateTime from, DateTime to, int top)
+		{
+			List<RepPedidoVentaxReng_Result> result = new List<RepPedidoVentaxReng_Result>();
+			var sp = db.RepPedidoVentaxReng(null, null, from, to, null, null, null, null, null, null, null, null,
+				null, null, null, null, null, null).GetEnumerator();
+
+			while (sp.MoveNext())
+			{
+				RepPedidoVentaxReng_Result item = sp.Current;
+				item.campo1 = db.saLineaArticulo.AsNoTracking().Single(l => l.co_lin == item.co_lin).lin_des;
+				result.Add(item);
+			}
+
+			if (top > 0)
+				return result.OrderByDescending(o => o.fec_emis).Take(top).ToList();
+			else
+				return result.OrderByDescending(o => o.fec_emis).ToList();
+		}
 	}
 }
