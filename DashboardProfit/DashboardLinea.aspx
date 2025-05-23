@@ -21,6 +21,7 @@
     </div>
     <hr class="mx-0 my-0 mx-md-3" />
 	<!-- GRAFICAS VENTAS -->
+	<h4 class="mx-0 my-3 mx-md-3 text-center">Ventas y CxC</h4>
     <div class="row m-0 mt-2 row-stats">
         <div class="col-xl-6">
             <div class="bg-white rounded shadow-sm px-4 py-3">
@@ -43,6 +44,32 @@
             </div>
         </div>
     </div>
+    <hr class="mx-0 mt-3 mb-0 mx-md-3" />
+	<!-- GRAFICAS COMPRAS -->
+	<h4 class="mx-0 my-3 mx-md-3 text-center">Compras y CxP</h4>
+	<div class="row m-0 mt-2 row-stats">
+		<div class="col-xl-6">
+            <div class="bg-white rounded shadow-sm px-4 py-3">
+                <div ng-if="!invoicesBuyByDate" class="d-flex align-items-center">
+                    <strong>Cargando...</strong>
+                    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                </div>
+                <h6 ng-if="invoicesBuyByDate && invoicesBuyByDate.length == 0" class="m-0 text-center fw-light">Sin Datos</h6>
+                <div id="container-invs-c"></div>
+            </div>
+        </div>
+		<div class="col-xl-6">
+            <div class="bg-white rounded shadow-sm px-4 py-3">
+                <div ng-if="!ordersBuyByDate" class="d-flex align-items-center">
+                    <strong>Cargando...</strong>
+                    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                </div>
+                <h6 ng-if="ordersBuyByDate && ordersBuyByDate.length == 0" class="m-0 text-center fw-light">Sin Datos</h6>
+                <div id="container-ords-c"></div>
+            </div>
+        </div>
+	</div>
+	<hr class="mx-0 my-3 mb-0 mx-md-3" />
 </div>
 <script>
     var app = angular.module("DashboardLine", []);
@@ -142,77 +169,47 @@
 				}
 			});
 
-			//$http.get(`/api/GetMostSelledArts/${from}/${to}/5`).then(function (response) {
-			//	$scope.mostSelledArts = response.data;
-			//	if (response.data.length > 0)
-			//		initMostSelledArts(response.data);
-			//});
-
-			//$http.get(`/api/GetMostActiveClients/${from}/${to}/5`).then(function (response) {
-			//	$scope.mostActiveClients = response.data;
-			//	if (response.data.length > 0)
-			//		initMostActiveClients(response.data);
-			//});
-
 			// COMPRAS
 
-			//$http.get(`/api/GetPurchaseInvoices/${date7Days}/${to}/0`).then(function (response) {
-			//	$scope.invoicesBuyByDate = response.data;
-			//	if (response.data.length > 0) {
-			//		var res = sortByDate(response.data);
-			//		for (let r of res) {
-			//			r.fecha_simple = convertToCustomFormat(r.fec_emis);
-			//		}
+			$http.get(`/api/GetPurchaseInvoicesLine/${date7Days}/${to}/0`).then(function (response) {
+				$scope.invoicesBuyByDate = response.data;
+				if (response.data.length) {
+					var res = sortByDate(response.data);
+					for (let r of res)
+						r.fecha_simple = convertToCustomFormat(r.fec_emis);
 
-			//		var series = countByDate(res, datesToShow);
-			//		initChartArea("container-invs-c", `Facturas de Compra por Dia (Ultimos ${diffDays} dias)`, series, date7Days);
-			//	}
-			//});
+					let new_data = [];
+					let separated = Object.groupBy(res, item => item.campo1);
+					for (let i in separated) {
+						new_data.push({
+							name: i,
+							data: countByDate(separated[i], datesToShow)
+						});
+					}
 
-			//$http.get(`/api/GetPurchaseOrders/${date7Days}/${to}/0`).then(function (response) {
-			//	$scope.ordersBuyByDate = response.data;
-			//	if (response.data.length > 0) {
-			//		var res = sortByDate(response.data);
-			//		for (let r of res) {
-			//			r.fecha_simple = convertToCustomFormat(r.fec_emis);
-			//		}
+					initChartArea("container-invs-c", `Facturas de Compra por Linea por Dia (Ultimos ${diffDays} dias)`, new_data, date7Days);
+				}
+			});
 
-			//		var series = countByDate(res, datesToShow);
-			//		initChartLine("container-ords-c", `Ordenes de Compra por Dia (Ultimos ${diffDays} dias)`, series, date7Days);
-			//	}
-			//});
+			$http.get(`/api/GetPurchaseOrdersLine/${date7Days}/${to}/0`).then(function (response) {
+				$scope.ordersBuyByDate = response.data;
+				if (response.data.length > 0) {
+					var res = sortByDate(response.data);
+					for (let r of res)
+						r.fecha_simple = convertToCustomFormat(r.fec_emis);
 
-			//$http.get(`/api/GetMostPurchasedArts/${from}/${to}/5`).then(function (response) {
-			//	$scope.mostPurchasedArts = response.data;
-			//	if (response.data.length > 0)
-			//		initMostPurchasedArts(response.data);
-			//});
+					let new_data = [];
+					let separated = Object.groupBy(res, item => item.campo1);
+					for (let i in separated) {
+						new_data.push({
+							name: i,
+							data: countByDate(separated[i], datesToShow)
+						});
+					}
 
-			//$http.get(`/api/GetMostActiveSuppliers/${from}/${to}/5`).then(function (response) {
-			//	$scope.mostActiveSuppliers = response.data;
-			//	if (response.data.length > 0)
-			//		initMostActiveSuppliers(response.data);
-			//});
-
-			// CAJA Y BANCO
-
-			//$http.get(`/api/GetStatsBalances/${from}/${to}`).then(function (response) {
-			//	$scope.stats_b.totalBoxesBSD = response.data.total_b_bsd;
-			//	$scope.stats_b.totalBoxesUSD = response.data.total_b_usd;
-			//	$scope.stats_b.totalAccountsBSD = response.data.total_a_bsd;
-			//	$scope.stats_b.totalAccountsUSD = response.data.total_a_usd;
-			//	$scope.stats_b.totalCxC = response.data.total_cxc;
-			//	$scope.stats_b.totalCxP = response.data.total_cxp;
-
-			//	setTimeout(function () {
-			//		$("#totalBoxesBSD").removeAttr("style");
-			//		$("#totalBoxesUSD").removeAttr("style");
-			//		$("#totalAccountsBSD").removeAttr("style");
-			//		$("#totalAccountsUSD").removeAttr("style");
-			//		$("#totalCxC").removeAttr("style");
-			//		$("#totalCxP").removeAttr("style");
-			//	}, 1);
-			//});
+					initChartLine("container-ords-c", `Ordenes de Compra por Linea por Dia (Ultimos ${diffDays} dias)`, new_data, date7Days);
+				}
+			});
 		}
 
 		$scope.searchStats = function () {

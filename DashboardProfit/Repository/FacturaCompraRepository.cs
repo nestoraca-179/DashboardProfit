@@ -38,6 +38,24 @@ namespace DashboardProfit.Repository
 				return result.OrderByDescending(o => o.fec_emis).ToList();
 		}
 
+		public List<RepCompraxReng_Result> getLastTopInvoicesLine(DateTime from, DateTime to, int top)
+		{
+			List<RepCompraxReng_Result> result = new List<RepCompraxReng_Result>();
+			var sp = db.RepCompraxReng(null, null, from, to, null, null, null, null, null, null, null, null, null, null, null, null, null, null).GetEnumerator();
+
+			while (sp.MoveNext())
+			{
+				RepCompraxReng_Result item = sp.Current;
+				item.campo1 = db.saLineaArticulo.AsNoTracking().Single(l => l.co_lin == item.co_lin).lin_des;
+				result.Add(sp.Current);
+			}
+
+			if (top > 0)
+				return result.OrderByDescending(o => o.fec_emis).Take(top).ToList();
+			else
+				return result.OrderByDescending(o => o.fec_emis).ToList();
+		}
+
 		public List<RepCompraxArt2_Result> getInvoicesByArt(DateTime from, DateTime to, int top)
 		{
 			List<RepCompraxArt2_Result> result = new List<RepCompraxArt2_Result>();

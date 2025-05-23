@@ -37,5 +37,23 @@ namespace DashboardProfit.Repository
 			else
 				return result.OrderByDescending(o => o.fec_emis).ToList();
 		}
+
+		public List<RepOrdenCompraxReng_Result> getLastTopOrdersLine(DateTime from, DateTime to, int top)
+		{
+			List<RepOrdenCompraxReng_Result> result = new List<RepOrdenCompraxReng_Result>();
+			var sp = db.RepOrdenCompraxReng(null, null, from, to, null, null, null, null, null, null, null, null, null, null, null, null, null, null).GetEnumerator();
+
+			while (sp.MoveNext())
+			{
+				RepOrdenCompraxReng_Result item = sp.Current;
+				item.campo1 = db.saLineaArticulo.AsNoTracking().Single(l => l.co_lin == item.co_lin).lin_des;
+				result.Add(sp.Current);
+			}
+
+			if (top > 0)
+				return result.OrderByDescending(o => o.fec_emis).Take(top).ToList();
+			else
+				return result.OrderByDescending(o => o.fec_emis).ToList();
+		}
 	}
 }

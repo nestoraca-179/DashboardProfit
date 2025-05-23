@@ -16,7 +16,6 @@ namespace DashboardProfit.Data
         public string Filtro_anulado { get; set; }
         public string tip_rep { get; set; }
         public string co_prov { get; set; }
-        public string prov_des { get; set; }
         public System.DateTime fec_emis { get; set; }
         public bool anulado { get; set; }
         public int reng_num { get; set; }
@@ -32,5 +31,6 @@ namespace DashboardProfit.Data
         public string art_des { get; set; }
         public string modelo { get; set; }
         public Nullable<decimal> neto { get; set; }
-    }
+		public string prov_des { get; set; }
+	}
 }

@@ -1097,6 +1097,9 @@
     <Compile Include="Data\RepCompraxArt2_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\RepCompraxReng_Result.cs">
+      <DependentUpon>ProfitAdmModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\RepDevolucionClientexNum_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
@@ -1104,6 +1107,9 @@
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\RepFacturaVentaxReng_Result.cs">
+      <DependentUpon>ProfitAdmModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\RepOrdenCompraxReng_Result.cs">
       <DependentUpon>ProfitAdmModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\RepOrdenPagoxNumero_Result.cs">

@@ -174,10 +174,24 @@ namespace DashboardProfit.Controllers
 		}
 
 		[HttpGet]
+		[Route("api/GetPurchaseInvoicesLine/{from}/{to}/{top}")]
+		public List<RepCompraxReng_Result> GetPurchaseInvoicesLine(DateTime from, DateTime to, int top)
+		{
+			return new FacturaCompraRepository().getLastTopInvoicesLine(from, to, top);
+		}
+
+		[HttpGet]
 		[Route("api/GetPurchaseOrders/{from}/{to}/{top}")]
 		public List<RepOrdenCompraxNum_Result> GetPurchaseOrders(DateTime from, DateTime to, int top)
 		{
 			return new OrdenCompraRepository().getLastTopOrders(from, to, top);
+		}
+
+		[HttpGet]
+		[Route("api/GetPurchaseOrdersLine/{from}/{to}/{top}")]
+		public List<RepOrdenCompraxReng_Result> GetPurchaseOrdersLine(DateTime from, DateTime to, int top)
+		{
+			return new OrdenCompraRepository().getLastTopOrdersLine(from, to, top);
 		}
 
 		[HttpGet]
