@@ -28,11 +28,14 @@ namespace DashboardProfit.Repository
 		public List<RepFacturaVentaxFecha_Result> getLastTopInvoices(DateTime from, DateTime to, int top)
 		{
 			List<RepFacturaVentaxFecha_Result> result = new List<RepFacturaVentaxFecha_Result>();
-			var sp = db.RepFacturaVentaxFecha(null, null, from, to, null, null, null, null, null, null, null, null,
-				null, null, null, null, null, null, null, null).GetEnumerator();
+			var sp = db.RepFacturaVentaxFecha(null, null, from, to, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null).GetEnumerator();
 
 			while (sp.MoveNext())
-				result.Add(sp.Current);
+			{
+				RepFacturaVentaxFecha_Result item = sp.Current;
+				if (!item.anulado)
+					result.Add(item);
+			}
 
 			if (top > 0)
 				return result.OrderByDescending(o => o.fec_emis).Take(top).ToList();
@@ -43,14 +46,16 @@ namespace DashboardProfit.Repository
 		public List<RepFacturaVentaxReng_Result> getLastTopInvoicesByLine(DateTime from, DateTime to, int top)
 		{
 			List<RepFacturaVentaxReng_Result> result = new List<RepFacturaVentaxReng_Result>();
-			var sp = db.RepFacturaVentaxReng(null, null, from, to, null, null, null, null, null, null, null, null,
-				null, null, null, null, null, null, null).GetEnumerator();
+			var sp = db.RepFacturaVentaxReng(null, null, from, to, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null).GetEnumerator();
 
 			while (sp.MoveNext())
 			{
 				RepFacturaVentaxReng_Result item = sp.Current;
-				item.campo1 = db.saLineaArticulo.AsNoTracking().Single(l => l.co_lin == item.co_lin).lin_des;
-				result.Add(item);
+				if (!item.anulado)
+				{
+					item.campo1 = db.saLineaArticulo.AsNoTracking().Single(l => l.co_lin == item.co_lin).lin_des;
+					result.Add(item);
+				}
 			}
 
 			if (top > 0)

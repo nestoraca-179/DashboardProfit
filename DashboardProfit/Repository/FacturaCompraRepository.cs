@@ -30,7 +30,11 @@ namespace DashboardProfit.Repository
 			var sp = db.RepCompraxFecha(null, null, from, to, null, null, null, null, null, null, null, null, null, null, null, null).GetEnumerator();
 
 			while (sp.MoveNext())
-				result.Add(sp.Current);
+			{
+				RepCompraxFecha_Result item = sp.Current;
+				if (!item.anulado)
+					result.Add(item);
+			}
 
 			if (top > 0)
 				return result.OrderByDescending(o => o.fec_emis).Take(top).ToList();
@@ -46,8 +50,11 @@ namespace DashboardProfit.Repository
 			while (sp.MoveNext())
 			{
 				RepCompraxReng_Result item = sp.Current;
-				item.campo1 = db.saLineaArticulo.AsNoTracking().Single(l => l.co_lin == item.co_lin).lin_des;
-				result.Add(sp.Current);
+				if (!item.anulado)
+				{
+					item.campo1 = db.saLineaArticulo.AsNoTracking().Single(l => l.co_lin == item.co_lin).lin_des;
+					result.Add(item);
+				}
 			}
 
 			if (top > 0)
@@ -64,8 +71,12 @@ namespace DashboardProfit.Repository
 			ProveedorRepository supplierRep = new ProveedorRepository();
 			while (sp.MoveNext())
 			{
-				sp.Current.prov_des = supplierRep.getByID(sp.Current.co_prov).prov_des;
-				result.Add(sp.Current);
+				RepCompraxArt2_Result item = sp.Current;
+				if (!item.anulado)
+				{
+					item.prov_des = supplierRep.getByID(sp.Current.co_prov).prov_des;
+					result.Add(item);
+				}
 			}
 
 			if (top > 0)

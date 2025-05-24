@@ -30,7 +30,11 @@ namespace DashboardProfit.Repository
 			var sp = db.RepOrdenCompraxNum(null, null, from, to, null, null, null, null, null, null, null, null, null, null, null).GetEnumerator();
 
 			while (sp.MoveNext())
-				result.Add(sp.Current);
+			{
+				RepOrdenCompraxNum_Result item = sp.Current;
+				if (!item.anulado && item.status == "2")
+					result.Add(item);
+			}
 
 			if (top > 0)
 				return result.OrderByDescending(o => o.fec_emis).Take(top).ToList();
@@ -46,8 +50,11 @@ namespace DashboardProfit.Repository
 			while (sp.MoveNext())
 			{
 				RepOrdenCompraxReng_Result item = sp.Current;
-				item.campo1 = db.saLineaArticulo.AsNoTracking().Single(l => l.co_lin == item.co_lin).lin_des;
-				result.Add(sp.Current);
+				if (!item.anulado && item.status == "2")
+				{
+					item.campo1 = db.saLineaArticulo.AsNoTracking().Single(l => l.co_lin == item.co_lin).lin_des;
+					result.Add(item);
+				}
 			}
 
 			if (top > 0)

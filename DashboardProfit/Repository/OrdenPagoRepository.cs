@@ -39,7 +39,11 @@ namespace DashboardProfit.Repository
 			var sp = db.RepOrdenPagoxNumero(null, null, from, to, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null).GetEnumerator();
 
 			while (sp.MoveNext())
-				result.Add(sp.Current);
+			{
+                RepOrdenPagoxNumero_Result item = sp.Current;
+                if (!item.anulado && item.status == "C")
+                    result.Add(item);
+            }
 
 			if (top > 0)
 				return result.OrderByDescending(o => o.fecha).Take(top).ToList();
@@ -111,7 +115,16 @@ namespace DashboardProfit.Repository
                                 origen = "OPA"
                             };
 
-                            var sp_n_movc_o = context.pConsecutivoProximo(sucur, "MOVC_NUM").GetEnumerator();
+                            string sucur_aux_mc = "";
+                            var sp_usa_cons_mc = context.pSeleccionarUsoSucursalConsecutivoTipo("MOVC_NUM").GetEnumerator();
+                            if (sp_usa_cons_mc.MoveNext())
+                            {
+                                if (sp_usa_cons_mc.Current.UsoSucursal)
+                                    sucur_aux_mc = sucur;
+                            }
+                            sp_usa_cons_mc.Dispose();
+
+                            var sp_n_movc_o = context.pConsecutivoProximo(sucur_aux_mc, "MOVC_NUM").GetEnumerator();
                             if (sp_n_movc_o.MoveNext())
                                 n_movc_o = sp_n_movc_o.Current;
                             sp_n_movc_o.Dispose();
@@ -147,7 +160,16 @@ namespace DashboardProfit.Repository
                                 fecha_che = DateTime.Now // CAMBIAR
                             };
 
-                            var sp_n_movb_o = context.pConsecutivoProximo(sucur, "MOVB_NUM").GetEnumerator();
+                            string sucur_aux_mb = "";
+                            var sp_usa_cons_mb = context.pSeleccionarUsoSucursalConsecutivoTipo("MOVB_NUM").GetEnumerator();
+                            if (sp_usa_cons_mb.MoveNext())
+                            {
+                                if (sp_usa_cons_mb.Current.UsoSucursal)
+                                    sucur_aux_mb = sucur;
+                            }
+                            sp_usa_cons_mb.Dispose();
+
+                            var sp_n_movb_o = context.pConsecutivoProximo(sucur_aux_mb, "MOVB_NUM").GetEnumerator();
                             if (sp_n_movb_o.MoveNext())
                                 n_movb_o = sp_n_movb_o.Current;
                             sp_n_movb_o.Dispose();
@@ -183,7 +205,16 @@ namespace DashboardProfit.Repository
                                 origen = "OPA"
                             };
 
-                            var sp_n_movc_d = context.pConsecutivoProximo(sucur, "MOVC_NUM").GetEnumerator();
+                            string sucur_aux_mc = "";
+                            var sp_usa_cons_mc = context.pSeleccionarUsoSucursalConsecutivoTipo("MOVC_NUM").GetEnumerator();
+                            if (sp_usa_cons_mc.MoveNext())
+                            {
+                                if (sp_usa_cons_mc.Current.UsoSucursal)
+                                    sucur_aux_mc = sucur;
+                            }
+                            sp_usa_cons_mc.Dispose();
+
+                            var sp_n_movc_d = context.pConsecutivoProximo(sucur_aux_mc, "MOVC_NUM").GetEnumerator();
                             if (sp_n_movc_d.MoveNext())
                                 n_movc_d = sp_n_movc_d.Current;
                             sp_n_movc_d.Dispose();
@@ -219,7 +250,16 @@ namespace DashboardProfit.Repository
                                 fecha_che = DateTime.Now // CAMBIAR
                             };
 
-                            var sp_n_movb_d = context.pConsecutivoProximo(sucur, "MOVB_NUM").GetEnumerator();
+                            string sucur_aux_mb = "";
+                            var sp_usa_cons_mb = context.pSeleccionarUsoSucursalConsecutivoTipo("MOVC_NUM").GetEnumerator();
+                            if (sp_usa_cons_mb.MoveNext())
+                            {
+                                if (sp_usa_cons_mb.Current.UsoSucursal)
+                                    sucur_aux_mb = sucur;
+                            }
+                            sp_usa_cons_mb.Dispose();
+
+                            var sp_n_movb_d = context.pConsecutivoProximo(sucur_aux_mb, "MOVB_NUM").GetEnumerator();
                             if (sp_n_movb_d.MoveNext())
                                 n_movb_d = sp_n_movb_d.Current;
                             sp_n_movb_d.Dispose();
