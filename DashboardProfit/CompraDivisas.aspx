@@ -132,6 +132,18 @@
                         <i class="fas fa-search d-flex justify-content-center align-items-center rounded bg-primary text-light p-2" role="button" onclick="openModal(this, 'modalBankAccounts')" data-name="bacc_d" style="width: 40px;"></i>
                     </div>
 		        </div>
+                <div class="form-group d-flex align-items-center mt-1">
+                    <label style="flex: 1;">Ref. Transferencia: </label>
+			        <div class="ms-2" style="flex: 2;">
+				        <input type="text" class="form-control" id="doc_num_dest" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" ng-model="order.campo1" ng-required="true" ng-disabled="!useBankD" />
+			        </div>
+		        </div>
+                <div class="form-group d-flex align-items-center mt-1">
+                    <label style="flex: 1;">Emisor Transferencia: </label>
+			        <div class="ms-2" style="flex: 2;">
+				        <input type="text" class="form-control" id="sender" ng-model="order.campo2" ng-required="true" ng-disabled="!useBankD" />
+			        </div>
+		        </div>
 		        <hr />
                 <div class="form-group d-flex align-items-center mt-1">
                     <label style="flex: 1;">Monto a comprar $USD (*)</label>
@@ -215,7 +227,7 @@
                     <div style="display: flex; justify-content: center;">
                         <i class="fas fa-spinner fa-spin" style="color: #01579b; font-size: 7em;"></i>
                     </div>
-                    <h1 class="text-center mt-5">Cargando datos...</h1>
+                    <h1 class="text-center mt-5">Procesando...</h1>
                 </div>
             </div>
         </div>
@@ -532,6 +544,11 @@
 				alert("Debes agregar la cuenta bancaria de destino");
 				return;
             }
+
+			if ($scope.useBankD && isNullOrEmpty($("#doc_num_dest").val())) {
+				alert("Debes agregar la referencia de la transferencia (destino)");
+				return;
+			}
 
             // MONTO
             if (isNullOrEmpty($scope.order.saOrdenPagoReng[0]?.monto_d)) {

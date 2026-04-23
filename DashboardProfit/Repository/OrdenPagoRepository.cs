@@ -231,6 +231,8 @@ namespace DashboardProfit.Repository
                         }
                         else
                         {
+                            string moveDestRef = order.campo1;
+                            string moveDestSender = order.campo2;
                             code = order.campo8;
                             co_mone = context.saCuentaBancaria.AsNoTracking().Single(c => c.cod_cta == code).co_mone;
                             if (!co_mone.StartsWith("US"))
@@ -243,11 +245,12 @@ namespace DashboardProfit.Repository
                                 descrip = string.Format("COMPRA DIVISAS (+) ({0})", n_ord.Trim()),
                                 tasa = order.tasa,
                                 tipo_op = "TP",
-                                doc_num = "000", // CAMBIAR
+                                doc_num = moveDestRef, // "000", // CAMBIAR
                                 co_cta_ingr_egr = reng.co_cta_ingr_egr,
                                 monto_h = amount_usd,
                                 origen = "OPA",
-                                fecha_che = DateTime.Now // CAMBIAR
+                                fecha_che = DateTime.Now, // CAMBIAR,
+                                campo1 = moveDestSender
                             };
 
                             string sucur_aux_mb = "";
@@ -270,7 +273,7 @@ namespace DashboardProfit.Repository
                             // MOVIMIENTO DE BANCO
                             var sp_move_b = context.pInsertarMovimientoBanco(n_movb_d, move_b.descrip, move_b.cod_cta, DateTime.Now, move_b.tasa, 
                                 move_b.tipo_op, move_b.doc_num, move_b.monto_h, move_b.co_cta_ingr_egr, move_b.origen, n_ord, 0, null, false, false, false, false, 0, 
-                                null, null, move_b.fecha_che, null, null, null, null, null, null, null, null, null, null, user, sucur, "DASHBOARD PROFIT", null, null);
+                                null, null, move_b.fecha_che, null, null, moveDestSender, null, null, null, null, null, null, null, user, sucur, "DASHBOARD PROFIT", null, null);
                             sp_move_b.Dispose();
                         }
 
