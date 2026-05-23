@@ -112,7 +112,8 @@ namespace DashboardProfit.Repository
                                 forma_pag = "EF",
                                 co_cta_ingr_egr = reng.co_cta_ingr_egr,
                                 monto_d = amount_bsd,
-                                origen = "OPA"
+                                origen = "OPA",
+                                campo1 = order.tasa.ToString()
                             };
 
                             string sucur_aux_mc = "";
@@ -136,7 +137,7 @@ namespace DashboardProfit.Repository
                             // MOVIMIENTO DE CAJA
                             var sp_move_c = context.pInsertarMovimientoCaja(n_movc_o, DateTime.Now, move_c.descrip, code, move_c.tasa, move_c.tipo_mov, move_c.forma_pag, null, 
                                 null, null, null, move_c.co_cta_ingr_egr, move_c.monto_d, false, move_c.origen, n_ord, null, false, false, false, false, null, DateTime.Now, 
-                                null, null, null, null, null, null, null, null, null, null, null, null, null, user, sucur, "DASHBOARD PROFIT", null, null);
+                                null, null, null, null, null, move_c.campo1.ToString(), null, null, null, null, null, null, null, user, sucur, "DASHBOARD PROFIT", null, null);
                             sp_move_c.Dispose();
                         }
 						else
@@ -157,7 +158,8 @@ namespace DashboardProfit.Repository
                                 co_cta_ingr_egr = reng.co_cta_ingr_egr,
                                 monto_d = amount_bsd,
                                 origen = "OPA",
-                                fecha_che = DateTime.Now // CAMBIAR
+                                fecha_che = DateTime.Now, // CAMBIAR,
+                                campo1 = order.tasa.ToString()
                             };
 
                             string sucur_aux_mb = "";
@@ -180,7 +182,7 @@ namespace DashboardProfit.Repository
                             // MOVIMIENTO DE BANCO
                             var sp_move_b = context.pInsertarMovimientoBanco(n_movb_o, move_b.descrip, move_b.cod_cta, DateTime.Now, move_b.tasa, 
                                 move_b.tipo_op, move_b.doc_num, move_b.monto_d, move_b.co_cta_ingr_egr, move_b.origen, n_ord, 0, null, false, false, false, false, 0, 
-                                null, null, move_b.fecha_che, null, null, null, null, null, null, null, null, null, null, user, sucur, "DASHBOARD PROFIT", null, null);
+                                null, null, move_b.fecha_che, null, null, move_b.campo1, null, null, null, null, null, null, null, user, sucur, "DASHBOARD PROFIT", null, null);
                             sp_move_b.Dispose();
                         }
 
@@ -202,7 +204,8 @@ namespace DashboardProfit.Repository
                                 forma_pag = "EF",
                                 co_cta_ingr_egr = reng.co_cta_ingr_egr,
                                 monto_h = amount_usd,
-                                origen = "OPA"
+                                origen = "OPA",
+                                campo1 = order.tasa.ToString()
                             };
 
                             string sucur_aux_mc = "";
@@ -226,7 +229,7 @@ namespace DashboardProfit.Repository
                             // MOVIMIENTO DE CAJA
                             var sp_move_c = context.pInsertarMovimientoCaja(n_movc_d, DateTime.Now, move_c.descrip, code, move_c.tasa, move_c.tipo_mov, move_c.forma_pag, null,
                                 null, null, null, move_c.co_cta_ingr_egr, move_c.monto_h, false, move_c.origen, n_ord, null, false, false, false, false, null, DateTime.Now,
-                                null, null, null, null, null, null, null, null, null, null, null, null, null, user, sucur, "DASHBOARD PROFIT", null, null);
+                                null, null, null, null, null, move_c.campo1, null, null, null, null, null, null, null, user, sucur, "DASHBOARD PROFIT", null, null);
                             sp_move_c.Dispose();
                         }
                         else
@@ -250,7 +253,8 @@ namespace DashboardProfit.Repository
                                 monto_h = amount_usd,
                                 origen = "OPA",
                                 fecha_che = DateTime.Now, // CAMBIAR,
-                                campo1 = moveDestSender
+                                campo1 = moveDestSender,
+                                campo2 = order.tasa.ToString()
                             };
 
                             string sucur_aux_mb = "";
@@ -272,14 +276,15 @@ namespace DashboardProfit.Repository
 
                             // MOVIMIENTO DE BANCO
                             var sp_move_b = context.pInsertarMovimientoBanco(n_movb_d, move_b.descrip, move_b.cod_cta, DateTime.Now, move_b.tasa, 
-                                move_b.tipo_op, move_b.doc_num, move_b.monto_h, move_b.co_cta_ingr_egr, move_b.origen, n_ord, 0, null, false, false, false, false, 0, 
-                                null, null, move_b.fecha_che, null, null, moveDestSender, null, null, null, null, null, null, null, user, sucur, "DASHBOARD PROFIT", null, null);
+                                move_b.tipo_op, move_b.doc_num, move_b.monto_h, move_b.co_cta_ingr_egr, move_b.origen, n_ord, 0, null, false, false, 
+                                false, false, 0, null, null, move_b.fecha_che, null, null, move_b.campo1, move_b.campo2, null, null, null, null, null, 
+                                null, user, sucur, "DASHBOARD PROFIT", null, null);
                             sp_move_b.Dispose();
                         }
 
                         // ORDEN PAGO
                         var sp = context.pInsertarOrdenPago(n_ord, "C", DateTime.Now, order.cod_ben, order.descrip, forma_pag, DateTime.Now, order.cod_cta, order.doc_num,
-                            order.cod_caja, n_movc_o, n_movb_o, null, order.tasa, co_mone, false, false, 0, null, null, "COMPRA DIVISAS", n_movc_d, n_movb_d, null, 
+                            order.cod_caja, n_movc_o, n_movb_o, null, order.tasa, co_mone, false, false, 0, null, null, "COMPRA DIVISAS", n_movc_d, n_movb_d, order.tasa.ToString(), 
                             null, null, null, null, user, sucur, "DASHBOARD PROFIT", null, null);
                         sp.Dispose();
 
